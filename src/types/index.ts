@@ -26,6 +26,16 @@ export interface ServiceCategory {
   relatedProjectSlugs?: string[];
 }
 
+export interface ProjectGalleryItem {
+  id: string;
+  src: string;
+  alt: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  specs?: { label: string; value: string }[];
+}
+
 export interface ProjectCaseStudy {
   id: string;
   slug: string;
@@ -49,6 +59,8 @@ export interface ProjectCaseStudy {
   accentColor: string;
   mockupType: "mobile" | "dashboard" | "gis" | "cloud" | "security" | "streaming" | "epos" | "medical";
   liveUrl?: string;
+  images?: ProjectGalleryItem[];
+  enterprisePartners?: string[];
   appStoreLinks?: {
     name: string;
     url: string;
