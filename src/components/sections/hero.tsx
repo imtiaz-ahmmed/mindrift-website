@@ -96,13 +96,6 @@ export function Hero() {
             <span>Explore Client Projects</span>
             <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
-
-          <Link
-            href="/about"
-            className="inline-flex items-center justify-center gap-1.5 px-5 py-4 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-[#1877F2] dark:hover:text-[#0BCB91] transition-colors"
-          >
-            <span>About Mindrift</span>
-          </Link>
         </div>
 
         {/* Centered Enterprise Feature Indicators */}
