@@ -56,21 +56,16 @@ export function Preloader() {
       <div className="absolute w-[400px] h-[400px] rounded-full bg-blue-600/15 blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 flex flex-col items-center space-y-5 px-4 text-center">
-        {/* Mindrift Branding with Official Logo */}
-        <div className="flex flex-col items-center space-y-2">
-          <div className="relative flex items-center justify-center px-4 py-2 rounded-xl bg-[#000B2B] border border-blue-900/50 shadow-2xl">
-            <Image
-              src="/assets/logos/logo.jpg"
-              alt="Mindrift"
-              width={180}
-              height={55}
-              priority
-              className="h-8 sm:h-9 w-auto object-contain"
-            />
-          </div>
-          <span className="text-xs font-black tracking-[0.25em] text-white uppercase drop-shadow-sm">
-            MINDRIFT
-          </span>
+        {/* Mindrift Official Corporate Logo */}
+        <div className="relative flex items-center justify-center px-5 py-2.5 rounded-xl bg-[#000B2B] border border-blue-900/50 shadow-2xl">
+          <Image
+            src="/assets/logos/logo.jpg"
+            alt="Mindrift"
+            width={180}
+            height={55}
+            priority
+            className="h-8 sm:h-9 w-auto object-contain"
+          />
         </div>
 
         {/* Minimal High-Speed Progress Line */}

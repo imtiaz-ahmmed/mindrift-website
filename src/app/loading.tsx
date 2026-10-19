@@ -4,21 +4,16 @@ import Image from "next/image";
 export default function Loading() {
   return (
     <div className="min-h-[50vh] flex flex-col items-center justify-center p-6 text-center space-y-4">
-      {/* Mindrift Branding */}
-      <div className="flex flex-col items-center space-y-2">
-        <div className="relative px-4 py-2 rounded-xl bg-[#000B2B] border border-blue-900/40 shadow-md">
-          <Image
-            src="/assets/logos/logo.jpg"
-            alt="Mindrift"
-            width={160}
-            height={50}
-            priority
-            className="h-7 w-auto object-contain"
-          />
-        </div>
-        <span className="text-xs font-black tracking-[0.25em] text-slate-800 dark:text-white uppercase">
-          MINDRIFT
-        </span>
+      {/* Mindrift Official Logo */}
+      <div className="relative px-4 py-2 rounded-xl bg-[#000B2B] border border-blue-900/40 shadow-md">
+        <Image
+          src="/assets/logos/logo.jpg"
+          alt="Mindrift"
+          width={160}
+          height={50}
+          priority
+          className="h-7 w-auto object-contain"
+        />
       </div>
 
       {/* Progress Line */}
