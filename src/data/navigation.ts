@@ -105,12 +105,12 @@ export const navigationData = {
       { title: "Database Engineering", href: "/services/database-engineering" },
     ],
     projects: [
-      { title: "LYFE Attend (GPS Attendance)", href: "/projects/lyfe-attend" },
-      { title: "GeoConnect (GIS & POI Engine)", href: "/projects/geoconnect" },
-      { title: "Leave Management System", href: "/projects/leave-management-system" },
-      { title: "Cloud Infrastructure FinOps", href: "/projects/cloud-core-finops" },
-      { title: "Zero-Trust IAM Gateway", href: "/projects/secure-vault-iam" },
-      { title: "All Featured Projects", href: "/projects" },
+      { title: "Odyssey.stream (3D Cloud Streaming)", href: "/projects/odyssey-stream" },
+      { title: "FirstChoice ePOS (Hospitality System)", href: "/projects/firstchoice-epos" },
+      { title: "AB3 Medical (Athlete EMR Platform)", href: "/projects/ab3-medical-emr" },
+      { title: "YumaPOS Mobile Apps Suite", href: "/projects/yumapos-mobile-suite" },
+      { title: "FreeOnlineOrdering Marketplace", href: "/projects/free-online-ordering" },
+      { title: "View All Projects", href: "/projects" },
     ],
     company: [
       { title: "About Mindrift", href: "/about" },

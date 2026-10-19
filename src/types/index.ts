@@ -30,6 +30,7 @@ export interface ProjectCaseStudy {
   id: string;
   slug: string;
   title: string;
+  clientName?: string;
   category: string;
   categorySlug: string;
   summary: string;
@@ -46,7 +47,13 @@ export interface ProjectCaseStudy {
   resultsOrImpact: string[];
   relatedServiceSlugs: string[];
   accentColor: string;
-  mockupType: "mobile" | "dashboard" | "gis" | "cloud" | "security";
+  mockupType: "mobile" | "dashboard" | "gis" | "cloud" | "security" | "streaming" | "epos" | "medical";
+  liveUrl?: string;
+  appStoreLinks?: {
+    name: string;
+    url: string;
+    platform?: string;
+  }[];
 }
 
 export interface Industry {
@@ -96,6 +103,7 @@ export interface SiteConfig {
   email: string;
   phone?: string;
   location: string;
+  companyProfileUrl: string;
   socials: {
     platform: string;
     url: string;

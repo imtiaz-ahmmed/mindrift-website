@@ -1,83 +1,271 @@
 import React from "react";
 import {
-  MapPin,
   CheckCircle2,
-  Clock,
-  Shield,
-  Layers,
   Server,
   Activity,
-  Cpu,
-  UserCheck,
+  Layers,
+  ShoppingBag,
+  ExternalLink,
+  Play,
+  Volume2,
+  Sliders,
+  HeartPulse,
+  FileText,
   Smartphone,
-  Navigation,
+  Printer,
+  Sparkles,
 } from "lucide-react";
 
 interface MockupVisualProps {
-  type: "mobile" | "dashboard" | "gis" | "cloud" | "security";
+  type: "mobile" | "dashboard" | "gis" | "cloud" | "security" | "streaming" | "epos" | "medical";
   title: string;
   className?: string;
 }
 
 export function MockupVisual({ type, title, className = "" }: MockupVisualProps) {
+  // 3D Pixel Streaming (Odyssey.stream)
+  if (type === "streaming") {
+    return (
+      <div
+        className={`w-full aspect-[16/10] bg-[#030718] rounded-2xl p-4 border border-blue-900/60 shadow-2xl text-white relative overflow-hidden flex flex-col justify-between ${className}`}
+      >
+        {/* HUD Header */}
+        <div className="flex items-center justify-between border-b border-slate-800/80 pb-2.5 z-10">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+            <span className="text-xs font-mono font-bold text-white tracking-wide">
+              UE5 CLOUD STREAMING ENGINE
+            </span>
+          </div>
+          <div className="flex items-center gap-3 text-[11px] font-mono text-slate-400">
+            <span className="text-emerald-400">60 FPS · 4K</span>
+            <span className="text-[#1877F2]">WebRTC NVENC</span>
+            <span className="bg-blue-500/10 px-2 py-0.5 rounded text-blue-300 border border-blue-500/20">
+              Latency: 42ms
+            </span>
+          </div>
+        </div>
+
+        {/* Center 3D Viewport Simulation */}
+        <div className="relative my-auto py-6 flex flex-col items-center justify-center">
+          <div className="relative w-full max-w-sm h-32 rounded-xl bg-gradient-to-tr from-blue-950/60 via-slate-900/40 to-emerald-950/40 border border-blue-500/30 flex items-center justify-center overflow-hidden">
+            <div className="absolute inset-0 bg-grid-pattern opacity-30" />
+            
+            {/* 3D Wireframe / Mesh Graphic */}
+            <div className="relative flex items-center justify-center">
+              <div className="w-20 h-20 rounded-full border border-[#1877F2]/40 animate-spin" style={{ animationDuration: "12s" }} />
+              <div className="absolute w-14 h-14 rounded-lg border-2 border-[#0BCB91]/50 rotate-45" />
+              <div className="absolute text-[10px] font-mono font-bold text-[#0BCB91] bg-slate-950/80 px-2 py-0.5 rounded border border-[#0BCB91]/30">
+                UE5 SCENE ACTIVE
+              </div>
+            </div>
+
+            {/* Overlaid UI Controls */}
+            <div className="absolute top-2 left-2 flex items-center gap-1.5 text-[9px] font-mono text-slate-300 bg-black/60 px-2 py-1 rounded">
+              <Sliders className="w-3 h-3 text-[#1877F2]" />
+              <span>Configurator: Titanium Gray</span>
+            </div>
+            <div className="absolute top-2 right-2 flex items-center gap-1 text-[9px] font-mono text-slate-300 bg-black/60 px-2 py-1 rounded">
+              <Volume2 className="w-3 h-3 text-[#0BCB91]" />
+              <span>Dolby Spatial Audio</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Status Ticker */}
+        <div className="flex items-center justify-between text-[10px] font-mono border-t border-slate-800/80 pt-2 text-slate-400 z-10">
+          <div>Multiplayer Nodes: 4 Clusters Active</div>
+          <div className="text-[#0BCB91]">Browser Zero-Install Stream</div>
+        </div>
+      </div>
+    );
+  }
+
+  // Enterprise ePOS (FirstChoice ePOS)
+  if (type === "epos") {
+    return (
+      <div
+        className={`w-full aspect-[16/10] bg-[#070F2B] rounded-2xl p-4 border border-emerald-900/50 shadow-2xl text-white relative overflow-hidden flex flex-col justify-between ${className}`}
+      >
+        <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+          <div className="flex items-center gap-2">
+            <ShoppingBag className="w-4 h-4 text-[#0BCB91]" />
+            <span className="text-xs font-bold text-white font-mono">FirstChoice ePOS Till #01 (Dublin)</span>
+          </div>
+          <span className="text-[10px] font-mono text-[#0BCB91] bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+            Offline Resilient · KDS Linked
+          </span>
+        </div>
+
+        {/* POS Grid View */}
+        <div className="grid grid-cols-12 gap-3 my-auto py-2">
+          {/* Order Ticket Panel */}
+          <div className="col-span-6 p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1.5">
+            <div className="flex justify-between text-[11px] font-bold border-b border-slate-800 pb-1">
+              <span>Table 12 · 3 Guests</span>
+              <span className="text-[#0BCB91]">€48.50</span>
+            </div>
+            <div className="space-y-1 text-[10px] font-mono text-slate-300">
+              <div className="flex justify-between">
+                <span>1x Artisan Sourdough Pizza</span>
+                <span>€16.50</span>
+              </div>
+              <div className="flex justify-between text-slate-400 pl-2">
+                <span>+ Extra Mozzarella & Basil</span>
+                <span>€2.00</span>
+              </div>
+              <div className="flex justify-between">
+                <span>2x Craft Cider (Pint)</span>
+                <span>€14.00</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Menu Touch Tiles */}
+          <div className="col-span-6 grid grid-cols-2 gap-1.5 text-center text-[10px] font-bold">
+            <div className="p-2.5 rounded-lg bg-[#1877F2]/20 border border-[#1877F2]/40 text-blue-200 flex flex-col justify-center">
+              <span>Table Order</span>
+              <span className="text-[8px] font-mono text-slate-400">QR Synced</span>
+            </div>
+            <div className="p-2.5 rounded-lg bg-[#0BCB91]/20 border border-[#0BCB91]/40 text-emerald-200 flex flex-col justify-center">
+              <span>Send to KDS</span>
+              <span className="text-[8px] font-mono text-emerald-400">Kitchen Disp</span>
+            </div>
+            <div className="p-2.5 rounded-lg bg-slate-800 border border-slate-700 text-slate-200 flex flex-col justify-center">
+              <span>Thermal Receipt</span>
+              <span className="text-[8px] font-mono text-slate-400">ESC/POS</span>
+            </div>
+            <div className="p-2.5 rounded-lg bg-emerald-600 text-white flex flex-col justify-center shadow">
+              <span>Pay & Close</span>
+              <span className="text-[8px] font-mono">Card / Cash</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between text-[10px] font-mono border-t border-slate-800 pt-2 text-slate-400">
+          <div className="flex items-center gap-1.5">
+            <Printer className="w-3.5 h-3.5 text-[#0BCB91]" />
+            <span>Kitchen Display System: Connected</span>
+          </div>
+          <span className="text-[#0BCB91]">Cloud Sync: 100%</span>
+        </div>
+      </div>
+    );
+  }
+
+  // Athlete EMR (AB3 Medical)
+  if (type === "medical") {
+    return (
+      <div
+        className={`w-full aspect-[16/10] bg-[#070F2B] rounded-2xl p-4 border border-blue-900/60 shadow-2xl text-white relative overflow-hidden flex flex-col justify-between ${className}`}
+      >
+        <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+          <div className="flex items-center gap-2">
+            <HeartPulse className="w-4 h-4 text-rose-500" />
+            <span className="text-xs font-bold text-white font-mono">AB3 Athlete EMR Portal</span>
+          </div>
+          <span className="text-[10px] font-mono text-[#0BCB91] bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+            Athlete Owned · HIPAA Compliant
+          </span>
+        </div>
+
+        <div className="grid grid-cols-3 gap-3 my-auto py-2">
+          <div className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
+            <span className="text-[10px] text-slate-400 font-mono">CLINICAL STATUS</span>
+            <div className="text-sm font-bold text-emerald-400">Cleared for Match</div>
+            <p className="text-[9px] text-slate-400">Return-to-Play validated</p>
+          </div>
+          <div className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
+            <span className="text-[10px] text-slate-400 font-mono">REHAB TIMELINE</span>
+            <div className="text-sm font-bold text-[#1877F2]">Phase 4 of 4</div>
+            <p className="text-[9px] text-slate-400">ACL reconstruction</p>
+          </div>
+          <div className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
+            <span className="text-[10px] text-slate-400 font-mono">CONSENT ACCESS</span>
+            <div className="text-sm font-bold text-white">Active 14 Days</div>
+            <p className="text-[9px] text-slate-400">Club Medical Staff</p>
+          </div>
+        </div>
+
+        <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-center justify-between text-xs text-slate-300">
+          <div className="flex items-center gap-2">
+            <FileText className="w-3.5 h-3.5 text-[#1877F2]" />
+            <span className="text-[11px] font-mono">MRI Diagnostic Scan (DICOM) · Encrypted</span>
+          </div>
+          <span className="text-[10px] font-mono text-emerald-400">VERIFIED SIGNATURE</span>
+        </div>
+      </div>
+    );
+  }
+
+  // Mobile App (YumaPOS Suite)
   if (type === "mobile") {
     return (
       <div
-        className={`relative w-full max-w-sm mx-auto aspect-[9/16] max-h-[480px] bg-slate-900 rounded-[2.5rem] p-3.5 shadow-2xl border-4 border-slate-700/60 dark:border-slate-800 ${className}`}
+        className={`relative w-full max-w-sm mx-auto aspect-[9/16] max-h-[460px] bg-slate-900 rounded-[2.5rem] p-3 shadow-2xl border-4 border-slate-700/60 dark:border-slate-800 ${className}`}
       >
         {/* Notch */}
-        <div className="absolute top-5 left-1/2 -translate-x-1/2 w-24 h-4 bg-slate-800 rounded-full z-20 flex items-center justify-center">
-          <div className="w-2.5 h-2.5 rounded-full bg-slate-900 mr-2" />
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-3.5 bg-slate-800 rounded-full z-20 flex items-center justify-center">
+          <div className="w-2 h-2 rounded-full bg-slate-900 mr-1.5" />
           <div className="w-1.5 h-1.5 rounded-full bg-blue-500/80" />
         </div>
 
         {/* Screen */}
         <div className="w-full h-full bg-[#050B20] rounded-[2rem] overflow-hidden flex flex-col p-4 text-white relative">
-          <div className="pt-6 pb-3 border-b border-slate-800/80 flex items-center justify-between">
+          <div className="pt-5 pb-2.5 border-b border-slate-800/80 flex items-center justify-between">
             <div>
-              <span className="text-[10px] text-slate-400 font-mono">LYFE ATTEND MOBILE</span>
-              <h5 className="text-sm font-bold text-white">Daily Field Check-in</h5>
+              <span className="text-[9px] text-[#0BCB91] font-mono uppercase tracking-wider">
+                YumaPOS Hospitality App
+              </span>
+              <h5 className="text-xs font-bold text-white">DiFontaine&rsquo;s Pizzeria (Dublin)</h5>
             </div>
-            <div className="flex items-center gap-1 text-[10px] text-[#0BCB91] bg-[#0BCB91]/10 px-2 py-0.5 rounded-full border border-[#0BCB91]/20">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#0BCB91] animate-pulse" />
-              GPS Active
-            </div>
-          </div>
-
-          {/* Simulated Geofence Radar */}
-          <div className="my-auto py-4 text-center relative flex flex-col items-center justify-center">
-            <div className="w-36 h-36 rounded-full border border-blue-500/20 flex items-center justify-center relative animate-pulse">
-              <div className="w-28 h-28 rounded-full border border-[#0BCB91]/30 flex items-center justify-center bg-blue-950/20">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-[#1877F2] to-[#0BCB91] flex items-center justify-center shadow-lg shadow-blue-500/30">
-                  <UserCheck className="w-8 h-8 text-white" />
-                </div>
-              </div>
-              <div className="absolute -top-1 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-blue-600 rounded text-[9px] font-mono">
-                Inside Perimeter
-              </div>
-            </div>
-
-            <div className="mt-3 space-y-0.5">
-              <span className="text-xs font-semibold text-slate-200">Branch Metro Hub #04</span>
-              <p className="text-[10px] text-slate-400 font-mono">Accuracy: ±3.8m · Spoof Check: Passed</p>
+            <div className="text-[9px] text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded">
+              OPEN NOW
             </div>
           </div>
 
-          {/* Action Log Card */}
-          <div className="space-y-2 mt-auto">
-            <div className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#0BCB91]" />
-                <div>
-                  <div className="text-[11px] font-semibold">Morning Clock-In</div>
-                  <div className="text-[9px] text-slate-400">08:58:14 AM · Verified</div>
-                </div>
+          {/* Menu Items Preview */}
+          <div className="my-auto py-2 space-y-2">
+            <div className="p-2 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between">
+              <div>
+                <div className="text-[11px] font-bold text-white">NYC Pepperoni Slice</div>
+                <div className="text-[9px] text-slate-400">San Marzano sauce, whole milk mozz</div>
               </div>
-              <span className="text-[10px] font-mono text-blue-400">SYNCED</span>
+              <span className="text-xs font-bold text-[#0BCB91]">€5.50</span>
             </div>
 
-            <div className="w-full py-2.5 rounded-xl bg-gradient-to-r from-[#1877F2] to-[#0BCB91] text-center text-xs font-bold text-white shadow-md">
-              Tap to Register Departure
+            <div className="p-2 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between">
+              <div>
+                <div className="text-[11px] font-bold text-white">20&quot; Whole Pie Deal</div>
+                <div className="text-[9px] text-slate-400">Feeds 4-5 · Choose 3 toppings</div>
+              </div>
+              <span className="text-xs font-bold text-[#0BCB91]">€26.00</span>
+            </div>
+
+            {/* Loyalty Stamp Card */}
+            <div className="p-2 rounded-xl bg-blue-950/40 border border-blue-800/40 space-y-1">
+              <div className="flex justify-between text-[10px] font-mono text-blue-200">
+                <span>Loyalty Stamps: 4 / 6</span>
+                <span className="text-emerald-400">Next Slice Free!</span>
+              </div>
+              <div className="flex gap-1.5 pt-0.5">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="flex-1 h-1.5 rounded-full bg-[#0BCB91]" />
+                ))}
+                {[5, 6].map((i) => (
+                  <div key={i} className="flex-1 h-1.5 rounded-full bg-slate-700" />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Checkout Button */}
+          <div className="mt-auto space-y-1.5">
+            <div className="w-full py-2 rounded-xl bg-gradient-to-r from-[#1877F2] to-[#0BCB91] text-center text-xs font-bold text-white shadow">
+              Checkout · 1 Item (€5.50)
+            </div>
+            <div className="text-center text-[9px] font-mono text-slate-400">
+              Kitchen Printing & FCM Push Integrated
             </div>
           </div>
         </div>
@@ -85,149 +273,42 @@ export function MockupVisual({ type, title, className = "" }: MockupVisualProps)
     );
   }
 
-  if (type === "gis") {
-    return (
-      <div
-        className={`w-full aspect-[16/10] bg-[#070F2B] rounded-2xl p-4 border border-slate-800 shadow-2xl text-white relative overflow-hidden flex flex-col justify-between ${className}`}
-      >
-        {/* Header HUD */}
-        <div className="flex items-center justify-between border-b border-slate-800 pb-2.5 z-10">
-          <div className="flex items-center gap-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-            <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-            <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-            <span className="ml-2 text-xs font-mono text-slate-300">GeoConnect Spatial Viewer</span>
-          </div>
-          <div className="flex items-center gap-3 text-xs font-mono text-slate-400">
-            <span>Query: 11.4ms</span>
-            <span className="text-[#0BCB91]">PostGIS: Active</span>
-          </div>
-        </div>
-
-        {/* Vector Map Grid Visualization */}
-        <div className="absolute inset-x-0 inset-y-12 bg-grid-pattern opacity-40" />
-
-        {/* Center Spatial Map Layer */}
-        <div className="relative z-10 my-auto flex items-center justify-center">
-          <div className="relative w-64 h-40 border border-blue-500/30 rounded-xl bg-blue-950/20 backdrop-blur-xs flex items-center justify-center">
-            {/* Concentric Proximity Buffer Rings */}
-            <div className="absolute w-48 h-48 rounded-full border border-dashed border-[#0BCB91]/30" />
-            <div className="absolute w-32 h-32 rounded-full border border-[#1877F2]/40" />
-
-            {/* Simulated Points of Interest */}
-            <div className="absolute top-6 left-12 flex items-center gap-1 bg-[#1877F2] text-[10px] px-1.5 py-0.5 rounded font-bold shadow">
-              <MapPin className="w-3 h-3" /> POI #821
-            </div>
-            <div className="absolute bottom-8 right-14 flex items-center gap-1 bg-[#0BCB91] text-[10px] text-slate-900 px-1.5 py-0.5 rounded font-bold shadow">
-              <MapPin className="w-3 h-3" /> POI #943
-            </div>
-            <div className="absolute top-10 right-20 w-2.5 h-2.5 rounded-full bg-blue-400 animate-ping" />
-            <div className="w-3.5 h-3.5 rounded-full bg-white shadow-lg shadow-white/50" />
-          </div>
-        </div>
-
-        {/* Bottom HUD Bar */}
-        <div className="relative z-10 flex items-center justify-between text-xs font-mono pt-2 border-t border-slate-800 text-slate-400">
-          <div>EPSG:4326 · Bounding Box [-74.02, 40.71, -73.93, 40.78]</div>
-          <div className="text-[#0BCB91]">1,280,412 Indexed Entities</div>
-        </div>
-      </div>
-    );
-  }
-
-  if (type === "dashboard") {
-    return (
-      <div
-        className={`w-full aspect-[16/10] bg-[#070F2B] rounded-2xl p-4 border border-slate-800 shadow-2xl text-white relative overflow-hidden flex flex-col justify-between ${className}`}
-      >
-        <div className="flex items-center justify-between border-b border-slate-800 pb-2.5">
-          <div className="flex items-center gap-2">
-            <Layers className="w-4 h-4 text-[#1877F2]" />
-            <span className="text-xs font-bold text-white">Leave Governance & Approval Portal</span>
-          </div>
-          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-[#0BCB91] border border-emerald-500/30">
-            Policy Engine: Enforced
-          </span>
-        </div>
-
-        {/* Middle Stats & Approval Chain */}
-        <div className="grid grid-cols-3 gap-3 my-auto py-2">
-          <div className="p-3 rounded-lg bg-slate-900/80 border border-slate-800">
-            <span className="text-[10px] text-slate-400 uppercase font-mono">Annual Accrual</span>
-            <div className="text-lg font-bold text-white mt-1">18.5 Days</div>
-            <span className="text-[10px] text-[#0BCB91]">+1.5 days accrued</span>
-          </div>
-          <div className="p-3 rounded-lg bg-slate-900/80 border border-slate-800">
-            <span className="text-[10px] text-slate-400 uppercase font-mono">Pending Reviews</span>
-            <div className="text-lg font-bold text-[#1877F2] mt-1">3 Requests</div>
-            <span className="text-[10px] text-slate-400">Avg turn: 3.2 hrs</span>
-          </div>
-          <div className="p-3 rounded-lg bg-slate-900/80 border border-slate-800">
-            <span className="text-[10px] text-slate-400 uppercase font-mono">Coverage Ratio</span>
-            <div className="text-lg font-bold text-[#0BCB91] mt-1">94.2%</div>
-            <span className="text-[10px] text-slate-400">Team minimum met</span>
-          </div>
-        </div>
-
-        {/* Approval Flow Visualizer */}
-        <div className="p-3 rounded-lg bg-slate-900/90 border border-slate-800 space-y-2">
-          <div className="flex items-center justify-between text-xs">
-            <span className="font-semibold text-slate-300">Approval State: Medical Leave #4910</span>
-            <span className="text-[10px] font-mono text-yellow-400">Pending Dept Head</span>
-          </div>
-          <div className="flex items-center gap-2 pt-1">
-            <div className="flex-1 h-1.5 rounded-full bg-[#0BCB91]" />
-            <div className="flex-1 h-1.5 rounded-full bg-yellow-400 animate-pulse" />
-            <div className="flex-1 h-1.5 rounded-full bg-slate-700" />
-          </div>
-          <div className="flex justify-between text-[10px] text-slate-400 font-mono">
-            <span>1. Lead: Approved</span>
-            <span>2. Dept Head: Reviewing</span>
-            <span>3. HR Admin: Queued</span>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Cloud & Security fallback diagrams
+  // Marketplace / Multi-tenant Dashboard (FreeOnlineOrdering)
   return (
     <div
       className={`w-full aspect-[16/10] bg-[#070F2B] rounded-2xl p-4 border border-slate-800 shadow-2xl text-white relative overflow-hidden flex flex-col justify-between ${className}`}
     >
       <div className="flex items-center justify-between border-b border-slate-800 pb-2">
         <div className="flex items-center gap-2">
-          {type === "security" ? (
-            <Shield className="w-4 h-4 text-[#0BCB91]" />
-          ) : (
-            <Server className="w-4 h-4 text-[#1877F2]" />
-          )}
-          <span className="text-xs font-bold text-white">{title}</span>
+          <Activity className="w-4 h-4 text-[#1877F2]" />
+          <span className="text-xs font-bold text-white font-mono">{title}</span>
         </div>
-        <span className="text-[10px] font-mono text-[#0BCB91] bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-          Zero-Trust Verified
+        <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+          Commission-Free Active
         </span>
       </div>
 
-      <div className="grid grid-cols-2 gap-3 my-auto py-2">
+      <div className="grid grid-cols-3 gap-3 my-auto py-2">
         <div className="p-3 rounded-lg bg-slate-900/90 border border-slate-800 space-y-1">
-          <div className="text-[10px] font-mono text-slate-400">AUTH & TOKEN ENCLAVE</div>
-          <div className="text-sm font-bold text-white">OAuth 2.0 / OIDC</div>
-          <div className="text-[10px] text-[#0BCB91] font-mono">Latency: 2.4ms (JWKS Cached)</div>
+          <div className="text-[10px] font-mono text-slate-400">TODAY ORDERS</div>
+          <div className="text-lg font-bold text-white">1,482 Orders</div>
+          <div className="text-[10px] text-[#0BCB91]">Direct In-Store Print</div>
         </div>
         <div className="p-3 rounded-lg bg-slate-900/90 border border-slate-800 space-y-1">
-          <div className="text-[10px] font-mono text-slate-400">NETWORK POLICY GATEWAY</div>
-          <div className="text-sm font-bold text-white">Default-Deny Ingress</div>
-          <div className="text-[10px] text-blue-400 font-mono">Tls 1.3 Strict Mutual Auth</div>
+          <div className="text-[10px] font-mono text-slate-400">EST. SAVINGS</div>
+          <div className="text-lg font-bold text-emerald-400">£4,290 / mo</div>
+          <div className="text-[10px] text-slate-400">0% Aggregator Fee</div>
+        </div>
+        <div className="p-3 rounded-lg bg-slate-900/90 border border-slate-800 space-y-1">
+          <div className="text-[10px] font-mono text-slate-400">DISPATCH TIME</div>
+          <div className="text-lg font-bold text-[#1877F2]">1.8 Seconds</div>
+          <div className="text-[10px] text-slate-400">Cloud to Thermal</div>
         </div>
       </div>
 
-      <div className="p-2.5 rounded-lg bg-slate-900/60 border border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
-        <div className="flex items-center gap-2">
-          <Activity className="w-3.5 h-3.5 text-[#0BCB91]" />
-          <span>Real-Time Audit Trail: Active Stream</span>
-        </div>
-        <span className="text-white">99.99% Uptime</span>
+      <div className="p-2 rounded-lg bg-slate-900/60 border border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+        <span>PostGIS Postcode Radius Boundary: Enforced</span>
+        <span className="text-white">Live UK Network</span>
       </div>
     </div>
   );

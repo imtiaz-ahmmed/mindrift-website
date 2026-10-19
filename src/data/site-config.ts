@@ -9,6 +9,7 @@ export const siteConfig: SiteConfig = {
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@mindriftagency.com",
   phone: process.env.NEXT_PUBLIC_CONTACT_PHONE || "+1 (800) 555-0199",
   location: "Global Technology Services · Available Worldwide",
+  companyProfileUrl: "https://drive.google.com/file/d/1XW_0XPNOy8KDgS5QV-yOv2QhHHcWsh0g/view?usp=sharing",
   socials: [
     { platform: "GitHub", url: "https://github.com/mindrift" },
     { platform: "LinkedIn", url: "https://linkedin.com/company/mindrift" },

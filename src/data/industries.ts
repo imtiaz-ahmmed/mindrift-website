@@ -98,7 +98,7 @@ export const industriesData: Industry[] = [
       "Manual dispatch scheduling resulting in idle transit hours",
     ],
     solutions: [
-      "PostGIS spatial indexing and custom geocoding engines (e.g. GeoConnect)",
+      "PostGIS spatial indexing, custom geocoding engines, and order dispatch geofences",
       "Offline-capable mobile apps with cryptographic GPS check-in logging",
       "Automated route calculation and proximity-based dispatch suggestions",
     ],
@@ -182,7 +182,7 @@ export const industriesData: Industry[] = [
       "Tedious end-of-month payroll reconciliation and spreadsheet errors",
     ],
     solutions: [
-      "Tamper-resistant GPS geofence mobile check-ins (LYFE Attend)",
+      "Tamper-resistant mobile check-ins, staff biometric clocking, and cloud till auditing",
       "Automated state-machine leave approval workflows and balance tracking",
       "Instant payroll export integrations with major accounting systems",
     ],

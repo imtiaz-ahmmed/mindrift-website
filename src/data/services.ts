@@ -118,7 +118,7 @@ export const servicesData: ServiceCategory[] = [
         answer: "Yes. We frequently embed with client engineering teams, following your Git branching models, style guides, and Jira/Linear boards.",
       },
     ],
-    relatedProjectSlugs: ["lyfe-attend", "leave-management-system"],
+    relatedProjectSlugs: ["firstchoice-epos", "yumapos-mobile-suite", "odyssey-stream"],
   },
   {
     id: "ai-data-intelligence",
@@ -233,7 +233,7 @@ export const servicesData: ServiceCategory[] = [
         answer: "We engineer multi-tier architectures using semantic caching and lightweight models for simple tasks, reducing inference expenses by up to 70%.",
       },
     ],
-    relatedProjectSlugs: ["geoconnect"],
+    relatedProjectSlugs: ["ab3-medical-emr", "odyssey-stream"],
   },
   {
     id: "cloud-devops",
@@ -348,7 +348,7 @@ export const servicesData: ServiceCategory[] = [
         answer: "We use enterprise secrets engines such as AWS Secrets Manager, HashiCorp Vault, and GitHub Secrets with short-lived OIDC tokens rather than long-lived credentials.",
       },
     ],
-    relatedProjectSlugs: ["lyfe-attend", "geoconnect"],
+    relatedProjectSlugs: ["odyssey-stream", "firstchoice-epos"],
   },
   {
     id: "cybersecurity",
@@ -462,7 +462,7 @@ export const servicesData: ServiceCategory[] = [
         answer: "We implement automated Software Bill of Materials (SBOM) tracking and automated dependabot/Trivy alerts to catch vulnerable packages immediately.",
       },
     ],
-    relatedProjectSlugs: ["lyfe-attend", "leave-management-system"],
+    relatedProjectSlugs: ["ab3-medical-emr", "firstchoice-epos"],
   },
   {
     id: "enterprise-systems",
@@ -572,7 +572,7 @@ export const servicesData: ServiceCategory[] = [
         answer: "We engineer resilient queuing architectures with exponential backoff retries and dead-letter queues, ensuring zero data loss during upstream partner downtime.",
       },
     ],
-    relatedProjectSlugs: ["leave-management-system", "lyfe-attend"],
+    relatedProjectSlugs: ["firstchoice-epos", "free-online-ordering"],
   },
   {
     id: "gis-location-intelligence",
@@ -683,7 +683,7 @@ export const servicesData: ServiceCategory[] = [
         answer: "Yes. We build offline-first tile caching and local SQLite/IndexedDB spatial storage that syncs automatically when connection is restored.",
       },
     ],
-    relatedProjectSlugs: ["lyfe-attend", "geoconnect"],
+    relatedProjectSlugs: ["free-online-ordering", "firstchoice-epos"],
   },
   {
     id: "product-strategy",
@@ -792,7 +792,7 @@ export const servicesData: ServiceCategory[] = [
         answer: "Yes. Clients often transition from our Product Strategy phase directly into execution with our engineering teams to ensure the vision is faithfully implemented.",
       },
     ],
-    relatedProjectSlugs: ["lyfe-attend", "geoconnect", "leave-management-system"],
+    relatedProjectSlugs: ["odyssey-stream", "ab3-medical-emr", "firstchoice-epos"],
   },
   {
     id: "database-engineering",
@@ -903,6 +903,6 @@ export const servicesData: ServiceCategory[] = [
         answer: "In most cases, yes! Adding targeted compound indexes, adjusting connection pooling, and eliminating N+1 ORM query patterns yields massive 10x-50x speed improvements without touching core business logic.",
       },
     ],
-    relatedProjectSlugs: ["geoconnect", "leave-management-system"],
+    relatedProjectSlugs: ["firstchoice-epos", "ab3-medical-emr"],
   },
 ];

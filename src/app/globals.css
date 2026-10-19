@@ -1,13 +1,18 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 :root {
-  --background: #F8FAFC;
+  --background: #F6F9FD;
   --foreground: #000B49;
   --surface: #FFFFFF;
-  --surface-elevated: #F1F5F9;
-  --surface-border: #E2E8F0;
+  --surface-elevated: #EEF4FC;
+  --surface-border: #DDE7F5;
   --border-subtle: #E2E8F0;
   --text-primary: #000B49;
   --text-secondary: #334155;
@@ -16,18 +21,19 @@
   --brand-blue: #1877F2;
   --brand-emerald: #0BCB91;
   --brand-emerald-dark: #099A6E;
+  --brand-cyan: #00D8F6;
   --card-bg: #FFFFFF;
-  --card-border: #E2E8F0;
-  --header-bg: rgba(255, 255, 255, 0.85);
-  --header-border: #E2E8F0;
+  --card-border: #DCE5F2;
+  --header-bg: rgba(246, 249, 253, 0.88);
+  --header-border: #DDE7F5;
 }
 
 [data-theme="dark"] {
-  --background: #03081E;
+  --background: #020617;
   --foreground: #F8FAFC;
-  --surface: #070F2B;
-  --surface-elevated: #0B173D;
-  --surface-border: #1B284F;
+  --surface: #070F28;
+  --surface-elevated: #0B173B;
+  --surface-border: #15244C;
   --border-subtle: #162244;
   --text-primary: #F8FAFC;
   --text-secondary: #CBD5E1;
@@ -36,10 +42,11 @@
   --brand-blue: #2B87FF;
   --brand-emerald: #0BCB91;
   --brand-emerald-dark: #00A675;
-  --card-bg: #070F2B;
-  --card-border: #16244C;
-  --header-bg: rgba(3, 8, 30, 0.85);
-  --header-border: #16244C;
+  --brand-cyan: #00E5FF;
+  --card-bg: #070F28;
+  --card-border: #132247;
+  --header-bg: rgba(2, 6, 23, 0.88);
+  --header-border: #15244C;
 }
 
 body {
@@ -52,7 +59,7 @@ body {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 
 ::-webkit-scrollbar-track {
@@ -60,7 +67,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #94a3b8;
+  background: #64748b;
   border-radius: 4px;
 }
 
@@ -68,9 +75,9 @@ body {
   background: #1e293b;
 }
 
-/* Gradient accents and utility classes */
+/* Tech Agency Gradients & Typography */
 .brand-gradient-text {
-  background: linear-gradient(135deg, #1877F2 0%, #0BCB91 100%);
+  background: linear-gradient(135deg, #1877F2 0%, #00D8F6 50%, #0BCB91 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -79,28 +86,133 @@ body {
   background: linear-gradient(135deg, #1877F2 0%, #0BCB91 100%);
 }
 
-.brand-gradient-border {
-  border-image: linear-gradient(135deg, #1877F2, #0BCB91) 1;
-}
-
 .glow-blue {
-  box-shadow: 0 0 40px -10px rgba(24, 119, 242, 0.3);
+  box-shadow: 0 0 40px -8px rgba(24, 119, 242, 0.35);
 }
 
 .glow-emerald {
-  box-shadow: 0 0 40px -10px rgba(11, 203, 145, 0.3);
+  box-shadow: 0 0 40px -8px rgba(11, 203, 145, 0.35);
 }
 
-/* Subtle tech grid background */
+.glow-cyan {
+  box-shadow: 0 0 35px -8px rgba(0, 216, 246, 0.4);
+}
+
+/* Cybernetic Border Glow */
+.tech-border-glow {
+  position: relative;
+}
+.tech-border-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(24, 119, 242, 0.4), rgba(11, 203, 145, 0.4));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Futuristic Tech Grid Pattern */
 .bg-grid-pattern {
-  background-size: 36px 36px;
+  background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(24, 119, 242, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(24, 119, 242, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(24, 119, 242, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(24, 119, 242, 0.06) 1px, transparent 1px);
 }
 
 [data-theme="dark"] .bg-grid-pattern {
   background-image: 
-    linear-gradient(to right, rgba(24, 119, 242, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(24, 119, 242, 0.08) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 216, 246, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 216, 246, 0.09) 1px, transparent 1px);
 }
+
+/* Tech HUD Radar Scan Animation */
+@keyframes radarSweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-radar {
+  animation: radarSweep 8s linear infinite;
+}
+
+/* Pulse Glow Animation */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+/* Tech Scanline Animation */
+@keyframes techScanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(1000%);
+  }
+}
+
+.animate-scanline {
+  animation: techScanline 8s linear infinite;
+}
+
+/* Neon Terminal Pulse */
+@keyframes terminalBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-terminal-blink {
+  animation: terminalBlink 1s step-start infinite;
+}
+
+/* Cybernetic HUD Frame */
+.cyber-hud-card {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cyber-hud-card:hover {
+  transform: translateY(-2px);
+}
+
+.cyber-hud-corners::before,
+.cyber-hud-corners::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+}
+
+.cyber-hud-corners::before {
+  top: 0;
+  left: 0;
+  border-top: 2px solid #00D8F6;
+  border-left: 2px solid #00D8F6;
+}
+
+.cyber-hud-corners::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 2px solid #0BCB91;
+  border-right: 2px solid #0BCB91;
+}
+
