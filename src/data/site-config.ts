@@ -11,9 +11,8 @@ export const siteConfig: SiteConfig = {
   location: "Global Technology Services · Available Worldwide",
   companyProfileUrl: "https://drive.google.com/file/d/1XW_0XPNOy8KDgS5QV-yOv2QhHHcWsh0g/view?usp=sharing",
   socials: [
-    { platform: "GitHub", url: "https://github.com/mindrift" },
-    { platform: "LinkedIn", url: "https://linkedin.com/company/mindrift" },
-    { platform: "X", url: "https://x.com/mindriftagency" },
+    { platform: "LinkedIn", url: "https://www.linkedin.com/company/mindrift-tqtech/" },
+    { platform: "Facebook", url: "https://www.facebook.com/share/1CQG83vYEy/" },
   ],
 };
 
