@@ -272,6 +272,127 @@ function EposMockupVisual({ className = "" }: { className?: string }) {
   );
 }
 
+const MEDICAL_IMAGES = [
+  {
+    src: "/assets/projects/AB3Medical/fig1.png",
+    alt: "AB3 Medical Athlete Electronic Medical Record Platform",
+  },
+  {
+    src: "/assets/projects/AB3Medical/fig2.png",
+    alt: "AB3 Medical Athlete Health Passport & Clinical Consultation Mobile App",
+  },
+];
+
+function MedicalMockupVisual({ className = "" }: { className?: string }) {
+  const [selectedIdx, setSelectedIdx] = useState(0);
+
+  // Auto switch images periodically every 3.5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSelectedIdx((prev) => (prev + 1) % MEDICAL_IMAGES.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setSelectedIdx((prev) => (prev - 1 + MEDICAL_IMAGES.length) % MEDICAL_IMAGES.length);
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setSelectedIdx((prev) => (prev + 1) % MEDICAL_IMAGES.length);
+  };
+
+  const current = MEDICAL_IMAGES[selectedIdx];
+
+  return (
+    <div
+      className={`w-full aspect-[16/10] bg-[#070F2B] rounded-2xl border border-blue-900/60 shadow-2xl text-white relative overflow-hidden flex flex-col justify-between group ${className}`}
+    >
+      {/* Background Image Preview */}
+      <div className="absolute inset-0 overflow-hidden select-none">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          key={current.src}
+          src={current.src}
+          alt={current.alt}
+          className="w-full h-full object-cover transition-all duration-700 brightness-95"
+        />
+        {/* Subtle gradient overlay to keep HUD and tickers legible */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#070F2B]/95 via-black/15 to-[#070F2B]/85 pointer-events-none" />
+      </div>
+
+      {/* HUD Header */}
+      <div className="relative flex items-center justify-between border-b border-slate-800/80 p-3 sm:p-4 bg-slate-950/70 backdrop-blur-md z-10 pointer-events-none">
+        <div className="flex items-center gap-2">
+          <HeartPulse className="w-4 h-4 text-rose-500" />
+          <span className="text-xs font-bold text-white font-mono tracking-wide">
+            AB3 Medical · Career-Long Athlete EMR
+          </span>
+        </div>
+        <div className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-[11px] font-mono text-slate-300">
+          <span className="text-[#0BCB91] font-bold">Athlete Owned</span>
+          <span className="bg-blue-500/20 px-2 py-0.5 rounded text-blue-200 border border-blue-500/30">
+            HIPAA & GDPR
+          </span>
+        </div>
+      </div>
+
+      {/* Left and Right Navigation Arrows */}
+      <div className="relative z-10 flex items-center justify-between px-3 sm:px-4 pointer-events-none my-auto">
+        <button
+          type="button"
+          onClick={handlePrev}
+          aria-label="Previous medical capture"
+          className="pointer-events-auto p-2 sm:p-2.5 rounded-full bg-slate-950/75 hover:bg-[#1877F2] text-white border border-slate-700/80 hover:border-[#1877F2] backdrop-blur-md shadow-2xl transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer opacity-75 group-hover:opacity-100"
+        >
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+        </button>
+
+        <button
+          type="button"
+          onClick={handleNext}
+          aria-label="Next medical capture"
+          className="pointer-events-auto p-2 sm:p-2.5 rounded-full bg-slate-950/75 hover:bg-[#1877F2] text-white border border-slate-700/80 hover:border-[#1877F2] backdrop-blur-md shadow-2xl transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer opacity-75 group-hover:opacity-100"
+        >
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+        </button>
+      </div>
+
+      {/* Bottom Status Ticker with subtle dot indicators */}
+      <div className="relative z-10 border-t border-slate-800/80 p-3 bg-slate-950/85 backdrop-blur-md flex items-center justify-between gap-2 text-[10px] font-mono text-slate-300">
+        {/* Subtle slide dot indicators */}
+        <div className="flex items-center gap-1.5 pointer-events-auto">
+          {MEDICAL_IMAGES.map((_, idx) => (
+            <button
+              key={idx}
+              type="button"
+              onClick={() => setSelectedIdx(idx)}
+              aria-label={`Go to slide ${idx + 1}`}
+              className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                selectedIdx === idx
+                  ? "w-5 bg-[#1877F2]"
+                  : "w-1.5 bg-slate-600 hover:bg-slate-400"
+              }`}
+            />
+          ))}
+        </div>
+
+        <div className="flex items-center gap-2 text-slate-400">
+          <div className="flex items-center gap-1.5">
+            <FileText className="w-3.5 h-3.5 text-[#1877F2]" />
+            <span className="hidden sm:inline">Encrypted DICOM & Bloods: Active</span>
+          </div>
+          <span className="text-[#0BCB91] font-bold">FHIR Protocol: 100%</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 interface MockupVisualProps {
   type: "mobile" | "dashboard" | "gis" | "cloud" | "security" | "streaming" | "epos" | "medical";
   title: string;
@@ -291,47 +412,7 @@ export function MockupVisual({ type, title, className = "" }: MockupVisualProps)
 
   // Athlete EMR (AB3 Medical)
   if (type === "medical") {
-    return (
-      <div
-        className={`w-full aspect-[16/10] bg-[#070F2B] rounded-2xl p-4 border border-blue-900/60 shadow-2xl text-white relative overflow-hidden flex flex-col justify-between ${className}`}
-      >
-        <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-          <div className="flex items-center gap-2">
-            <HeartPulse className="w-4 h-4 text-rose-500" />
-            <span className="text-xs font-bold text-white font-mono">AB3 Athlete EMR Portal</span>
-          </div>
-          <span className="text-[10px] font-mono text-[#0BCB91] bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-            Athlete Owned · HIPAA Compliant
-          </span>
-        </div>
-
-        <div className="grid grid-cols-3 gap-3 my-auto py-2">
-          <div className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
-            <span className="text-[10px] text-slate-400 font-mono">CLINICAL STATUS</span>
-            <div className="text-sm font-bold text-emerald-400">Cleared for Match</div>
-            <p className="text-[9px] text-slate-400">Return-to-Play validated</p>
-          </div>
-          <div className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
-            <span className="text-[10px] text-slate-400 font-mono">REHAB TIMELINE</span>
-            <div className="text-sm font-bold text-[#1877F2]">Phase 4 of 4</div>
-            <p className="text-[9px] text-slate-400">ACL reconstruction</p>
-          </div>
-          <div className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
-            <span className="text-[10px] text-slate-400 font-mono">CONSENT ACCESS</span>
-            <div className="text-sm font-bold text-white">Active 14 Days</div>
-            <p className="text-[9px] text-slate-400">Club Medical Staff</p>
-          </div>
-        </div>
-
-        <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-center justify-between text-xs text-slate-300">
-          <div className="flex items-center gap-2">
-            <FileText className="w-3.5 h-3.5 text-[#1877F2]" />
-            <span className="text-[11px] font-mono">MRI Diagnostic Scan (DICOM) · Encrypted</span>
-          </div>
-          <span className="text-[10px] font-mono text-emerald-400">VERIFIED SIGNATURE</span>
-        </div>
-      </div>
-    );
+    return <MedicalMockupVisual className={className} />;
   }
 
   // Mobile App (YumaPOS Suite)
