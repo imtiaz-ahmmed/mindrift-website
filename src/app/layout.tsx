@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ParticleField } from "@/components/ui/particle-field";
 import { Preloader } from "@/components/ui/preloader";
+import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { siteConfig } from "@/data/site-config";
 import "./globals.css";
 
@@ -103,6 +104,9 @@ export default function RootLayout({
           <Header />
           <main className="flex-1 relative z-10">{children}</main>
           <Footer />
+
+          {/* Smooth Scroll to Top with Circular Depth Ring */}
+          <ScrollToTop />
         </ThemeProvider>
       </body>
     </html>
