@@ -3,8 +3,7 @@
 import React, { useRef, useEffect } from "react";
 import Link from "next/link";
 import { navigationData } from "@/data/navigation";
-import { siteConfig } from "@/data/site-config";
-import { ArrowRight, Sparkles, Shield, Cpu, Code2, Database, Network, MapPin, Compass, FileText, ExternalLink } from "lucide-react";
+import { ArrowRight, Sparkles, Shield, Cpu, Code2, Database, Network, MapPin, Compass } from "lucide-react";
 
 interface MegaMenuProps {
   isOpen: boolean;
@@ -112,17 +111,14 @@ export function MegaMenu({ isOpen, onClose, onMouseEnter, onMouseLeave }: MegaMe
                 <span>Explore Technical Architecture</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <a
-                href={siteConfig.companyProfileUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/about"
                 onClick={onClose}
                 className="w-full inline-flex items-center justify-center gap-1.5 text-xs font-semibold py-2.5 px-3 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors border border-white/10"
               >
-                <FileText className="w-3.5 h-3.5 text-[#0BCB91]" />
-                <span>Company Profile (PDF)</span>
-                <ExternalLink className="w-3 h-3 text-slate-400" />
-              </a>
+                <span>About Mindrift Agency</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#0BCB91]" />
+              </Link>
             </div>
           </div>
         </div>

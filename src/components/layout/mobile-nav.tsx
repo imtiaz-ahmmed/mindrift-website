@@ -6,8 +6,7 @@ import { usePathname } from "next/navigation";
 import { Logo } from "@/components/layout/logo";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { navigationData } from "@/data/navigation";
-import { siteConfig } from "@/data/site-config";
-import { X, ChevronDown, ArrowRight, FileText, ExternalLink } from "lucide-react";
+import { X, ChevronDown, ArrowRight } from "lucide-react";
 
 interface MobileNavProps {
   isOpen: boolean;
@@ -138,21 +137,6 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
           >
             About
           </Link>
-
-          {/* Company Profile Drive Link */}
-          <a
-            href={siteConfig.companyProfileUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={onClose}
-            className="flex items-center justify-between py-3 px-4 rounded-xl bg-slate-50 dark:bg-slate-900 text-xs font-semibold text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800 hover:border-[#0BCB91] transition-colors"
-          >
-            <div className="flex items-center gap-2.5">
-              <FileText className="w-4 h-4 text-[#0BCB91]" />
-              <span>Company Profile (PDF)</span>
-            </div>
-            <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
-          </a>
         </div>
 
         {/* Footer CTAs */}

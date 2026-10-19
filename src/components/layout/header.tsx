@@ -7,8 +7,7 @@ import { Logo } from "@/components/layout/logo";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { MegaMenu } from "@/components/layout/mega-menu";
 import { MobileNav } from "@/components/layout/mobile-nav";
-import { siteConfig } from "@/data/site-config";
-import { ChevronDown, Menu, ArrowRight, FileText, ExternalLink } from "lucide-react";
+import { ChevronDown, Menu, ArrowRight } from "lucide-react";
 
 export function Header() {
   const pathname = usePathname();
@@ -142,20 +141,6 @@ export function Header() {
             >
               About
             </Link>
-
-            {/* Company Profile Drive Link */}
-            <a
-              href={siteConfig.companyProfileUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onMouseEnter={handleMouseEnterOtherLink}
-              aria-label="View Company Profile PDF (Opens in separate tab)"
-              className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-[#0BCB91] rounded-lg transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50 group"
-            >
-              <FileText className="w-3.5 h-3.5 text-[#0BCB91]" />
-              <span>Company Profile</span>
-              <ExternalLink className="w-3 h-3 text-slate-400 group-hover:text-[#0BCB91] transition-colors" />
-            </a>
           </nav>
 
           {/* Right Header Controls */}

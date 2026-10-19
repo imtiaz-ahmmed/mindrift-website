@@ -54,17 +54,17 @@ export function HowWeWork() {
   ];
 
   return (
-    <section className="py-20 md:py-28 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#03081E]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 md:py-28 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#03081E] relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Heading */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <span className="text-xs font-bold uppercase tracking-wider text-[#1877F2] dark:text-[#0BCB91]">
+          <span className="text-xs font-semibold uppercase tracking-wider text-[#1877F2] dark:text-[#0BCB91]">
             Delivery Methodology
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#000B49] dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#000B49] dark:text-white tracking-tight">
             From Idea to Reliable Implementation.
           </h2>
-          <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+          <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
             Our disciplined engineering lifecycle eliminates guesswork. Every stage produces verifiable artifacts, keeping technical risk minimal and velocity high.
           </p>
         </div>
@@ -74,20 +74,20 @@ export function HowWeWork() {
           {steps.map((step) => (
             <div
               key={step.phase}
-              className="relative rounded-2xl bg-slate-50 dark:bg-[#070F2B] p-8 border border-slate-200/80 dark:border-slate-800 hover:border-blue-500/30 transition-all flex flex-col justify-between"
+              className="rounded-3xl bg-slate-50/80 dark:bg-[#070F2B] p-8 border border-slate-200/80 dark:border-slate-800 hover:border-[#1877F2]/40 hover:shadow-xl transition-all flex flex-col justify-between group"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-800 shadow-xs flex items-center justify-center">
+                  <div className="w-11 h-11 rounded-2xl bg-white dark:bg-slate-800/90 shadow-xs flex items-center justify-center border border-slate-200/60 dark:border-slate-700">
                     {step.icon}
                   </div>
-                  <span className="text-2xl font-black font-mono text-slate-300 dark:text-slate-700">
+                  <span className="text-xl font-black text-slate-300 dark:text-slate-700">
                     {step.phase}
                   </span>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-bold text-[#000B49] dark:text-white">
+                  <h3 className="text-lg font-bold text-[#000B49] dark:text-white group-hover:text-[#1877F2] dark:group-hover:text-[#0BCB91] transition-colors">
                     {step.title}
                   </h3>
                   <div className="text-xs font-semibold text-[#1877F2] dark:text-[#0BCB91] mt-0.5">
@@ -95,12 +95,12 @@ export function HowWeWork() {
                   </div>
                 </div>
 
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
                   {step.description}
                 </p>
               </div>
 
-              <div className="pt-4 mt-4 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center gap-1.5 text-[11px] font-mono text-slate-400">
+              <div className="pt-4 mt-4 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center gap-1.5 text-xs text-slate-400 font-sans">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#0BCB91]" />
                 <span>Verified Milestones</span>
               </div>

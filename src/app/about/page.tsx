@@ -3,6 +3,7 @@ import Link from "next/link";
 import { constructMetadata } from "@/lib/seo";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Badge } from "@/components/ui/badge";
+import { siteConfig } from "@/data/site-config";
 import {
   Compass,
   Code2,
@@ -13,6 +14,8 @@ import {
   Layers,
   HeartHandshake,
   Target,
+  FileText,
+  ExternalLink,
 } from "lucide-react";
 
 export const metadata: Metadata = constructMetadata({
@@ -91,6 +94,52 @@ export default function AboutPage() {
             <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
               A future where software systems are built with enduring craftsmanship. Where AI automates tedious workflows reliably, where cloud infrastructure is resilient and cost-optimized, and where enterprise software is as intuitive and delightful as the best consumer products.
             </p>
+          </div>
+        </div>
+
+        {/* Dedicated Company Profile & Capability Deck Section */}
+        <div className="rounded-3xl bg-gradient-to-br from-[#000B49] via-[#05113A] to-[#0A1D6B] p-8 sm:p-12 text-white border border-blue-900/50 shadow-xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 relative overflow-hidden">
+          <div className="space-y-4 max-w-2xl relative z-10">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#0BCB91]/20 text-[#0BCB91] border border-[#0BCB91]/30">
+              <FileText className="w-3.5 h-3.5" />
+              Official Credentials & Presentation Deck
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+              Mindrift Agency Capability Profile
+            </h2>
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-sans">
+              Download our comprehensive agency capability document detailing our verified enterprise architectures, client case studies, technical governance frameworks, and international engagement terms.
+            </p>
+            <div className="flex flex-wrap items-center gap-4 text-xs text-slate-300 font-sans pt-1">
+              <span className="flex items-center gap-1.5 font-medium">
+                <CheckCircle2 className="w-4 h-4 text-[#0BCB91]" />
+                Architecture Specifications
+              </span>
+              <span className="flex items-center gap-1.5 font-medium">
+                <CheckCircle2 className="w-4 h-4 text-[#0BCB91]" />
+                Client Case Studies
+              </span>
+              <span className="flex items-center gap-1.5 font-medium">
+                <CheckCircle2 className="w-4 h-4 text-[#0BCB91]" />
+                Verified Cloud SLA Standards
+              </span>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row lg:flex-col gap-3 flex-shrink-0 relative z-10 w-full lg:w-auto">
+            <a
+              href={siteConfig.companyProfileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl text-sm font-semibold text-[#000B49] bg-[#0BCB91] hover:bg-[#09B882] transition-colors shadow-lg hover:shadow-xl group"
+            >
+              <FileText className="w-4 h-4 text-[#000B49]" />
+              <span>View Company Profile (PDF)</span>
+              <ExternalLink className="w-4 h-4 text-[#000B49] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+            <span className="text-center text-xs text-slate-400 font-sans">
+              Opens in separate tab
+            </span>
           </div>
         </div>
 
