@@ -1,0 +1,95 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "@/components/providers/theme-provider";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+import { siteConfig } from "@/data/site-config";
+import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: "Mindrift Agency — Enterprise Software, AI & Cloud Engineering",
+    template: "%s | Mindrift Agency",
+  },
+  description: siteConfig.description,
+  keywords: [
+    "Enterprise Software Development",
+    "AI Solutions",
+    "Cloud Architecture",
+    "Cybersecurity Engineering",
+    "GIS Location Intelligence",
+    "Custom Web Applications",
+    "DevOps Automation",
+    "PostgreSQL Optimization",
+  ],
+  authors: [{ name: "Mindrift Agency", url: siteConfig.url }],
+  creator: "Mindrift Agency",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    title: "Mindrift Agency — Enterprise Software, AI & Cloud Engineering",
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mindrift Agency — Enterprise Software, AI & Cloud Engineering",
+    description: siteConfig.description,
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
+
+const themeScript = `
+  (function() {
+    try {
+      var storedTheme = localStorage.getItem('mindrift-theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.documentElement.classList.remove('dark');
+      }
+    } catch (e) {}
+  })();
+`;
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)] selection:bg-[#1877F2] selection:text-white">
+        <ThemeProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}

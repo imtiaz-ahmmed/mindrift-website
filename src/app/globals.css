@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+:root {
+  --background: #F8FAFC;
+  --foreground: #000B49;
+  --surface: #FFFFFF;
+  --surface-elevated: #F1F5F9;
+  --surface-border: #E2E8F0;
+  --border-subtle: #E2E8F0;
+  --text-primary: #000B49;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
+  --brand-navy: #000B49;
+  --brand-blue: #1877F2;
+  --brand-emerald: #0BCB91;
+  --brand-emerald-dark: #099A6E;
+  --card-bg: #FFFFFF;
+  --card-border: #E2E8F0;
+  --header-bg: rgba(255, 255, 255, 0.85);
+  --header-border: #E2E8F0;
+}
+
+[data-theme="dark"] {
+  --background: #03081E;
+  --foreground: #F8FAFC;
+  --surface: #070F2B;
+  --surface-elevated: #0B173D;
+  --surface-border: #1B284F;
+  --border-subtle: #162244;
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --brand-navy: #000B49;
+  --brand-blue: #2B87FF;
+  --brand-emerald: #0BCB91;
+  --brand-emerald-dark: #00A675;
+  --card-bg: #070F2B;
+  --card-border: #16244C;
+  --header-bg: rgba(3, 8, 30, 0.85);
+  --header-border: #16244C;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 4px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #1e293b;
+}
+
+/* Gradient accents and utility classes */
+.brand-gradient-text {
+  background: linear-gradient(135deg, #1877F2 0%, #0BCB91 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-gradient-bg {
+  background: linear-gradient(135deg, #1877F2 0%, #0BCB91 100%);
+}
+
+.brand-gradient-border {
+  border-image: linear-gradient(135deg, #1877F2, #0BCB91) 1;
+}
+
+.glow-blue {
+  box-shadow: 0 0 40px -10px rgba(24, 119, 242, 0.3);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 40px -10px rgba(11, 203, 145, 0.3);
+}
+
+/* Subtle tech grid background */
+.bg-grid-pattern {
+  background-size: 36px 36px;
+  background-image: 
+    linear-gradient(to right, rgba(24, 119, 242, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(24, 119, 242, 0.05) 1px, transparent 1px);
+}
+
+[data-theme="dark"] .bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(24, 119, 242, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(24, 119, 242, 0.08) 1px, transparent 1px);
+}
