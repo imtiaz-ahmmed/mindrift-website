@@ -14,6 +14,32 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
+function HoverWord({
+  word,
+  gradient = false,
+  className = "",
+}: {
+  word: string;
+  gradient?: boolean;
+  className?: string;
+}) {
+  const firstLetter = word.charAt(0);
+  const restOfWord = word.slice(1);
+
+  return (
+    <span
+      className={`group/word inline-block cursor-pointer transition-transform duration-200 hover:-translate-y-1 select-none ${className}`}
+    >
+      <span className="inline-block transition-transform duration-200 ease-out group-hover/word:scale-135 group-hover/word:text-[#1877F2] dark:group-hover/word:text-[#00D8F6] origin-bottom font-black">
+        {firstLetter}
+      </span>
+      <span className={gradient ? "brand-gradient-text" : ""}>
+        {restOfWord}
+      </span>
+    </span>
+  );
+}
+
 export function Hero() {
   return (
     <section className="relative overflow-hidden pt-6 pb-16 sm:pt-8 md:pt-10 md:pb-24 border-b border-slate-200/80 dark:border-slate-800/80">
@@ -32,21 +58,17 @@ export function Hero() {
           <span className="tracking-wide">Enterprise Technology Partner · High-Scale Systems</span>
         </div>
 
-        {/* Centered Redesigned Headline with Interactive Hover Dynamics */}
-        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-extrabold tracking-[-0.035em] leading-[1.12] text-[#000B49] dark:text-white max-w-4xl mx-auto select-none">
-          <span className="inline-block transition-all duration-300 hover:text-[#1877F2] dark:hover:text-[#00D8F6] hover:translate-y-[-2px] cursor-default">
-            Engineering
-          </span>{" "}
-          <span className="inline-block transition-all duration-300 hover:text-[#0BCB91] hover:translate-y-[-2px] cursor-default">
-            Digital Solutions
-          </span>{" "}
-          <br className="hidden sm:inline" />
-          <span className="relative inline-block mt-1 sm:mt-2 group/future cursor-default">
-            <span className="brand-gradient-text transition-all duration-500 group-hover/future:brightness-125 group-hover/future:drop-shadow-[0_4px_24px_rgba(24,119,242,0.45)]">
-              for a Smarter, Scalable Future.
-            </span>
-            {/* Interactive neon accent underline that blooms smoothly on hover */}
-            <span className="absolute left-0 bottom-0.5 w-0 h-[3px] bg-gradient-to-r from-[#1877F2] via-[#00D8F6] to-[#0BCB91] rounded-full transition-all duration-500 ease-out group-hover/future:w-full opacity-90 shadow-[0_0_10px_#00D8F6]" />
+        {/* Centered Redesigned Headline with First-Letter Enlargement on Hover & No Underline */}
+        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-extrabold tracking-[-0.035em] leading-[1.14] text-[#000B49] dark:text-white max-w-4xl mx-auto select-none">
+          <HoverWord word="Engineering" />{" "}
+          <HoverWord word="Digital" />{" "}
+          <HoverWord word="Solutions" /> <br className="hidden sm:inline" />
+          <span className="inline-block mt-1 sm:mt-2">
+            <HoverWord word="for" />{" "}
+            <HoverWord word="a" />{" "}
+            <HoverWord word="Smarter," gradient={true} />{" "}
+            <HoverWord word="Scalable" gradient={true} />{" "}
+            <HoverWord word="Future." gradient={true} />
           </span>
         </h1>
 

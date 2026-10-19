@@ -9,19 +9,19 @@ export function Preloader() {
   const [isRemoved, setIsRemoved] = useState(false);
 
   useEffect(() => {
-    // Ultra-snappy corporate loading: ~450ms on first load, instant if already seen
+    // Fast, responsive loading animation (~600ms)
     const hasSeenLoader = sessionStorage.getItem("mindrift-loader-seen");
     if (hasSeenLoader) {
       setIsRemoved(true);
       return;
     }
 
-    const duration = 480; // Fast and snappy
-    const intervalTime = duration / 20;
+    const duration = 580;
+    const intervalTime = duration / 25;
 
     let current = 0;
     const interval = setInterval(() => {
-      current += 5;
+      current += 4;
       setProgress(current);
 
       if (current >= 100) {
@@ -31,8 +31,8 @@ export function Preloader() {
           sessionStorage.setItem("mindrift-loader-seen", "true");
           setTimeout(() => {
             setIsRemoved(true);
-          }, 300);
-        }, 80);
+          }, 320);
+        }, 120);
       }
     }, intervalTime);
 
@@ -53,33 +53,46 @@ export function Preloader() {
       }`}
     >
       {/* Ambient subtle glow */}
-      <div className="absolute w-[360px] h-[360px] rounded-full bg-blue-600/10 blur-[100px] pointer-events-none" />
+      <div className="absolute w-[400px] h-[400px] rounded-full bg-blue-600/15 blur-[120px] pointer-events-none" />
 
-      <div className="relative z-10 flex flex-col items-center space-y-4 px-4 text-center">
-        {/* Mindrift Official Corporate Logo */}
-        <div className="relative flex items-center justify-center px-4 py-2 rounded-xl bg-[#000B2B] border border-blue-900/40 shadow-xl">
-          <Image
-            src="/assets/logos/logo.jpg"
-            alt="Mindrift Agency"
-            width={180}
-            height={55}
-            priority
-            className="h-8 sm:h-9 w-auto object-contain"
-          />
+      <div className="relative z-10 flex flex-col items-center space-y-5 px-4 text-center">
+        {/* Mindrift Branding with Official Logo */}
+        <div className="flex flex-col items-center space-y-2">
+          <div className="relative flex items-center justify-center px-4 py-2 rounded-xl bg-[#000B2B] border border-blue-900/50 shadow-2xl">
+            <Image
+              src="/assets/logos/logo.jpg"
+              alt="Mindrift"
+              width={180}
+              height={55}
+              priority
+              className="h-8 sm:h-9 w-auto object-contain"
+            />
+          </div>
+          <span className="text-xs font-black tracking-[0.25em] text-white uppercase drop-shadow-sm">
+            MINDRIFT
+          </span>
         </div>
 
-        {/* Minimal High-Speed Corporate Progress Line */}
-        <div className="w-44 h-[2px] rounded-full bg-slate-800 overflow-hidden relative">
+        {/* Minimal High-Speed Progress Line */}
+        <div className="w-52 h-[2.5px] rounded-full bg-slate-800 overflow-hidden relative shadow-inner">
           <div
-            className="h-full rounded-full bg-gradient-to-r from-[#1877F2] via-[#00D8F6] to-[#0BCB91] transition-all duration-75 ease-out"
+            className="h-full rounded-full bg-gradient-to-r from-[#1877F2] via-[#00D8F6] to-[#0BCB91] transition-all duration-75 ease-out shadow-[0_0_10px_#00D8F6]"
             style={{ width: `${progress}%` }}
           />
         </div>
 
-        {/* Formal Corporate Subtext */}
-        <p className="text-[11px] font-medium tracking-wider text-slate-400 font-sans uppercase">
-          Enterprise Technology Partner
-        </p>
+        {/* Animated Loading Text: Next Generation Future is Loading */}
+        <div className="flex items-center justify-center gap-1.5 pt-1">
+          <span className="w-2 h-2 rounded-full bg-[#00D8F6] animate-ping" />
+          <p className="text-xs sm:text-sm font-semibold tracking-wide bg-gradient-to-r from-[#1877F2] via-[#00D8F6] to-[#0BCB91] bg-clip-text text-transparent font-sans">
+            Next Generation Future is Loading
+          </p>
+          <span className="flex gap-0.5 text-xs text-[#0BCB91] font-bold">
+            <span className="animate-bounce [animation-delay:0ms]">.</span>
+            <span className="animate-bounce [animation-delay:150ms]">.</span>
+            <span className="animate-bounce [animation-delay:300ms]">.</span>
+          </span>
+        </div>
       </div>
     </div>
   );
