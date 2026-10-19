@@ -393,6 +393,139 @@ function MedicalMockupVisual({ className = "" }: { className?: string }) {
   );
 }
 
+const YUMAPOS_IMAGES = [
+  {
+    src: "/assets/projects/YumaPOS/fig1.webp",
+    alt: "DiFontaine's Pizzeria Customer App Login and Authentication Powered by YumaPOS",
+  },
+  {
+    src: "/assets/projects/YumaPOS/fig2.webp",
+    alt: "DiFontaine's Pizzeria In-App Menu Store with 20-Inch Pies, Slices, and Calzones",
+  },
+  {
+    src: "/assets/projects/YumaPOS/fig3.webp",
+    alt: "DiFontaine's Pizzeria The Uptown Pizza Details with Loyalty Points Redemption and Allergen Badges",
+  },
+];
+
+function YumaPosMockupVisual({ className = "" }: { className?: string }) {
+  const [selectedIdx, setSelectedIdx] = useState(0);
+
+  // Auto switch images periodically every 3.5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSelectedIdx((prev) => (prev + 1) % YUMAPOS_IMAGES.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setSelectedIdx((prev) => (prev - 1 + YUMAPOS_IMAGES.length) % YUMAPOS_IMAGES.length);
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setSelectedIdx((prev) => (prev + 1) % YUMAPOS_IMAGES.length);
+  };
+
+  const current = YUMAPOS_IMAGES[selectedIdx];
+
+  return (
+    <div
+      className={`w-full aspect-[16/10] bg-[#070F2B] rounded-2xl border border-amber-500/30 shadow-2xl text-white relative overflow-hidden flex flex-col justify-between group ${className}`}
+    >
+      {/* Background Image Preview with Ambient Glow & Crisp Centered Mockup */}
+      <div className="absolute inset-0 overflow-hidden select-none flex items-center justify-center bg-[#070F2B]">
+        {/* Soft Ambient Blurred Backdrop */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={current.src}
+          alt={current.alt}
+          className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-20 scale-110 pointer-events-none"
+        />
+        {/* Centered High-Resolution Phone Mockup */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          key={current.src}
+          src={current.src}
+          alt={current.alt}
+          className="relative max-h-full max-w-full object-contain transition-all duration-700 py-1 drop-shadow-2xl"
+        />
+        {/* Subtle gradient overlay to keep HUD and tickers legible */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#070F2B]/95 via-transparent to-[#070F2B]/85 pointer-events-none" />
+      </div>
+
+      {/* HUD Header */}
+      <div className="relative flex items-center justify-between border-b border-slate-800/80 p-3 sm:p-4 bg-slate-950/70 backdrop-blur-md z-10 pointer-events-none">
+        <div className="flex items-center gap-2">
+          <Smartphone className="w-4 h-4 text-[#0BCB91]" />
+          <span className="text-xs font-bold text-white font-mono tracking-wide">
+            DiFontaine&rsquo;s Pizzeria · YumaPOS Mobile Suite (Dublin)
+          </span>
+        </div>
+        <div className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-[11px] font-mono text-slate-300">
+          <span className="text-[#0BCB91] font-bold">Google Play &amp; iOS</span>
+          <span className="bg-amber-500/20 px-2 py-0.5 rounded text-amber-200 border border-amber-500/30">
+            0% Commission
+          </span>
+        </div>
+      </div>
+
+      {/* Left and Right Navigation Arrows */}
+      <div className="relative z-10 flex items-center justify-between px-3 sm:px-4 pointer-events-none my-auto">
+        <button
+          type="button"
+          onClick={handlePrev}
+          aria-label="Previous mobile capture"
+          className="pointer-events-auto p-2 sm:p-2.5 rounded-full bg-slate-950/75 hover:bg-[#0BCB91] hover:text-slate-950 text-white border border-slate-700/80 hover:border-[#0BCB91] backdrop-blur-md shadow-2xl transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer opacity-75 group-hover:opacity-100"
+        >
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+        </button>
+
+        <button
+          type="button"
+          onClick={handleNext}
+          aria-label="Next mobile capture"
+          className="pointer-events-auto p-2 sm:p-2.5 rounded-full bg-slate-950/75 hover:bg-[#0BCB91] hover:text-slate-950 text-white border border-slate-700/80 hover:border-[#0BCB91] backdrop-blur-md shadow-2xl transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer opacity-75 group-hover:opacity-100"
+        >
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+        </button>
+      </div>
+
+      {/* Bottom Status Ticker with subtle dot indicators */}
+      <div className="relative z-10 border-t border-slate-800/80 p-3 bg-slate-950/85 backdrop-blur-md flex items-center justify-between gap-2 text-[10px] font-mono text-slate-300">
+        {/* Subtle slide dot indicators */}
+        <div className="flex items-center gap-1.5 pointer-events-auto">
+          {YUMAPOS_IMAGES.map((_, idx) => (
+            <button
+              key={idx}
+              type="button"
+              onClick={() => setSelectedIdx(idx)}
+              aria-label={`Go to slide ${idx + 1}`}
+              className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                selectedIdx === idx
+                  ? "w-5 bg-[#0BCB91]"
+                  : "w-1.5 bg-slate-600 hover:bg-slate-400"
+              }`}
+            />
+          ))}
+        </div>
+
+        <div className="flex items-center gap-2 text-slate-400">
+          <div className="flex items-center gap-1.5">
+            <Printer className="w-3.5 h-3.5 text-[#0BCB91]" />
+            <span className="hidden sm:inline">Cloud-to-Till Sync &amp; ESC/POS Print: Live</span>
+          </div>
+          <span className="text-amber-400 font-bold">Loyalty Points: Enabled</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 interface MockupVisualProps {
   type: "mobile" | "dashboard" | "gis" | "cloud" | "security" | "streaming" | "epos" | "medical";
   title: string;
@@ -417,77 +550,7 @@ export function MockupVisual({ type, title, className = "" }: MockupVisualProps)
 
   // Mobile App (YumaPOS Suite)
   if (type === "mobile") {
-    return (
-      <div
-        className={`relative w-full max-w-sm mx-auto aspect-[9/16] max-h-[460px] bg-slate-900 rounded-[2.5rem] p-3 shadow-2xl border-4 border-slate-700/60 dark:border-slate-800 ${className}`}
-      >
-        {/* Notch */}
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-3.5 bg-slate-800 rounded-full z-20 flex items-center justify-center">
-          <div className="w-2 h-2 rounded-full bg-slate-900 mr-1.5" />
-          <div className="w-1.5 h-1.5 rounded-full bg-blue-500/80" />
-        </div>
-
-        {/* Screen */}
-        <div className="w-full h-full bg-[#050B20] rounded-[2rem] overflow-hidden flex flex-col p-4 text-white relative">
-          <div className="pt-5 pb-2.5 border-b border-slate-800/80 flex items-center justify-between">
-            <div>
-              <span className="text-[9px] text-[#0BCB91] font-mono uppercase tracking-wider">
-                YumaPOS Hospitality App
-              </span>
-              <h5 className="text-xs font-bold text-white">DiFontaine&rsquo;s Pizzeria (Dublin)</h5>
-            </div>
-            <div className="text-[9px] text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded">
-              OPEN NOW
-            </div>
-          </div>
-
-          {/* Menu Items Preview */}
-          <div className="my-auto py-2 space-y-2">
-            <div className="p-2 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between">
-              <div>
-                <div className="text-[11px] font-bold text-white">NYC Pepperoni Slice</div>
-                <div className="text-[9px] text-slate-400">San Marzano sauce, whole milk mozz</div>
-              </div>
-              <span className="text-xs font-bold text-[#0BCB91]">€5.50</span>
-            </div>
-
-            <div className="p-2 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between">
-              <div>
-                <div className="text-[11px] font-bold text-white">20&quot; Whole Pie Deal</div>
-                <div className="text-[9px] text-slate-400">Feeds 4-5 · Choose 3 toppings</div>
-              </div>
-              <span className="text-xs font-bold text-[#0BCB91]">€26.00</span>
-            </div>
-
-            {/* Loyalty Stamp Card */}
-            <div className="p-2 rounded-xl bg-blue-950/40 border border-blue-800/40 space-y-1">
-              <div className="flex justify-between text-[10px] font-mono text-blue-200">
-                <span>Loyalty Stamps: 4 / 6</span>
-                <span className="text-emerald-400">Next Slice Free!</span>
-              </div>
-              <div className="flex gap-1.5 pt-0.5">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="flex-1 h-1.5 rounded-full bg-[#0BCB91]" />
-                ))}
-                {[5, 6].map((i) => (
-                  <div key={i} className="flex-1 h-1.5 rounded-full bg-slate-700" />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Checkout Button */}
-          <div className="mt-auto space-y-1.5">
-            <div className="w-full py-2 rounded-xl bg-gradient-to-r from-[#1877F2] to-[#0BCB91] text-center text-xs font-bold text-white shadow">
-              Checkout · 1 Item (€5.50)
-            </div>
-            <div className="text-center text-[9px] font-mono text-slate-400">
-              Kitchen Printing & FCM Push Integrated
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+    return <YumaPosMockupVisual className={className} />;
   }
 
   // Marketplace / Multi-tenant Dashboard (FreeOnlineOrdering)
