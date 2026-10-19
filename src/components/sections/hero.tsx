@@ -55,19 +55,23 @@ export function Hero() {
           <span className="tracking-wide">Enterprise Technology Partner · High-Scale Systems</span>
         </div>
 
-        {/* Formal Tech Headline with Chained Soft Word Movement */}
-        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-extrabold tracking-[-0.03em] leading-[1.12] text-center max-w-4xl mx-auto my-2 select-none">
-          <ChainedWord word="Engineering" delay="0s" />
-          <ChainedWord word="Digital" delay="0.3s" />
-          <ChainedWord word="Solutions" delay="0.6s" />
-          <br className="hidden sm:inline" />
-          <span className="inline-block mt-1 sm:mt-2">
+        {/* Strictly 2-Line Formal Tech Headline with Chained Soft Movement */}
+        <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[-0.03em] leading-[1.22] text-center max-w-5xl mx-auto my-3 select-none flex flex-col items-center justify-center gap-1.5 sm:gap-2.5">
+          {/* Line 1: Engineering Digital Solutions */}
+          <div className="flex items-center justify-center flex-wrap sm:flex-nowrap gap-x-2 sm:gap-x-3">
+            <ChainedWord word="Engineering" delay="0s" />
+            <ChainedWord word="Digital" delay="0.3s" />
+            <ChainedWord word="Solutions" delay="0.6s" />
+          </div>
+
+          {/* Line 2: for a Smarter, Scalable Future. */}
+          <div className="flex items-center justify-center flex-wrap sm:flex-nowrap gap-x-1.5 sm:gap-x-2.5">
             <ChainedWord word="for" delay="0.9s" />
             <ChainedWord word="a" delay="1.1s" />
             <ChainedWord word="Smarter," delay="1.35s" gradient={true} />
             <ChainedWord word="Scalable" delay="1.65s" gradient={true} />
             <ChainedWord word="Future." delay="1.95s" gradient={true} />
-          </span>
+          </div>
         </h1>
 
         {/* Centered Supporting Copy */}
