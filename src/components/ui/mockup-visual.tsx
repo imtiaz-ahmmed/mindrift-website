@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   CheckCircle2,
   Server,
@@ -16,151 +16,130 @@ import {
   Smartphone,
   Printer,
   Sparkles,
-  Maximize2,
-  Eye,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
-import { ImageLightbox, LightboxImage } from "@/components/ui/image-lightbox";
 
-const ODYSSEY_IMAGES: LightboxImage[] = [
+const ODYSSEY_IMAGES = [
   {
     src: "/assets/projects/odyssey-stream/fig-1.png",
     alt: "Odyssey Platform Real-Time Unreal Engine 5 Cloud Pixel Streaming",
-    title: "Odyssey Platform — Real-Time Cloud Pixel Streaming",
-    subtitle: "Global Zero-Install Unreal Engine 5 WebRTC Streaming Infrastructure",
-    description: "Official Odyssey.stream platform hero showcasing photorealistic Unreal Engine 5 jungle environment streamed in real time to web browsers worldwide with zero downloads or hardware friction.",
-    specs: [
-      { label: "Rendering Engine", value: "Unreal Engine 5 (Nanite & Lumen)" },
-      { label: "Streaming Protocol", value: "WebRTC with NVENC Acceleration" },
-      { label: "Performance", value: "60 FPS · 4K Resolution" },
-      { label: "Interactive Latency", value: "<80ms Global Edge Routing" },
-    ],
   },
   {
     src: "/assets/projects/odyssey-stream/fig-2.png",
-    alt: "Live Production ArchViz Demo & Interactive 3D Configurator on app.odyssey.stream",
-    title: "Live Production System — In-Browser ArchViz & Interactive 3D Configurator",
-    subtitle: "Commercial Deployment for Luxury Retail & Architecture on app.odyssey.stream",
-    description: "Live session of the 'Edinburgh' Mid-Century furniture collection configurator running on app.odyssey.stream. Allows users to swap fabric styles, wood bases, inspect spatial annotation hotspots (i), and execute direct e-commerce checkout (£1,199) inside Google Chrome.",
-    specs: [
-      { label: "Live Deployment", value: "app.odyssey.stream" },
-      { label: "Interactivity", value: "Real-Time Material Swapping & Spatial Hotspots" },
-      { label: "E-Commerce", value: "Direct Cart & Checkout Integration" },
-      { label: "Client Support", value: "Zero-Install Chrome, Safari, Edge, Mobile" },
-    ],
+    alt: "Live Production ArchViz Demo on app.odyssey.stream",
   },
   {
     src: "/assets/projects/odyssey-stream/fig-3.png",
-    alt: "Unreal Engine 5 Editor Bridge & Variant Manager Integration",
-    title: "Unreal Engine 5 Editor Bridge & Variant Manager Pipeline",
-    subtitle: "Native UE5 Authoring Pipeline with Real-Time Property Binding",
-    description: "Direct Unreal Engine 5 editor integration showcasing the Variant Manager pipeline. Content creators author controller variants (White/Black colors, Elite/Normal joysticks) and bind them instantaneously to web client configurators via no-code modules.",
-    specs: [
-      { label: "Authoring Tool", value: "Native Unreal Engine 5 Plugin" },
-      { label: "Variant System", value: "UE5 Variant Manager to DataChannel Sync" },
-      { label: "Dynamic Assets", value: "Runtime Sketchfab & GLTF Ingestion" },
-      { label: "Audio Integration", value: "Dolby.io 3D Spatial Audio" },
-    ],
+    alt: "Unreal Engine 5 Editor Bridge and Variant Manager",
   },
 ];
 
 function StreamingMockupVisual({ className = "" }: { className?: string }) {
   const [selectedIdx, setSelectedIdx] = useState(0);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  // Auto switch images periodically every 3.5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSelectedIdx((prev) => (prev + 1) % ODYSSEY_IMAGES.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setSelectedIdx((prev) => (prev - 1 + ODYSSEY_IMAGES.length) % ODYSSEY_IMAGES.length);
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setSelectedIdx((prev) => (prev + 1) % ODYSSEY_IMAGES.length);
+  };
 
   const current = ODYSSEY_IMAGES[selectedIdx];
 
   return (
-    <>
-      <div
-        className={`w-full aspect-[16/10] bg-[#030718] rounded-2xl border border-blue-900/60 shadow-2xl text-white relative overflow-hidden flex flex-col justify-between group ${className}`}
-      >
-        {/* Background Image Preview */}
-        <div
-          onClick={() => setLightboxOpen(true)}
-          className="absolute inset-0 cursor-pointer overflow-hidden"
-          title="Click to view full size"
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={current.src}
-            alt={current.alt}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-90 group-hover:brightness-100"
-          />
-          {/* Gradient overlay to ensure HUD readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030718] via-black/20 to-[#030718]/80 pointer-events-none" />
+    <div
+      className={`w-full aspect-[16/10] bg-[#030718] rounded-2xl border border-blue-900/60 shadow-2xl text-white relative overflow-hidden flex flex-col justify-between group ${className}`}
+    >
+      {/* Background Image Preview */}
+      <div className="absolute inset-0 overflow-hidden select-none">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          key={current.src}
+          src={current.src}
+          alt={current.alt}
+          className="w-full h-full object-cover transition-all duration-700 brightness-95"
+        />
+        {/* Subtle gradient vignette to keep HUD and tickers legible */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#030718]/90 via-black/10 to-[#030718]/80 pointer-events-none" />
+      </div>
+
+      {/* HUD Header */}
+      <div className="relative flex items-center justify-between border-b border-slate-800/80 p-3 sm:p-4 bg-slate-950/70 backdrop-blur-md z-10 pointer-events-none">
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+          <span className="text-xs font-mono font-bold text-white tracking-wide">
+            UE5 CLOUD STREAMING ENGINE
+          </span>
         </div>
-
-        {/* HUD Header */}
-        <div className="relative flex items-center justify-between border-b border-slate-800/80 p-3 sm:p-4 bg-slate-950/70 backdrop-blur-md z-10 pointer-events-none">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-            <span className="text-xs font-mono font-bold text-white tracking-wide">
-              UE5 CLOUD STREAMING ENGINE
-            </span>
-          </div>
-          <div className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-[11px] font-mono text-slate-300">
-            <span className="text-emerald-400 font-bold">60 FPS · 4K</span>
-            <span className="text-[#00D8F6] hidden sm:inline">WebRTC NVENC</span>
-            <span className="bg-blue-500/20 px-2 py-0.5 rounded text-blue-200 border border-blue-500/30">
-              Latency: 42ms
-            </span>
-          </div>
-        </div>
-
-        {/* Center Hover Action: Click to Expand Full Screen */}
-        <div className="relative z-10 flex flex-col items-center justify-center p-4 pointer-events-none my-auto">
-          <div
-            onClick={(e) => {
-              e.stopPropagation();
-              setLightboxOpen(true);
-            }}
-            className="pointer-events-auto opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-950/90 text-white border border-[#1877F2]/60 shadow-2xl backdrop-blur-md text-xs font-bold hover:bg-[#1877F2] cursor-pointer"
-          >
-            <Maximize2 className="w-4 h-4 text-[#00D8F6]" />
-            <span>Click to view full size</span>
-          </div>
-        </div>
-
-        {/* Bottom Status Ticker & Scene Switcher */}
-        <div className="relative z-10 border-t border-slate-800/80 p-3 bg-slate-950/85 backdrop-blur-md flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono text-slate-300">
-          {/* Quick Scene Switcher Pills */}
-          <div className="flex items-center gap-1.5 pointer-events-auto">
-            <span className="text-slate-400 font-bold hidden sm:inline mr-1">View:</span>
-            {ODYSSEY_IMAGES.map((_, idx) => (
-              <button
-                key={idx}
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedIdx(idx);
-                }}
-                className={`px-2 py-0.5 rounded text-[10px] font-mono transition-all cursor-pointer ${
-                  selectedIdx === idx
-                    ? "bg-[#1877F2] text-white font-bold shadow-xs"
-                    : "bg-slate-800/90 text-slate-300 hover:bg-slate-700 hover:text-white"
-                }`}
-              >
-                Fig 0{idx + 1}
-              </button>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-2 text-slate-400">
-            <span className="hidden md:inline">Multiplayer Nodes: 4 Clusters Active</span>
-            <span className="text-[#0BCB91] font-bold">Browser Zero-Install Stream</span>
-          </div>
+        <div className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-[11px] font-mono text-slate-300">
+          <span className="text-emerald-400 font-bold">60 FPS · 4K</span>
+          <span className="text-[#00D8F6] hidden sm:inline">WebRTC NVENC</span>
+          <span className="bg-blue-500/20 px-2 py-0.5 rounded text-blue-200 border border-blue-500/30">
+            Latency: 42ms
+          </span>
         </div>
       </div>
 
-      {/* Fullscreen Lightbox Modal */}
-      <ImageLightbox
-        isOpen={lightboxOpen}
-        images={ODYSSEY_IMAGES}
-        currentIndex={selectedIdx}
-        onClose={() => setLightboxOpen(false)}
-        onNavigate={(newIdx) => setSelectedIdx(newIdx)}
-      />
-    </>
+      {/* Left and Right Navigation Arrows */}
+      <div className="relative z-10 flex items-center justify-between px-3 sm:px-4 pointer-events-none my-auto">
+        <button
+          type="button"
+          onClick={handlePrev}
+          aria-label="Previous scene capture"
+          className="pointer-events-auto p-2 sm:p-2.5 rounded-full bg-slate-950/75 hover:bg-[#1877F2] text-white border border-slate-700/80 hover:border-[#1877F2] backdrop-blur-md shadow-2xl transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer opacity-75 group-hover:opacity-100"
+        >
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+        </button>
+
+        <button
+          type="button"
+          onClick={handleNext}
+          aria-label="Next scene capture"
+          className="pointer-events-auto p-2 sm:p-2.5 rounded-full bg-slate-950/75 hover:bg-[#1877F2] text-white border border-slate-700/80 hover:border-[#1877F2] backdrop-blur-md shadow-2xl transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer opacity-75 group-hover:opacity-100"
+        >
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+        </button>
+      </div>
+
+      {/* Bottom Status Ticker with subtle dot indicators (NO 'View: Fig 01' text) */}
+      <div className="relative z-10 border-t border-slate-800/80 p-3 bg-slate-950/85 backdrop-blur-md flex items-center justify-between gap-2 text-[10px] font-mono text-slate-300">
+        {/* Subtle slide dot indicators */}
+        <div className="flex items-center gap-1.5 pointer-events-auto">
+          {ODYSSEY_IMAGES.map((_, idx) => (
+            <button
+              key={idx}
+              type="button"
+              onClick={() => setSelectedIdx(idx)}
+              aria-label={`Go to slide ${idx + 1}`}
+              className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                selectedIdx === idx
+                  ? "w-5 bg-[#1877F2]"
+                  : "w-1.5 bg-slate-600 hover:bg-slate-400"
+              }`}
+            />
+          ))}
+        </div>
+
+        <div className="flex items-center gap-2 text-slate-400">
+          <span className="hidden sm:inline">Multiplayer Nodes: 4 Clusters Active</span>
+          <span className="text-[#0BCB91] font-bold">Browser Zero-Install Stream</span>
+        </div>
+      </div>
+    </div>
   );
 }
 

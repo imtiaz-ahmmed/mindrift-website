@@ -8,7 +8,6 @@ import { constructMetadata } from "@/lib/seo";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Badge } from "@/components/ui/badge";
 import { MockupVisual } from "@/components/ui/mockup-visual";
-import { ProjectGallerySection } from "@/components/projects/project-gallery-section";
 import {
   ArrowRight,
   CheckCircle2,
@@ -169,41 +168,9 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             <MockupVisual type={project.mockupType} title={project.title} />
           </div>
           <div className="mt-4 text-xs text-slate-400 text-center font-sans">
-            Architectural and interactive visual interface preview for {project.title}. Click preview to inspect in full screen.
+            Architectural and interactive visual interface preview for {project.title}
           </div>
         </div>
-
-        {/* Production Screenshots & Architecture Gallery */}
-        {project.images && project.images.length > 0 && (
-          <ProjectGallerySection
-            images={project.images}
-            projectTitle={project.title}
-          />
-        )}
-
-        {/* Enterprise Brand & Client Deployments Network */}
-        {project.enterprisePartners && project.enterprisePartners.length > 0 && (
-          <div className="rounded-3xl bg-white dark:bg-[#070F2B] p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xs space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
-              <span className="text-xs font-mono uppercase tracking-wider text-[#1877F2] dark:text-[#00D8F6] font-bold">
-                Enterprise Deployments & Global Brand Activations
-              </span>
-              <span className="text-xs text-slate-500 dark:text-slate-400 font-sans">
-                Proven scale with Fortune 500 enterprises & tier-one agency partners
-              </span>
-            </div>
-            <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-1">
-              {project.enterprisePartners.map((partner) => (
-                <span
-                  key={partner}
-                  className="px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800"
-                >
-                  {partner}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
 
         {/* Multi-App Google Play Store Grid (if available, e.g. for YumaPOS) */}
         {project.appStoreLinks && project.appStoreLinks.length > 0 && (
