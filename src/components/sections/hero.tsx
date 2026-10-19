@@ -16,15 +16,15 @@ import {
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-16 pb-20 md:pt-24 md:pb-28 border-b border-slate-200/80 dark:border-slate-800/80">
+    <section className="relative overflow-hidden pt-6 pb-16 sm:pt-8 md:pt-10 md:pb-24 border-b border-slate-200/80 dark:border-slate-800/80">
       {/* Ambient Gradient Glow Orbs */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-gradient-to-r from-blue-500/15 via-cyan-400/10 to-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -top-10 right-10 w-[300px] h-[300px] bg-blue-600/10 dark:bg-blue-600/20 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-5 left-10 w-[300px] h-[300px] bg-emerald-500/10 dark:bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        {/* Centered Formal Eyebrow Badge */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border border-slate-200/90 dark:border-slate-700/80 text-xs font-semibold text-slate-800 dark:text-slate-200 shadow-xs mb-6">
+        {/* Centered Formal Eyebrow Badge - Positioned cleanly without unnecessary top gap */}
+        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/95 dark:bg-slate-800/95 backdrop-blur-md border border-slate-200/90 dark:border-slate-700/80 text-xs font-semibold text-slate-800 dark:text-slate-200 shadow-xs mb-4">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0BCB91] opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0BCB91]" />
@@ -32,14 +32,26 @@ export function Hero() {
           <span className="tracking-wide">Enterprise Technology Partner · High-Scale Systems</span>
         </div>
 
-        {/* Centered Main Headline with 3D Depth & Fancy Gradient */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.08] text-[#000B49] dark:text-white text-3d-formal max-w-4xl mx-auto">
-          Engineering Digital Solutions <br className="hidden sm:inline" />
-          <span className="text-3d-gradient inline-block mt-1">for a Smarter, Scalable Future.</span>
+        {/* Centered Redesigned Headline with Interactive Hover Dynamics */}
+        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-extrabold tracking-[-0.035em] leading-[1.12] text-[#000B49] dark:text-white max-w-4xl mx-auto select-none">
+          <span className="inline-block transition-all duration-300 hover:text-[#1877F2] dark:hover:text-[#00D8F6] hover:translate-y-[-2px] cursor-default">
+            Engineering
+          </span>{" "}
+          <span className="inline-block transition-all duration-300 hover:text-[#0BCB91] hover:translate-y-[-2px] cursor-default">
+            Digital Solutions
+          </span>{" "}
+          <br className="hidden sm:inline" />
+          <span className="relative inline-block mt-1 sm:mt-2 group/future cursor-default">
+            <span className="brand-gradient-text transition-all duration-500 group-hover/future:brightness-125 group-hover/future:drop-shadow-[0_4px_24px_rgba(24,119,242,0.45)]">
+              for a Smarter, Scalable Future.
+            </span>
+            {/* Interactive neon accent underline that blooms smoothly on hover */}
+            <span className="absolute left-0 bottom-0.5 w-0 h-[3px] bg-gradient-to-r from-[#1877F2] via-[#00D8F6] to-[#0BCB91] rounded-full transition-all duration-500 ease-out group-hover/future:w-full opacity-90 shadow-[0_0_10px_#00D8F6]" />
+          </span>
         </h1>
 
         {/* Centered Supporting Copy */}
-        <p className="mt-6 text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mx-auto font-sans">
+        <p className="mt-5 text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mx-auto font-sans">
           Mindrift Agency architects and scales mission-critical digital systems: real-time 3D pixel streaming, cloud ePOS platforms, sports medical records (EMR), and high-scale consumer applications across Ireland, the UK, and international enterprises.
         </p>
 
