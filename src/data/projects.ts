@@ -443,7 +443,7 @@ export const projectsData: ProjectCaseStudy[] = [
     images: [
       {
         id: "yuma-fig-1",
-        src: "/assets/projects/YumaPOS/fig1.webp",
+        src: "/assets/projects/YumaPOS/fig1.jpg",
         alt: "DiFontaine's Pizzeria Customer App Login and Authentication Powered by YumaPOS",
         title: "Branded Merchant Mobile Onboarding & Seamless Sign-In",
         subtitle: "DiFontaine's Pizzeria (Dublin) Customer App · YumaPOS Mobile Network",
@@ -457,7 +457,7 @@ export const projectsData: ProjectCaseStudy[] = [
       },
       {
         id: "yuma-fig-2",
-        src: "/assets/projects/YumaPOS/fig2.webp",
+        src: "/assets/projects/YumaPOS/fig2.jpg",
         alt: "DiFontaine's Pizzeria In-App Menu Store with 20-Inch Pies, Slices, and Calzones",
         title: "Real-Time Cloud Menu & In-App Food Ordering Engine",
         subtitle: "Dynamic Category Filtering: 20\" Pies, Slices, Calzones & Vegan Options",
@@ -471,7 +471,7 @@ export const projectsData: ProjectCaseStudy[] = [
       },
       {
         id: "yuma-fig-3",
-        src: "/assets/projects/YumaPOS/fig3.webp",
+        src: "/assets/projects/YumaPOS/fig3.jpg",
         alt: "DiFontaine's Pizzeria The Uptown Pizza Details with Loyalty Points Redemption and Allergen Badges",
         title: "Integrated Loyalty Rewards & Product Customization Modal",
         subtitle: "Points-Based Redemption ('This item can be paid by points') & Allergen Disclosures",
@@ -542,6 +542,50 @@ export const projectsData: ProjectCaseStudy[] = [
       "Published production app on Google Play with direct ordering and live order tracking",
       "Sub-second order delivery directly to in-store kitchen receipt printers",
       "Massive annual commission savings for local hospitality entrepreneurs",
+    ],
+    images: [
+      {
+        id: "foo-fig-1",
+        src: "/assets/projects/FreeOnlineOrdering/fig1.webp",
+        alt: "FreeOnlineOrdering Delivery Zone Management System with Geographic Pricing",
+        title: "Dynamic Delivery Zone & PostGIS Polygon Management",
+        subtitle: "Multi-Zone Geographic Boundary Management & Distance-Based Delivery Fees",
+        description: "Merchant administration portal allowing takeaway owners to draw and manage custom delivery boundaries, set variable delivery charges per village or postcode, and prevent out-of-area ordering.",
+        specs: [
+          { label: "Geofencing", value: "PostGIS Polygon Radius Boundaries" },
+          { label: "Zone Pricing", value: "Variable Village & Postcode Tiers" },
+          { label: "Friction", value: "Real-Time Out-of-Area Validation" },
+          { label: "Commissions", value: "0% Third-Party Portal Commission" },
+        ],
+      },
+      {
+        id: "foo-fig-2",
+        src: "/assets/projects/FreeOnlineOrdering/fig2.webp",
+        alt: "FreeOnlineOrdering Merchant Outlet Login and Start Point",
+        title: "Merchant Outlet Authentication & Cloud Start Point",
+        subtitle: "Fast Restaurant ID Login & Multi-Store Account Onboarding",
+        description: "Streamlined merchant login portal providing instant access to live store status, order queues, kitchen printing diagnostics, and daily turnover reports.",
+        specs: [
+          { label: "Auth Flow", value: "Restaurant ID & Biometric Login" },
+          { label: "Store Control", value: "Instant Open / Closed Toggle" },
+          { label: "Hardware Sync", value: "GPRS / Wi-Fi Cloud Printer Link" },
+          { label: "Multi-Store", value: "Centralized Franchise Dashboard" },
+        ],
+      },
+      {
+        id: "foo-fig-3",
+        src: "/assets/projects/FreeOnlineOrdering/fig3.webp",
+        alt: "FreeOnlineOrdering Outlet Selection and Restaurant Management",
+        title: "Multi-Outlet Selection & Franchise Management Portal",
+        subtitle: "Zeera London Outlet Identity, Domain Routing & Shop Configuration",
+        description: "Enables multi-branch restaurant brands to manage separate outlet identities, custom branded domains (e.g. zeerabury.co.uk), unique menu pricing, and kitchen dispatch queues from one unified interface.",
+        specs: [
+          { label: "Brand Showcase", value: "Zeera Indian Cuisine (London & Bury)" },
+          { label: "Domain Routing", value: "Custom White-Label Domain Mapping" },
+          { label: "Shop ID", value: "Unique Hardware Terminal Addressing" },
+          { label: "Dispatch", value: "Sub-Second In-Store Kitchen Routing" },
+        ],
+      },
     ],
     relatedServiceSlugs: ["enterprise-systems", "software-engineering", "gis-location-intelligence"],
   },

@@ -163,8 +163,8 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         </div>
 
         {/* Visual Mockup Showcase */}
-        <div className="rounded-3xl bg-slate-950 p-6 sm:p-10 border border-slate-800 shadow-2xl flex flex-col items-center">
-          <div className="w-full max-w-4xl">
+        <div className="rounded-3xl bg-slate-950 p-4 sm:p-8 md:p-10 border border-slate-800 shadow-2xl flex flex-col items-center">
+          <div className="w-full max-w-5xl">
             <MockupVisual type={project.mockupType} title={project.title} />
           </div>
           <div className="mt-4 text-xs text-slate-400 text-center font-sans">

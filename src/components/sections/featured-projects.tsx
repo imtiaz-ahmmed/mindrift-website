@@ -51,7 +51,7 @@ export function FeaturedProjects() {
                   {/* Left (or Right): Project Content */}
                   <div
                     className={`space-y-5 ${
-                      isReversed ? "lg:col-span-6 lg:order-2" : "lg:col-span-6"
+                      isReversed ? "lg:col-span-5 lg:order-2" : "lg:col-span-5"
                     }`}
                   >
                     <div className="flex flex-wrap items-center gap-2.5">
@@ -148,16 +148,17 @@ export function FeaturedProjects() {
                     )}
                   </div>
 
-                  {/* Right (or Left): Interactive Product Mockup Visual */}
+                  {/* Right (or Left): Interactive Product Mockup Visual (Enlarged 7-col layout) */}
                   <div
                     className={`${
-                      isReversed ? "lg:col-span-6 lg:order-1" : "lg:col-span-6"
+                      isReversed ? "lg:col-span-7 lg:order-1" : "lg:col-span-7"
                     }`}
                   >
-                    <div className="p-2 sm:p-4 rounded-2xl bg-slate-50 dark:bg-[#020617] border border-slate-100 dark:border-slate-800/80">
+                    <div className="p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl bg-slate-100/70 dark:bg-[#020617] border border-slate-200/80 dark:border-slate-800/80 shadow-2xl">
                       <MockupVisual
                         type={project.mockupType}
                         title={project.title}
+                        className="w-full"
                       />
                     </div>
                   </div>
