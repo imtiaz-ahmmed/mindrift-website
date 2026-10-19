@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ParticleField } from "@/components/ui/particle-field";
+import { Preloader } from "@/components/ui/preloader";
 import { siteConfig } from "@/data/site-config";
 import "./globals.css";
 
@@ -86,6 +87,9 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)] selection:bg-[#1877F2] selection:text-white relative">
         <ThemeProvider>
+          {/* Fancy Enterprise Preloader */}
+          <Preloader />
+
           {/* Full-Site Living Dynamic Particle Field */}
           <ParticleField
             fixed={true}
