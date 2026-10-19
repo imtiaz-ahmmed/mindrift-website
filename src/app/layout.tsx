@@ -85,7 +85,10 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)] selection:bg-[#1877F2] selection:text-white relative">
+      <body
+        suppressHydrationWarning
+        className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)] selection:bg-[#1877F2] selection:text-white relative"
+      >
         <ThemeProvider>
           {/* Fancy Enterprise Preloader */}
           <Preloader />
