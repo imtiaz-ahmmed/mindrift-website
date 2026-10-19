@@ -143,6 +143,135 @@ function StreamingMockupVisual({ className = "" }: { className?: string }) {
   );
 }
 
+const EPOS_IMAGES = [
+  {
+    src: "/assets/projects/FirstChoiceePOS/fig1.png",
+    alt: "FirstChoice ePOS Countertop Terminal for Coffee Shops and Hospitality",
+  },
+  {
+    src: "/assets/projects/FirstChoiceePOS/fig2.png",
+    alt: "FirstChoice ePOS Mobile App and Handheld Online Ordering POS",
+  },
+  {
+    src: "/assets/projects/FirstChoiceePOS/fig3.png",
+    alt: "FirstChoice ePOS QR Order and Pay at Table Solution",
+  },
+  {
+    src: "/assets/projects/FirstChoiceePOS/fig4.png",
+    alt: "FirstChoice ePOS Dual-Screen Sunmi Countertop Terminals",
+  },
+];
+
+function EposMockupVisual({ className = "" }: { className?: string }) {
+  const [selectedIdx, setSelectedIdx] = useState(0);
+
+  // Auto switch images periodically every 3.5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSelectedIdx((prev) => (prev + 1) % EPOS_IMAGES.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setSelectedIdx((prev) => (prev - 1 + EPOS_IMAGES.length) % EPOS_IMAGES.length);
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setSelectedIdx((prev) => (prev + 1) % EPOS_IMAGES.length);
+  };
+
+  const current = EPOS_IMAGES[selectedIdx];
+
+  return (
+    <div
+      className={`w-full aspect-[16/10] bg-[#070F2B] rounded-2xl border border-emerald-900/60 shadow-2xl text-white relative overflow-hidden flex flex-col justify-between group ${className}`}
+    >
+      {/* Background Image Preview */}
+      <div className="absolute inset-0 overflow-hidden select-none">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          key={current.src}
+          src={current.src}
+          alt={current.alt}
+          className="w-full h-full object-cover transition-all duration-700 brightness-95"
+        />
+        {/* Subtle gradient overlay to keep HUD and tickers legible */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#070F2B]/95 via-black/15 to-[#070F2B]/85 pointer-events-none" />
+      </div>
+
+      {/* HUD Header */}
+      <div className="relative flex items-center justify-between border-b border-slate-800/80 p-3 sm:p-4 bg-slate-950/70 backdrop-blur-md z-10 pointer-events-none">
+        <div className="flex items-center gap-2">
+          <ShoppingBag className="w-4 h-4 text-[#0BCB91]" />
+          <span className="text-xs font-bold text-white font-mono tracking-wide">
+            FirstChoice ePOS Ireland · Till #01 (Dublin)
+          </span>
+        </div>
+        <div className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-[11px] font-mono text-slate-300">
+          <span className="text-[#0BCB91] font-bold">Offline Resilient</span>
+          <span className="bg-emerald-500/20 px-2 py-0.5 rounded text-emerald-200 border border-emerald-500/30">
+            KDS Linked
+          </span>
+        </div>
+      </div>
+
+      {/* Left and Right Navigation Arrows */}
+      <div className="relative z-10 flex items-center justify-between px-3 sm:px-4 pointer-events-none my-auto">
+        <button
+          type="button"
+          onClick={handlePrev}
+          aria-label="Previous POS capture"
+          className="pointer-events-auto p-2 sm:p-2.5 rounded-full bg-slate-950/75 hover:bg-[#0BCB91] hover:text-slate-950 text-white border border-slate-700/80 hover:border-[#0BCB91] backdrop-blur-md shadow-2xl transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer opacity-75 group-hover:opacity-100"
+        >
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+        </button>
+
+        <button
+          type="button"
+          onClick={handleNext}
+          aria-label="Next POS capture"
+          className="pointer-events-auto p-2 sm:p-2.5 rounded-full bg-slate-950/75 hover:bg-[#0BCB91] hover:text-slate-950 text-white border border-slate-700/80 hover:border-[#0BCB91] backdrop-blur-md shadow-2xl transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer opacity-75 group-hover:opacity-100"
+        >
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+        </button>
+      </div>
+
+      {/* Bottom Status Ticker with subtle dot indicators */}
+      <div className="relative z-10 border-t border-slate-800/80 p-3 bg-slate-950/85 backdrop-blur-md flex items-center justify-between gap-2 text-[10px] font-mono text-slate-300">
+        {/* Subtle slide dot indicators */}
+        <div className="flex items-center gap-1.5 pointer-events-auto">
+          {EPOS_IMAGES.map((_, idx) => (
+            <button
+              key={idx}
+              type="button"
+              onClick={() => setSelectedIdx(idx)}
+              aria-label={`Go to slide ${idx + 1}`}
+              className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                selectedIdx === idx
+                  ? "w-5 bg-[#0BCB91]"
+                  : "w-1.5 bg-slate-600 hover:bg-slate-400"
+              }`}
+            />
+          ))}
+        </div>
+
+        <div className="flex items-center gap-2 text-slate-400">
+          <div className="flex items-center gap-1.5">
+            <Printer className="w-3.5 h-3.5 text-[#0BCB91]" />
+            <span className="hidden sm:inline">KDS & ESC/POS Printer: Active</span>
+          </div>
+          <span className="text-[#0BCB91] font-bold">Cloud Sync: 100%</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 interface MockupVisualProps {
   type: "mobile" | "dashboard" | "gis" | "cloud" | "security" | "streaming" | "epos" | "medical";
   title: string;
@@ -157,74 +286,7 @@ export function MockupVisual({ type, title, className = "" }: MockupVisualProps)
 
   // Enterprise ePOS (FirstChoice ePOS)
   if (type === "epos") {
-    return (
-      <div
-        className={`w-full aspect-[16/10] bg-[#070F2B] rounded-2xl p-4 border border-emerald-900/50 shadow-2xl text-white relative overflow-hidden flex flex-col justify-between ${className}`}
-      >
-        <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-          <div className="flex items-center gap-2">
-            <ShoppingBag className="w-4 h-4 text-[#0BCB91]" />
-            <span className="text-xs font-bold text-white font-mono">FirstChoice ePOS Till #01 (Dublin)</span>
-          </div>
-          <span className="text-[10px] font-mono text-[#0BCB91] bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-            Offline Resilient · KDS Linked
-          </span>
-        </div>
-
-        {/* POS Grid View */}
-        <div className="grid grid-cols-12 gap-3 my-auto py-2">
-          {/* Order Ticket Panel */}
-          <div className="col-span-6 p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1.5">
-            <div className="flex justify-between text-[11px] font-bold border-b border-slate-800 pb-1">
-              <span>Table 12 · 3 Guests</span>
-              <span className="text-[#0BCB91]">€48.50</span>
-            </div>
-            <div className="space-y-1 text-[10px] font-mono text-slate-300">
-              <div className="flex justify-between">
-                <span>1x Artisan Sourdough Pizza</span>
-                <span>€16.50</span>
-              </div>
-              <div className="flex justify-between text-slate-400 pl-2">
-                <span>+ Extra Mozzarella & Basil</span>
-                <span>€2.00</span>
-              </div>
-              <div className="flex justify-between">
-                <span>2x Craft Cider (Pint)</span>
-                <span>€14.00</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Quick Menu Touch Tiles */}
-          <div className="col-span-6 grid grid-cols-2 gap-1.5 text-center text-[10px] font-bold">
-            <div className="p-2.5 rounded-lg bg-[#1877F2]/20 border border-[#1877F2]/40 text-blue-200 flex flex-col justify-center">
-              <span>Table Order</span>
-              <span className="text-[8px] font-mono text-slate-400">QR Synced</span>
-            </div>
-            <div className="p-2.5 rounded-lg bg-[#0BCB91]/20 border border-[#0BCB91]/40 text-emerald-200 flex flex-col justify-center">
-              <span>Send to KDS</span>
-              <span className="text-[8px] font-mono text-emerald-400">Kitchen Disp</span>
-            </div>
-            <div className="p-2.5 rounded-lg bg-slate-800 border border-slate-700 text-slate-200 flex flex-col justify-center">
-              <span>Thermal Receipt</span>
-              <span className="text-[8px] font-mono text-slate-400">ESC/POS</span>
-            </div>
-            <div className="p-2.5 rounded-lg bg-emerald-600 text-white flex flex-col justify-center shadow">
-              <span>Pay & Close</span>
-              <span className="text-[8px] font-mono">Card / Cash</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex items-center justify-between text-[10px] font-mono border-t border-slate-800 pt-2 text-slate-400">
-          <div className="flex items-center gap-1.5">
-            <Printer className="w-3.5 h-3.5 text-[#0BCB91]" />
-            <span>Kitchen Display System: Connected</span>
-          </div>
-          <span className="text-[#0BCB91]">Cloud Sync: 100%</span>
-        </div>
-      </div>
-    );
+    return <EposMockupVisual className={className} />;
   }
 
   // Athlete EMR (AB3 Medical)
