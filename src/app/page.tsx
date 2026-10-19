@@ -17,11 +17,11 @@ export default function HomePage() {
       <Hero />
 
       <ScrollReveal direction="up" delay={50}>
-        <CapabilityStrip />
+        <ImpactStats />
       </ScrollReveal>
 
       <ScrollReveal direction="up" delay={80}>
-        <ImpactStats />
+        <CapabilityStrip />
       </ScrollReveal>
 
       <ScrollReveal direction="up" delay={100}>
