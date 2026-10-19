@@ -163,6 +163,42 @@ body {
   animation: pulseGlow 4s ease-in-out infinite;
 }
 
+/* Cybernetic Reverse Spin */
+@keyframes spinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-spin-reverse {
+  animation: spinReverse 14s linear infinite;
+}
+
+/* Cybernetic Laser Scan Bar */
+@keyframes laserScan {
+  0% {
+    top: -5%;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    top: 105%;
+    opacity: 0;
+  }
+}
+
+.animate-laser-scan {
+  animation: laserScan 2.2s ease-in-out infinite;
+}
+
 /* Formal Enterprise Card Transitions */
 .enterprise-card {
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
