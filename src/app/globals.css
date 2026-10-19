@@ -258,6 +258,25 @@ body {
   filter: drop-shadow(0 6px 22px rgba(0, 216, 246, 0.5));
 }
 
+/* Staggered Chained Soft Word Movement */
+@keyframes chainSoftWave {
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 0.95;
+  }
+  50% {
+    transform: translateY(-5px);
+    opacity: 1;
+    filter: drop-shadow(0 4px 18px rgba(0, 216, 246, 0.45));
+  }
+}
+
+.animate-chain-word {
+  display: inline-block;
+  animation: chainSoftWave 4.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  will-change: transform, opacity, filter;
+}
+
 /* Animated Interactive Buttons */
 @keyframes buttonShimmer {
   0% {

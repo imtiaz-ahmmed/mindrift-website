@@ -14,39 +14,25 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-function TechWord({
+function ChainedWord({
   word,
+  delay,
   gradient = false,
-  className = "",
 }: {
   word: string;
+  delay: string;
   gradient?: boolean;
-  className?: string;
 }) {
-  const firstLetter = word.charAt(0);
-  const restOfWord = word.slice(1);
-
   return (
     <span
-      className={`group/word relative inline-flex items-center cursor-pointer transition-all duration-300 hover:-translate-y-1 select-none mx-0.5 sm:mx-1 px-1.5 py-0.5 rounded-xl hover:bg-white/80 dark:hover:bg-slate-800/80 hover:border hover:border-cyan-400/30 hover:shadow-[0_4px_24px_rgba(0,216,246,0.22)] ${className}`}
+      style={{ animationDelay: delay }}
+      className={`animate-chain-word inline-block select-none mx-0.5 sm:mx-1 ${
+        gradient
+          ? "brand-gradient-text"
+          : "text-[#000B49] dark:text-white"
+      }`}
     >
-      {/* First letter: expands prominently with high-tech cyan/emerald laser glow */}
-      <span className="inline-block transition-all duration-300 ease-out group-hover/word:scale-135 origin-bottom font-black text-[#1877F2] dark:text-[#00D8F6] group-hover/word:text-[#00D8F6] group-hover/word:drop-shadow-[0_0_14px_rgba(0,216,246,0.9)]">
-        {firstLetter}
-      </span>
-      {/* Rest of word with rich titanium / gradient texture */}
-      <span
-        className={`transition-all duration-300 ${
-          gradient
-            ? "brand-gradient-text group-hover/word:brightness-125"
-            : "text-[#000B49] dark:text-white group-hover/word:text-blue-950 dark:group-hover/word:text-cyan-50"
-        }`}
-      >
-        {restOfWord}
-      </span>
-
-      {/* Cybernetic Status Node that illuminates on hover */}
-      <span className="absolute -top-1 -right-1 w-1.5 h-1.5 rounded-full bg-[#0BCB91] opacity-0 group-hover/word:opacity-100 transition-opacity duration-300 shadow-[0_0_8px_#0BCB91]" />
+      {word}
     </span>
   );
 }
@@ -61,7 +47,7 @@ export function Hero() {
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         {/* Centered Formal Eyebrow Badge */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/95 dark:bg-slate-800/95 backdrop-blur-md border border-slate-200/90 dark:border-slate-700/80 text-xs font-semibold text-slate-800 dark:text-slate-200 shadow-xs mb-4">
+        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/95 dark:bg-slate-800/95 backdrop-blur-md border border-slate-200/90 dark:border-slate-700/80 text-xs font-semibold text-slate-800 dark:text-slate-200 shadow-xs mb-5">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0BCB91] opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0BCB91]" />
@@ -69,35 +55,20 @@ export function Hero() {
           <span className="tracking-wide">Enterprise Technology Partner · High-Scale Systems</span>
         </div>
 
-        {/* High-Tech Framing Container with Blueprint Crosshairs */}
-        <div className="relative inline-block max-w-4xl mx-auto my-1">
-          {/* Subtle Corner Reticle Crosshairs for Tech Vibe */}
-          <span className="hidden sm:inline absolute -top-3 -left-3 text-xs font-mono text-cyan-500/40 select-none">+</span>
-          <span className="hidden sm:inline absolute -top-3 -right-3 text-xs font-mono text-cyan-500/40 select-none">+</span>
-          <span className="hidden sm:inline absolute -bottom-3 -left-3 text-xs font-mono text-cyan-500/40 select-none">+</span>
-          <span className="hidden sm:inline absolute -bottom-3 -right-3 text-xs font-mono text-cyan-500/40 select-none">+</span>
-
-          {/* Developer Archetype Micro-Badge */}
-          <div className="text-[11px] font-mono tracking-widest text-[#1877F2] dark:text-[#00D8F6] uppercase flex items-center justify-center gap-1.5 mb-2 select-none opacity-85">
-            <span className="text-slate-400">&lt;</span>
-            <span>SYSTEM_CORE // CLOUD & ARCHITECTURE</span>
-            <span className="text-slate-400">/&gt;</span>
-          </div>
-
-          {/* Centered Main Headline with True Tech Vibe & First-Letter Enlargement */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.35rem] font-black tracking-[-0.035em] leading-[1.12] text-[#000B49] dark:text-white select-none">
-            <TechWord word="Engineering" />{" "}
-            <TechWord word="Digital" />{" "}
-            <TechWord word="Solutions" /> <br className="hidden sm:inline" />
-            <span className="inline-block mt-1 sm:mt-2">
-              <TechWord word="for" />{" "}
-              <TechWord word="a" />{" "}
-              <TechWord word="Smarter," gradient={true} />{" "}
-              <TechWord word="Scalable" gradient={true} />{" "}
-              <TechWord word="Future." gradient={true} />
-            </span>
-          </h1>
-        </div>
+        {/* Formal Tech Headline with Chained Soft Word Movement */}
+        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-extrabold tracking-[-0.03em] leading-[1.12] text-center max-w-4xl mx-auto my-2 select-none">
+          <ChainedWord word="Engineering" delay="0s" />
+          <ChainedWord word="Digital" delay="0.3s" />
+          <ChainedWord word="Solutions" delay="0.6s" />
+          <br className="hidden sm:inline" />
+          <span className="inline-block mt-1 sm:mt-2">
+            <ChainedWord word="for" delay="0.9s" />
+            <ChainedWord word="a" delay="1.1s" />
+            <ChainedWord word="Smarter," delay="1.35s" gradient={true} />
+            <ChainedWord word="Scalable" delay="1.65s" gradient={true} />
+            <ChainedWord word="Future." delay="1.95s" gradient={true} />
+          </span>
+        </h1>
 
         {/* Centered Supporting Copy */}
         <p className="mt-5 text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mx-auto font-sans">
