@@ -29,13 +29,13 @@ export function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-12">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div className="space-y-1">
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#0BCB91]">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#0BCB91]">
                 Enterprise Technology Advisory
               </span>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
                 Ready to engineer your next digital solution?
               </h3>
-              <p className="text-sm text-slate-300 max-w-xl">
+              <p className="text-sm text-slate-300 max-w-xl font-sans">
                 Speak directly with senior engineers and architects about your software, AI, 3D streaming, or cloud roadmap.
               </p>
             </div>
@@ -44,7 +44,7 @@ export function Footer() {
                 href={siteConfig.companyProfileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-xs font-mono font-bold uppercase tracking-wider text-white bg-white/10 hover:bg-white/20 border border-white/20 transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/20 transition-colors"
               >
                 <FileText className="w-4 h-4 text-[#0BCB91]" />
                 <span>Company Profile</span>
@@ -52,7 +52,7 @@ export function Footer() {
               </a>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-mono font-bold uppercase tracking-wider text-[#000B49] bg-[#0BCB91] hover:bg-[#09B882] transition-colors shadow-lg hover:shadow-xl group flex-shrink-0"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-[#000B49] bg-[#0BCB91] hover:bg-[#09B882] transition-colors shadow-sm group flex-shrink-0"
               >
                 <span>Discuss Your Project</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -74,7 +74,7 @@ export function Footer() {
               Mindrift Agency delivers enterprise software engineering, real-time 3D streaming, ePOS architectures, healthcare platforms, and cloud solutions for modern organizations.
             </p>
 
-            <div className="space-y-2.5 pt-2 text-xs font-mono text-slate-400">
+            <div className="space-y-2.5 pt-2 text-xs text-slate-400 font-sans">
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#1877F2]" />
                 <a
@@ -100,7 +100,7 @@ export function Footer() {
                 href={siteConfig.companyProfileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-1.5 rounded-lg bg-[#1877F2]/20 hover:bg-[#1877F2]/30 text-xs font-mono font-bold text-[#00D8F6] border border-[#1877F2]/40 transition-colors flex items-center gap-1.5"
+                className="px-3.5 py-1.5 rounded-lg bg-[#1877F2]/20 hover:bg-[#1877F2]/30 text-xs font-semibold text-[#00D8F6] border border-[#1877F2]/40 transition-colors flex items-center gap-1.5"
               >
                 <FileText className="w-3.5 h-3.5 text-[#0BCB91]" />
                 <span>Company Profile (PDF)</span>

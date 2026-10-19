@@ -5,7 +5,7 @@ import { constructMetadata } from "@/lib/seo";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Badge } from "@/components/ui/badge";
 import { ProjectsDirectory } from "@/components/projects/projects-directory";
-import { FileText, ExternalLink, Terminal, ShieldCheck, Zap } from "lucide-react";
+import { FileText, ExternalLink, ShieldCheck, Zap } from "lucide-react";
 
 export const metadata: Metadata = constructMetadata({
   title: "Engineering Portfolio & Client Systems",
@@ -17,35 +17,27 @@ export const metadata: Metadata = constructMetadata({
 export default function ProjectsPage() {
   return (
     <div className="py-12 sm:py-16 md:py-20 relative overflow-hidden">
-      {/* Background Cyber Tech Grid */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
-      <div className="absolute top-1/4 -right-48 w-96 h-96 bg-[#1877F2]/10 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
-      <div className="absolute bottom-10 -left-48 w-96 h-96 bg-[#0BCB91]/10 rounded-full blur-3xl pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 relative z-10">
         {/* Breadcrumb */}
         <Breadcrumb items={[{ label: "Projects" }]} />
 
         {/* Hero Section */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-4 border-b border-slate-200 dark:border-slate-800/80">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-8 border-b border-slate-200 dark:border-slate-800">
           <div className="max-w-3xl space-y-4">
-            <div className="flex flex-wrap items-center gap-2.5">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono tracking-wider uppercase font-semibold bg-[#1877F2]/10 text-[#1877F2] dark:text-[#00D8F6] border border-[#1877F2]/20">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0BCB91] animate-ping" />
-                SYS::PORTFOLIO // REAL CLIENT SYSTEMS
-              </span>
-              <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
-                [ 5 HIGH-SCALE PRODUCTION PLATFORMS ]
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/40 text-[#1877F2] dark:text-[#0BCB91] border border-blue-200/60 dark:border-blue-900/50">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0BCB91]" />
+                Client Case Studies & Live Deployments
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#000B49] dark:text-white tracking-tight leading-tight">
+            <h1 className="text-4xl sm:text-5xl font-black text-[#000B49] dark:text-white tracking-tight leading-tight">
               Mission-Critical Software. <br />
-              <span className="brand-gradient-text">Engineered For Real Scale.</span>
+              <span className="brand-gradient-text">Engineered For Real-World Scale.</span>
             </h1>
 
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-sans max-w-2xl">
-              Inspect our production architectures, real-time pixel streaming pipelines, hospital-grade EMR databases, and multi-tenant point-of-sale networks across Ireland, the UK, and global cloud nodes.
+              Inspect our production architectures, real-time pixel streaming pipelines, hospital-grade athlete EMR records, and multi-tenant point-of-sale networks across Ireland, the UK, and global cloud nodes.
             </p>
           </div>
 
@@ -55,22 +47,22 @@ export default function ProjectsPage() {
               href={siteConfig.companyProfileUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-xs font-mono font-bold tracking-wider uppercase text-white bg-gradient-to-r from-[#1877F2] to-[#0BCB91] hover:brightness-110 shadow-lg shadow-[#1877F2]/20 transition-all group"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold text-white bg-[#000B49] hover:bg-[#1877F2] dark:bg-[#1877F2] dark:hover:bg-blue-600 shadow-sm transition-colors group"
             >
               <FileText className="w-4 h-4 text-white" />
               <span>Company Profile (PDF)</span>
               <ExternalLink className="w-3.5 h-3.5 opacity-80 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
 
-            <div className="flex items-center gap-3 text-[11px] font-mono text-slate-500 dark:text-slate-400 px-1">
-              <span className="flex items-center gap-1">
+            <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 px-1 font-sans">
+              <span className="flex items-center gap-1 font-medium">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#0BCB91]" />
                 100% Live Deployments
               </span>
               <span>•</span>
-              <span className="flex items-center gap-1">
-                <Zap className="w-3.5 h-3.5 text-[#00D8F6]" />
-                Direct Source Audited
+              <span className="flex items-center gap-1 font-medium">
+                <Zap className="w-3.5 h-3.5 text-[#1877F2]" />
+                Verified Production
               </span>
             </div>
           </div>

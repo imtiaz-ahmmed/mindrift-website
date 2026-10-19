@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/layout/logo";
@@ -15,6 +15,7 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,56 +29,79 @@ export function Header() {
     setIsServicesOpen(false);
   }, [pathname]);
 
+  const handleMouseEnterServices = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setIsServicesOpen(true);
+  };
+
+  const handleMouseLeaveServices = () => {
+    timeoutRef.current = setTimeout(() => {
+      setIsServicesOpen(false);
+    }, 180);
+  };
+
+  const handleMouseEnterOtherLink = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setIsServicesOpen(false);
+  };
+
   return (
     <header
       className={`sticky top-0 z-40 w-full transition-all duration-200 ${
         isScrolled
-          ? "bg-white/95 dark:bg-[#020617]/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800/80 shadow-md"
-          : "bg-white/80 dark:bg-[#020617]/80 backdrop-blur-sm border-b border-slate-200/50 dark:border-slate-800/50"
+          ? "bg-white/95 dark:bg-[#020617]/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800/80 shadow-xs"
+          : "bg-white/90 dark:bg-[#020617]/90 backdrop-blur-sm border-b border-slate-200/60 dark:border-slate-800/60"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo with Tech Badge */}
+          {/* Logo */}
           <div className="flex items-center gap-3">
             <Logo priority />
-            <div className="hidden xl:flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-mono text-[#0BCB91]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#0BCB91] animate-ping" />
-              <span>SYS::ONLINE</span>
-            </div>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Main Navigation">
             {/* Services with Mega Menu Dropdown */}
-            <div className="relative">
-              <button
-                type="button"
-                onClick={() => setIsServicesOpen(!isServicesOpen)}
-                onMouseEnter={() => setIsServicesOpen(true)}
-                className={`flex items-center gap-1.5 px-3 py-2 text-xs font-mono font-bold uppercase tracking-wider rounded-md transition-colors ${
-                  pathname.startsWith("/services") || isServicesOpen
-                    ? "text-[#1877F2] dark:text-[#0BCB91] bg-slate-100/60 dark:bg-slate-800/60"
-                    : "text-slate-700 dark:text-slate-200 hover:text-[#1877F2] dark:hover:text-[#0BCB91] hover:bg-slate-100/50 dark:hover:bg-slate-800/50"
-                }`}
-                aria-expanded={isServicesOpen}
-                aria-haspopup="true"
-              >
-                <span>Services</span>
-                <ChevronDown
-                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    isServicesOpen ? "rotate-180" : ""
+            <div
+              className="relative"
+              onMouseEnter={handleMouseEnterServices}
+              onMouseLeave={handleMouseLeaveServices}
+            >
+              <div className="flex items-center">
+                <Link
+                  href="/services"
+                  className={`px-3.5 py-2 text-sm font-medium rounded-lg transition-colors ${
+                    pathname.startsWith("/services") || isServicesOpen
+                      ? "text-[#1877F2] dark:text-[#0BCB91] bg-slate-100/70 dark:bg-slate-800/70 font-semibold"
+                      : "text-slate-700 dark:text-slate-200 hover:text-[#1877F2] dark:hover:text-[#0BCB91] hover:bg-slate-50 dark:hover:bg-slate-800/50"
                   }`}
-                />
-              </button>
+                >
+                  Services
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setIsServicesOpen(!isServicesOpen)}
+                  aria-label="Toggle services menu"
+                  aria-expanded={isServicesOpen}
+                  className="p-1.5 -ml-1.5 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors"
+                >
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                      isServicesOpen ? "rotate-180 text-[#1877F2] dark:text-[#0BCB91]" : ""
+                    }`}
+                  />
+                </button>
+              </div>
             </div>
 
             <Link
               href="/projects"
-              className={`px-3 py-2 text-xs font-mono font-bold uppercase tracking-wider rounded-md transition-colors ${
+              onMouseEnter={handleMouseEnterOtherLink}
+              className={`px-3.5 py-2 text-sm font-medium rounded-lg transition-colors ${
                 pathname.startsWith("/projects")
-                  ? "text-[#1877F2] dark:text-[#0BCB91] bg-slate-100/60 dark:bg-slate-800/60"
-                  : "text-slate-700 dark:text-slate-200 hover:text-[#1877F2] dark:hover:text-[#0BCB91] hover:bg-slate-100/50 dark:hover:bg-slate-800/50"
+                  ? "text-[#1877F2] dark:text-[#0BCB91] bg-slate-100/70 dark:bg-slate-800/70 font-semibold"
+                  : "text-slate-700 dark:text-slate-200 hover:text-[#1877F2] dark:hover:text-[#0BCB91] hover:bg-slate-50 dark:hover:bg-slate-800/50"
               }`}
             >
               Projects
@@ -85,10 +109,11 @@ export function Header() {
 
             <Link
               href="/industries"
-              className={`px-3 py-2 text-xs font-mono font-bold uppercase tracking-wider rounded-md transition-colors ${
+              onMouseEnter={handleMouseEnterOtherLink}
+              className={`px-3.5 py-2 text-sm font-medium rounded-lg transition-colors ${
                 pathname.startsWith("/industries")
-                  ? "text-[#1877F2] dark:text-[#0BCB91] bg-slate-100/60 dark:bg-slate-800/60"
-                  : "text-slate-700 dark:text-slate-200 hover:text-[#1877F2] dark:hover:text-[#0BCB91] hover:bg-slate-100/50 dark:hover:bg-slate-800/50"
+                  ? "text-[#1877F2] dark:text-[#0BCB91] bg-slate-100/70 dark:bg-slate-800/70 font-semibold"
+                  : "text-slate-700 dark:text-slate-200 hover:text-[#1877F2] dark:hover:text-[#0BCB91] hover:bg-slate-50 dark:hover:bg-slate-800/50"
               }`}
             >
               Industries
@@ -96,10 +121,11 @@ export function Header() {
 
             <Link
               href="/insights"
-              className={`px-3 py-2 text-xs font-mono font-bold uppercase tracking-wider rounded-md transition-colors ${
+              onMouseEnter={handleMouseEnterOtherLink}
+              className={`px-3.5 py-2 text-sm font-medium rounded-lg transition-colors ${
                 pathname.startsWith("/insights")
-                  ? "text-[#1877F2] dark:text-[#0BCB91] bg-slate-100/60 dark:bg-slate-800/60"
-                  : "text-slate-700 dark:text-slate-200 hover:text-[#1877F2] dark:hover:text-[#0BCB91] hover:bg-slate-100/50 dark:hover:bg-slate-800/50"
+                  ? "text-[#1877F2] dark:text-[#0BCB91] bg-slate-100/70 dark:bg-slate-800/70 font-semibold"
+                  : "text-slate-700 dark:text-slate-200 hover:text-[#1877F2] dark:hover:text-[#0BCB91] hover:bg-slate-50 dark:hover:bg-slate-800/50"
               }`}
             >
               Insights
@@ -107,10 +133,11 @@ export function Header() {
 
             <Link
               href="/about"
-              className={`px-3 py-2 text-xs font-mono font-bold uppercase tracking-wider rounded-md transition-colors ${
+              onMouseEnter={handleMouseEnterOtherLink}
+              className={`px-3.5 py-2 text-sm font-medium rounded-lg transition-colors ${
                 pathname.startsWith("/about")
-                  ? "text-[#1877F2] dark:text-[#0BCB91] bg-slate-100/60 dark:bg-slate-800/60"
-                  : "text-slate-700 dark:text-slate-200 hover:text-[#1877F2] dark:hover:text-[#0BCB91] hover:bg-slate-100/50 dark:hover:bg-slate-800/50"
+                  ? "text-[#1877F2] dark:text-[#0BCB91] bg-slate-100/70 dark:bg-slate-800/70 font-semibold"
+                  : "text-slate-700 dark:text-slate-200 hover:text-[#1877F2] dark:hover:text-[#0BCB91] hover:bg-slate-50 dark:hover:bg-slate-800/50"
               }`}
             >
               About
@@ -121,8 +148,9 @@ export function Header() {
               href={siteConfig.companyProfileUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="View Company Profile PDF (Opens in new tab)"
-              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-mono font-bold uppercase tracking-wider text-slate-700 dark:text-slate-200 hover:text-[#0BCB91] rounded-md transition-colors hover:bg-slate-100/50 dark:hover:bg-slate-800/50 group"
+              onMouseEnter={handleMouseEnterOtherLink}
+              aria-label="View Company Profile PDF (Opens in separate tab)"
+              className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-[#0BCB91] rounded-lg transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50 group"
             >
               <FileText className="w-3.5 h-3.5 text-[#0BCB91]" />
               <span>Company Profile</span>
@@ -138,7 +166,7 @@ export function Header() {
             <div className="hidden sm:block">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider text-white bg-[#000B49] hover:bg-[#1877F2] dark:bg-[#1877F2] dark:hover:bg-blue-600 transition-all shadow-sm hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1877F2] group border border-blue-500/20"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider text-white bg-[#000B49] hover:bg-[#1877F2] dark:bg-[#1877F2] dark:hover:bg-blue-600 transition-all shadow-sm hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1877F2] group"
               >
                 <span>Discuss Project</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -158,7 +186,12 @@ export function Header() {
         </div>
       </div>
 
-      <MegaMenu isOpen={isServicesOpen} onClose={() => setIsServicesOpen(false)} />
+      <MegaMenu
+        isOpen={isServicesOpen}
+        onClose={() => setIsServicesOpen(false)}
+        onMouseEnter={handleMouseEnterServices}
+        onMouseLeave={handleMouseLeaveServices}
+      />
       <MobileNav isOpen={isMobileNavOpen} onClose={() => setIsMobileNavOpen(false)} />
     </header>
   );
