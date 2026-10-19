@@ -6,12 +6,14 @@ interface ParticleFieldProps {
   className?: string;
   particleCount?: number;
   interactive?: boolean;
+  fixed?: boolean;
 }
 
 export function ParticleField({
   className = "",
   particleCount = 65,
   interactive = true,
+  fixed = false,
 }: ParticleFieldProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -22,8 +24,8 @@ export function ParticleField({
     if (!ctx) return;
 
     let animationFrameId: number;
-    let width = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);
-    let height = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight);
+    let width = (canvas.width = fixed ? window.innerWidth : (canvas.parentElement?.clientWidth || window.innerWidth));
+    let height = (canvas.height = fixed ? window.innerHeight : (canvas.parentElement?.clientHeight || window.innerHeight));
 
     // Color palette matching Mindrift brand: Electric Blue, Emerald, Cyan
     const colors = [
@@ -75,9 +77,14 @@ export function ParticleField({
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!canvas) return;
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
+      if (fixed) {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      } else {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+      }
     };
 
     const handleMouseLeave = () => {
@@ -91,9 +98,9 @@ export function ParticleField({
     }
 
     const handleResize = () => {
-      if (!canvas || !canvas.parentElement) return;
-      width = canvas.width = canvas.parentElement.clientWidth;
-      height = canvas.height = canvas.parentElement.clientHeight;
+      if (!canvas) return;
+      width = canvas.width = fixed ? window.innerWidth : (canvas.parentElement?.clientWidth || window.innerWidth);
+      height = canvas.height = fixed ? window.innerHeight : (canvas.parentElement?.clientHeight || window.innerHeight);
     };
 
     window.addEventListener("resize", handleResize);
@@ -103,7 +110,7 @@ export function ParticleField({
       ctx.clearRect(0, 0, width, height);
 
       // Connect nearby particles with subtle glowing lines (Neural/Constellation network)
-      const maxDistance = 110;
+      const maxDistance = fixed ? 120 : 110;
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -111,7 +118,7 @@ export function ParticleField({
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < maxDistance) {
-            const lineAlpha = (1 - dist / maxDistance) * 0.18;
+            const lineAlpha = (1 - dist / maxDistance) * (fixed ? 0.16 : 0.18);
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -191,12 +198,14 @@ export function ParticleField({
       }
       window.removeEventListener("resize", handleResize);
     };
-  }, [particleCount, interactive]);
+  }, [particleCount, interactive, fixed]);
 
   return (
     <canvas
       ref={canvasRef}
-      className={`absolute inset-0 pointer-events-none transition-opacity duration-500 ${className}`}
+      className={`pointer-events-none transition-opacity duration-500 ${
+        fixed ? "fixed inset-0 w-full h-full z-[1]" : "absolute inset-0"
+      } ${className}`}
     />
   );
 }

@@ -104,10 +104,10 @@ export function FeaturedProjects() {
                     <div className="pt-3 flex flex-wrap items-center gap-3">
                       <Link
                         href={`/projects/${project.slug}`}
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-[#000B49] hover:bg-[#1877F2] dark:bg-[#1877F2] dark:hover:bg-blue-600 transition-colors shadow-xs group"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-[#000B49] hover:bg-[#1877F2] dark:bg-[#1877F2] dark:hover:bg-blue-600 btn-3d-elevated btn-animate-shimmer shadow-xs group cursor-pointer"
                       >
                         <span>Architecture Review</span>
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
                       </Link>
 
                       {project.liveUrl && (
@@ -115,7 +115,7 @@ export function FeaturedProjects() {
                           href={project.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-800 dark:text-slate-200 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 transition-colors"
+                          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-800 dark:text-slate-200 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 btn-secondary-elevated cursor-pointer"
                         >
                           <span>Live System</span>
                           <ExternalLink className="w-3.5 h-3.5 text-slate-400" />

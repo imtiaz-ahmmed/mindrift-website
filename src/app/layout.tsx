@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { ParticleField } from "@/components/ui/particle-field";
 import { siteConfig } from "@/data/site-config";
 import "./globals.css";
 
@@ -83,10 +84,17 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)] selection:bg-[#1877F2] selection:text-white">
+      <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)] selection:bg-[#1877F2] selection:text-white relative">
         <ThemeProvider>
+          {/* Full-Site Living Dynamic Particle Field */}
+          <ParticleField
+            fixed={true}
+            particleCount={85}
+            interactive={true}
+            className="opacity-40 dark:opacity-55 pointer-events-none z-[12]"
+          />
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 relative z-10">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

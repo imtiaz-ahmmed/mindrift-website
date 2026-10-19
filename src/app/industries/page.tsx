@@ -175,10 +175,10 @@ export default function IndustriesPage() {
           </div>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-bold text-[#000B49] bg-[#0BCB91] hover:bg-[#09B882] transition-colors shadow-lg flex-shrink-0 group"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-bold text-[#000B49] bg-[#0BCB91] hover:bg-[#00D8F6] btn-3d-elevated btn-animate-shimmer shadow-lg flex-shrink-0 group cursor-pointer"
           >
             <span>Start an Industry Consultation</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
           </Link>
         </div>
       </div>

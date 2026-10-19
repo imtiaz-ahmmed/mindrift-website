@@ -27,20 +27,20 @@ export function CtaBanner() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
           <Link
             href="/contact"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl font-bold text-base text-[#000B49] bg-[#0BCB91] hover:bg-[#09B882] transition-colors shadow-lg hover:shadow-xl group"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-bold text-base text-[#000B49] bg-[#0BCB91] hover:bg-[#00D8F6] btn-3d-elevated btn-animate-shimmer shadow-lg group cursor-pointer"
           >
             <span>Start a Conversation</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
           </Link>
           <Link
             href="/services"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-base text-white bg-white/10 hover:bg-white/15 border border-white/20 transition-colors"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-base text-white bg-white/10 hover:bg-white/15 border border-white/20 btn-secondary-elevated cursor-pointer"
           >
             <span>Explore Our Services</span>
           </Link>
         </div>
 
-        <div className="pt-6 text-xs text-slate-400 font-mono">
+        <div className="pt-6 text-xs text-slate-300 font-sans">
           Non-Disclosure Agreements Available · Confidential Technical Consultation
         </div>
       </div>

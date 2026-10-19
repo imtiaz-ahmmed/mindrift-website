@@ -131,11 +131,11 @@ export default function AboutPage() {
               href={siteConfig.companyProfileUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl text-sm font-semibold text-[#000B49] bg-[#0BCB91] hover:bg-[#09B882] transition-colors shadow-lg hover:shadow-xl group"
+              className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl text-sm font-bold text-[#000B49] bg-[#0BCB91] hover:bg-[#00D8F6] btn-3d-elevated btn-animate-shimmer shadow-lg group cursor-pointer"
             >
               <FileText className="w-4 h-4 text-[#000B49]" />
               <span>View Company Profile (PDF)</span>
-              <ExternalLink className="w-4 h-4 text-[#000B49] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ExternalLink className="w-4 h-4 text-[#000B49] group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-300" />
             </a>
             <span className="text-center text-xs text-slate-400 font-sans">
               Opens in separate tab
