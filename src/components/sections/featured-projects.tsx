@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 import { projectsData } from "@/data/projects";
 import { MockupVisual } from "@/components/ui/mockup-visual";
-import { Badge } from "@/components/ui/badge";
 import { ArrowRight, CheckCircle2, ExternalLink, Smartphone } from "lucide-react";
 
 export function FeaturedProjects() {

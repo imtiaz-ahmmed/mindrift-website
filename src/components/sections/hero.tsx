@@ -9,9 +9,6 @@ import {
   Zap,
   ShieldCheck,
   Smartphone,
-  Layers,
-  Sparkles,
-  CheckCircle2,
 } from "lucide-react";
 
 function ChainedWord({

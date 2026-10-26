@@ -9,11 +9,16 @@ export function Preloader() {
   const [isRemoved, setIsRemoved] = useState(false);
 
   useEffect(() => {
-    // Fast, responsive loading animation (~600ms)
-    const hasSeenLoader = sessionStorage.getItem("mindrift-loader-seen");
+    let hasSeenLoader = false;
+    try {
+      hasSeenLoader = Boolean(sessionStorage.getItem("mindrift-loader-seen"));
+    } catch {
+      // Ignore sessionStorage errors
+    }
+
     if (hasSeenLoader) {
-      setIsRemoved(true);
-      return;
+      const timer = setTimeout(() => setIsRemoved(true), 0);
+      return () => clearTimeout(timer);
     }
 
     const duration = 580;

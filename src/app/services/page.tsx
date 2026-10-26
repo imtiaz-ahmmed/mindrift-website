@@ -14,9 +14,6 @@ import {
   Compass,
   Database,
   ArrowRight,
-  CheckCircle2,
-  Layers,
-  HelpCircle,
 } from "lucide-react";
 
 export const metadata: Metadata = constructMetadata({

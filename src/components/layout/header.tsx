@@ -23,10 +23,11 @@ export function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
     setIsServicesOpen(false);
-  }, [pathname]);
+  }
 
   const handleMouseEnterServices = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);

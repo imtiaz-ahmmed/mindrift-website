@@ -1,17 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 import { Logo } from "@/components/layout/logo";
 import { siteConfig } from "@/data/site-config";
 import { ArrowRight, Mail, MapPin, ShieldCheck, ArrowUpRight } from "lucide-react";
 
 export function Footer() {
-  const [currentYear, setCurrentYear] = useState(2026);
-
-  useEffect(() => {
-    setCurrentYear(new Date().getFullYear());
-  }, []);
+  const currentYear = 2026;
 
   const mainNavLinks = [
     { title: "Home", href: "/" },

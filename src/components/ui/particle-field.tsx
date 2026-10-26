@@ -69,7 +69,7 @@ export function ParticleField({
     }
 
     // Mouse coordinates
-    let mouse = {
+    const mouse = {
       x: -1000,
       y: -1000,
       radius: 140,

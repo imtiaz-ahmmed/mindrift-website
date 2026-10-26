@@ -4,8 +4,6 @@ import {
   Users,
   TrendingUp,
   ShieldCheck,
-  CheckCircle2,
-  Sparkles,
 } from "lucide-react";
 
 export function ImpactStats() {

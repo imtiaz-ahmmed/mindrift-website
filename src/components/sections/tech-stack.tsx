@@ -1,5 +1,5 @@
 import React from "react";
-import { Code2, Server, Database, Cpu, Cloud, ShieldCheck, Gamepad2, Smartphone, Zap } from "lucide-react";
+import { Code2, Database, Cpu, Cloud, ShieldCheck, Gamepad2, Smartphone, Zap } from "lucide-react";
 
 export function TechStack() {
   const domains = [

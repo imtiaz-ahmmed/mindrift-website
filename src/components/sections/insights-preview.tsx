@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { insightsData } from "@/data/insights";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Clock, Calendar } from "lucide-react";
+import { ArrowRight, Clock } from "lucide-react";
 
 export function InsightsPreview() {
   const articles = insightsData.slice(0, 3);

@@ -16,10 +16,8 @@ import {
   Compass,
   Database,
   ArrowRight,
-  CheckCircle2,
   Check,
   HelpCircle,
-  Sparkles,
 } from "lucide-react";
 
 interface ServicePageProps {
@@ -67,9 +65,6 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
   const relatedProjects = service.relatedProjectSlugs
     ? projectsData.filter((p) => service.relatedProjectSlugs?.includes(p.slug))
     : [];
-
-  // Find other services
-  const otherServices = servicesData.filter((s) => s.slug !== service.slug).slice(0, 3);
 
   return (
     <div className="py-12 sm:py-16 md:py-20">

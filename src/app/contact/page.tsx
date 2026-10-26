@@ -9,7 +9,6 @@ import {
   MapPin,
   ShieldCheck,
   Clock,
-  CheckCircle2,
   Lock,
 } from "lucide-react";
 

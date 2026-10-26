@@ -12,37 +12,34 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("dark");
-  const [mounted, setMounted] = useState(false);
+const getInitialTheme = (): Theme => {
+  if (typeof window === "undefined") return "dark";
+  try {
+    const storedTheme = localStorage.getItem("mindrift-theme") as Theme | null;
+    if (storedTheme === "light" || storedTheme === "dark") return storedTheme;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  } catch {
+    return "dark";
+  }
+};
 
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [theme, setThemeState] = useState<Theme>(getInitialTheme);
+
+  // Synchronize document classes and localStorage whenever theme changes
   useEffect(() => {
     try {
-      const storedTheme = localStorage.getItem("mindrift-theme") as Theme | null;
-      if (storedTheme) {
-        setThemeState(storedTheme);
-        document.documentElement.setAttribute("data-theme", storedTheme);
-        if (storedTheme === "dark") {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
+      localStorage.setItem("mindrift-theme", theme);
+      document.documentElement.setAttribute("data-theme", theme);
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
       } else {
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        const initialTheme: Theme = prefersDark ? "dark" : "light";
-        setThemeState(initialTheme);
-        document.documentElement.setAttribute("data-theme", initialTheme);
-        if (initialTheme === "dark") {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
+        document.documentElement.classList.remove("dark");
       }
     } catch {
       // LocalStorage error fallback
     }
-    setMounted(true);
-  }, []);
+  }, [theme]);
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);

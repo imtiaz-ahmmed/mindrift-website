@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import { siteConfig } from "@/data/site-config";
 import { constructMetadata } from "@/lib/seo";
 import { Breadcrumb } from "@/components/ui/breadcrumb";

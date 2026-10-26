@@ -6,7 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import { siteConfig } from "@/data/site-config";
 import {
   Compass,
-  Code2,
   ShieldCheck,
   CheckCircle2,
   ArrowRight,
@@ -158,7 +157,7 @@ export default function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {principles.map((pr, i) => (
+            {principles.map((pr) => (
               <div
                 key={pr.title}
                 className="rounded-2xl bg-slate-50 dark:bg-[#070F2B] p-6 border border-slate-200 dark:border-slate-800 space-y-3"

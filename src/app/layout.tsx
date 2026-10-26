@@ -52,7 +52,9 @@ export const metadata: Metadata = {
     description: siteConfig.description,
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/assets/logos/Favlogo.jpg",
+    shortcut: "/assets/logos/Favlogo.jpg",
+    apple: "/assets/logos/Favlogo.jpg",
   },
 };
 

@@ -350,4 +350,132 @@ body {
   transform: translateY(0);
 }
 
+/* Philosophy Section Dynamic Animations */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 5.5s ease-in-out infinite;
+}
+
+@keyframes holographicSweep {
+  0% {
+    transform: translateY(-100%) rotate(-15deg);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.6;
+  }
+  70% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(220%) rotate(-15deg);
+    opacity: 0;
+  }
+}
+
+.animate-holographic {
+  animation: holographicSweep 3.5s ease-in-out infinite;
+}
+
+.philosophy-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  background: radial-gradient(circle at 50% 30%, #030D36 0%, #010619 100%);
+}
+
+/* 3D Spatial Transforms & Card Flip Engine */
+.perspective-1200 {
+  perspective: 1200px;
+  -webkit-perspective: 1200px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* 3D Asymmetric Resting Angles ("Tera-Betera" Organic Look) */
+.tilt-card-left {
+  transform: perspective(1200px) rotateY(6deg) rotateX(3deg) rotateZ(-2.5deg);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+}
+
+.tilt-card-center {
+  transform: perspective(1200px) rotateY(0deg) rotateX(4deg) translateZ(20px);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+}
+
+.tilt-card-right {
+  transform: perspective(1200px) rotateY(-6deg) rotateX(3deg) rotateZ(2.5deg);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+}
+
+@media (min-width: 1024px) {
+  .tilt-card-left:hover {
+    transform: perspective(1200px) rotateY(0deg) rotateX(0deg) rotateZ(0deg) translateZ(40px) translateY(-8px);
+    z-index: 30;
+  }
+
+  .tilt-card-center:hover {
+    transform: perspective(1200px) rotateY(0deg) rotateX(0deg) rotateZ(0deg) translateZ(50px) translateY(-10px);
+    z-index: 30;
+  }
+
+  .tilt-card-right:hover {
+    transform: perspective(1200px) rotateY(0deg) rotateX(0deg) rotateZ(0deg) translateZ(40px) translateY(-8px);
+    z-index: 30;
+  }
+}
+
+/* 3D Entrance Fly-In from Depth */
+@keyframes flyInDepth {
+  0% {
+    opacity: 0;
+    transform: perspective(1200px) translateZ(-200px) translateY(50px) rotateX(15deg);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1200px) translateZ(0) translateY(0) rotateX(0);
+  }
+}
+
+.animate-fly-in-depth {
+  animation: flyInDepth 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 3D Floating Bob with Slight Rotation */
+@keyframes float3DJitter {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-6px) rotate(-1deg);
+  }
+  66% {
+    transform: translateY(-3px) rotate(1.2deg);
+  }
+}
+
+.animate-float-3d {
+  animation: float3DJitter 6s ease-in-out infinite;
+}
+
 

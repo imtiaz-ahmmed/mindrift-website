@@ -5,7 +5,7 @@ import { insightsData } from "@/data/insights";
 import { constructMetadata } from "@/lib/seo";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Badge } from "@/components/ui/badge";
-import { Clock, Calendar, User, ArrowRight, CheckCircle2, Share2 } from "lucide-react";
+import { Clock, Calendar, ArrowRight, CheckCircle2 } from "lucide-react";
 
 interface InsightPageProps {
   params: Promise<{ slug: string }>;

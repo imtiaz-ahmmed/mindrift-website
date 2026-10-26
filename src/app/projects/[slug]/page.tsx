@@ -6,7 +6,6 @@ import { servicesData } from "@/data/services";
 import { siteConfig } from "@/data/site-config";
 import { constructMetadata } from "@/lib/seo";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { Badge } from "@/components/ui/badge";
 import { MockupVisual } from "@/components/ui/mockup-visual";
 import {
   ArrowRight,
@@ -18,7 +17,6 @@ import {
   Smartphone,
   FileText,
   Activity,
-  Layers,
 } from "lucide-react";
 
 interface ProjectPageProps {

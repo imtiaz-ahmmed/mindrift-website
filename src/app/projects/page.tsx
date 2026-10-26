@@ -3,7 +3,6 @@ import { projectsData } from "@/data/projects";
 import { siteConfig } from "@/data/site-config";
 import { constructMetadata } from "@/lib/seo";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { Badge } from "@/components/ui/badge";
 import { ProjectsDirectory } from "@/components/projects/projects-directory";
 import { FileText, ExternalLink, ShieldCheck, Zap } from "lucide-react";
 
