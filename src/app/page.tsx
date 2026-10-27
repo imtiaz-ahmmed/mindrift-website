@@ -24,9 +24,7 @@ export default function HomePage() {
         <CapabilityStrip />
       </ScrollReveal>
 
-      <ScrollReveal direction="up" delay={100}>
-        <IntroPillars />
-      </ScrollReveal>
+      <IntroPillars />
 
       <ScrollReveal direction="up" delay={100}>
         <ServicesOverview />
