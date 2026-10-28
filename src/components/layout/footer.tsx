@@ -197,6 +197,31 @@ export function Footer() {
           </div>
         </div>
       </div>
+
+      {/* Footer Bottom Brand Horizon Showcase (Mindrift Brand Colors & Bottom Grounded) */}
+      <div className="relative w-full overflow-hidden border-t border-slate-900/80 bg-[#020617]">
+        <div
+          className="w-full h-[180px] sm:h-[240px] md:h-[300px] lg:h-[340px] bg-cover bg-bottom bg-no-repeat flex items-end justify-center relative select-none"
+          style={{ backgroundImage: "url('/assets/footer/footer-horizon-bg.png')" }}
+        >
+          <Link
+            href="/"
+            aria-label="Mindrift — Home"
+            className="relative z-10 flex flex-col items-center justify-end w-full group cursor-pointer overflow-hidden"
+          >
+            {/* Mindrift Grounded At The Very Bottom Edge With Subtle 50% Logo Gradient */}
+            <h2
+              style={{
+                backgroundImage:
+                  "linear-gradient(110deg, #FFFFFF 0%, #A8D1FD 25%, #88E7F9 60%, #8DE8CB 100%)",
+              }}
+              className="text-6xl sm:text-8xl md:text-9xl lg:text-[12rem] xl:text-[14rem] font-black tracking-tighter text-transparent bg-clip-text select-none leading-[0.82] translate-y-[6px] sm:translate-y-[12px] md:translate-y-[18px] lg:translate-y-[24px] drop-shadow-[0_6px_30px_rgba(0,0,0,0.9)] hover:brightness-110 transition-all duration-300"
+            >
+              mindrift
+            </h2>
+          </Link>
+        </div>
+      </div>
     </footer>
   );
 }

@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
 import {
   FolderCheck,
   Users,
@@ -6,9 +8,107 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+interface CounterValueProps {
+  target: number;
+  decimals?: number;
+  suffix?: string;
+  delay?: number;
+  duration?: number;
+  trigger: boolean;
+}
+
+function CounterValue({
+  target,
+  decimals = 0,
+  suffix = "",
+  delay = 0,
+  duration = 1800,
+  trigger,
+}: CounterValueProps) {
+  const [current, setCurrent] = useState<number>(0);
+  const [hasStarted, setHasStarted] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!trigger) return;
+
+    const timeoutId = setTimeout(() => {
+      setHasStarted(true);
+      let startTime: number | null = null;
+      let animationFrameId: number;
+
+      const animate = (timestamp: number) => {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Smooth ease-out cubic
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        const val = easeOut * target;
+        setCurrent(val);
+
+        if (progress < 1) {
+          animationFrameId = requestAnimationFrame(animate);
+        } else {
+          setCurrent(target);
+        }
+      };
+
+      animationFrameId = requestAnimationFrame(animate);
+
+      return () => cancelAnimationFrame(animationFrameId);
+    }, delay);
+
+    return () => clearTimeout(timeoutId);
+  }, [trigger, target, delay, duration]);
+
+  const formatted = hasStarted
+    ? decimals > 0
+      ? current.toFixed(decimals)
+      : Math.round(current).toString()
+    : decimals > 0
+    ? (0).toFixed(decimals)
+    : "0";
+
+  return (
+    <span suppressHydrationWarning>
+      {formatted}
+      {suffix}
+    </span>
+  );
+}
+
 export function ImpactStats() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -40px 0px",
+      }
+    );
+
+    observer.observe(el);
+
+    return () => observer.disconnect();
+  }, []);
+
   const stats = [
     {
+      target: 50,
+      decimals: 0,
+      suffix: "+",
+      delay: 50,
       value: "50+",
       label: "Projects Delivered",
       subtext: "Enterprise web, 3D streaming, POS & AI systems",
@@ -16,6 +116,10 @@ export function ImpactStats() {
       icon: <FolderCheck className="w-5 h-5 text-[#1877F2]" />,
     },
     {
+      target: 98,
+      decimals: 0,
+      suffix: "%",
+      delay: 150,
       value: "98%",
       label: "Client Satisfaction",
       subtext: "Highest satisfaction rating across UK & Ireland",
@@ -23,6 +127,10 @@ export function ImpactStats() {
       icon: <Users className="w-5 h-5 text-[#0BCB91]" />,
     },
     {
+      target: 99.4,
+      decimals: 1,
+      suffix: "%",
+      delay: 250,
       value: "99.4%",
       label: "Success Rate",
       subtext: "On-time milestone delivery with strict SLA adherence",
@@ -30,6 +138,10 @@ export function ImpactStats() {
       icon: <TrendingUp className="w-5 h-5 text-[#1877F2]" />,
     },
     {
+      target: 100,
+      decimals: 0,
+      suffix: "%",
+      delay: 350,
       value: "100%",
       label: "Client IP Ownership",
       subtext: "Full source code, IP rights & architecture handover",
@@ -39,7 +151,10 @@ export function ImpactStats() {
   ];
 
   return (
-    <section className="py-12 border-b border-slate-200/80 dark:border-slate-800/80 bg-white/50 dark:bg-[#03071E]/50 backdrop-blur-xs relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="py-12 border-b border-slate-200/80 dark:border-slate-800/80 bg-white/50 dark:bg-[#03071E]/50 backdrop-blur-xs relative overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((s, idx) => (
@@ -69,9 +184,19 @@ export function ImpactStats() {
                     </span>
                   </div>
 
-                  {/* Metric Value */}
-                  <div className="text-3xl sm:text-4xl font-black text-[#000B49] dark:text-white tracking-tight group-hover:text-[#1877F2] dark:group-hover:text-[#00D8F6] transition-colors duration-300">
-                    {s.value}
+                  {/* Metric Value: Animated count-up on scroll */}
+                  <div className="text-3xl sm:text-4xl font-black text-[#000B49] dark:text-white tracking-tight group-hover:text-[#1877F2] dark:group-hover:text-[#00D8F6] transition-colors duration-300 tabular-nums">
+                    <span className="sr-only">{s.value}</span>
+                    <span aria-hidden="true">
+                      <CounterValue
+                        target={s.target}
+                        decimals={s.decimals}
+                        suffix={s.suffix}
+                        delay={s.delay}
+                        duration={1600}
+                        trigger={isInView}
+                      />
+                    </span>
                   </div>
 
                   {/* Metric Label */}
