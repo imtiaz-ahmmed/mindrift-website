@@ -78,8 +78,56 @@ const portals: PhilosophyPortal[] = [
 export function IntroPillars() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIdx, setActiveIdx] = useState<number>(0);
+  const [isInView, setIsInView] = useState<boolean>(false);
   const manualOverrideRef = useRef<boolean>(false);
   const manualTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const mobileVideoRef = useRef<HTMLVideoElement | null>(null);
+
+  // IntersectionObserver to pause playback when section is outside viewport
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
+
+  // Synchronize desktop video playback: ONLY the active pillar's video plays!
+  useEffect(() => {
+    videoRefs.current.forEach((videoEl, idx) => {
+      if (!videoEl) return;
+      if (idx === activeIdx && isInView) {
+        const playPromise = videoEl.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {});
+        }
+      } else {
+        videoEl.pause();
+        if (idx !== activeIdx) {
+          videoEl.currentTime = 0;
+        }
+      }
+    });
+  }, [activeIdx, isInView]);
+
+  // Synchronize mobile video playback with viewport
+  useEffect(() => {
+    const el = mobileVideoRef.current;
+    if (!el) return;
+    if (isInView) {
+      el.play().catch(() => {});
+    } else {
+      el.pause();
+    }
+  }, [activeIdx, isInView]);
 
   // Progressive Scroll Interaction:
   // Desktop Runway: Exactly 600px of scroll.
@@ -143,6 +191,18 @@ export function IntroPillars() {
     manualTimeoutRef.current = setTimeout(() => {
       manualOverrideRef.current = false;
     }, 700);
+
+    // Instantly start selected video from beginning and pause other desktop videos
+    videoRefs.current.forEach((videoEl, i) => {
+      if (!videoEl) return;
+      if (i === idx) {
+        videoEl.currentTime = 0;
+        videoEl.play().catch(() => {});
+      } else {
+        videoEl.pause();
+        videoEl.currentTime = 0;
+      }
+    });
   };
 
   const activePortal = portals[activeIdx];
@@ -294,17 +354,27 @@ export function IntroPillars() {
                     {/* RIGHT: Fixed-Width Video Theater (STABLE ACROSS ACTIVE & INACTIVE STATES) */}
                     <div className="h-full w-[210px] xl:w-[230px] flex-shrink-0 flex items-center justify-center">
                       <div className="relative w-full h-[320px] xl:h-[340px] rounded-2xl overflow-hidden bg-gradient-to-b from-[#020A2B] via-[#010619] to-[#000412] border border-blue-900/60 shadow-xl flex items-center justify-center p-2">
-                        {/* Video Element (Persistent, NEVER unmounts) */}
+                        {/* Video Element (Controlled playback: only active pillar plays) */}
                         <video
+                          ref={(el) => {
+                            videoRefs.current[idx] = el;
+                          }}
                           src={portal.video}
                           poster={portal.poster}
-                          autoPlay
                           loop
                           muted
                           playsInline
                           preload="auto"
-                          className={`max-h-full max-w-full w-auto h-auto object-contain transition-opacity duration-1000 ${
-                            isActive ? "opacity-100" : "opacity-60 hover:opacity-85"
+                          onCanPlay={(e) => {
+                            if (idx === activeIdx && isInView) {
+                              e.currentTarget.play().catch(() => {});
+                            } else {
+                              e.currentTarget.pause();
+                              e.currentTarget.currentTime = 0;
+                            }
+                          }}
+                          className={`max-h-full max-w-full w-auto h-auto object-contain transition-opacity duration-700 ${
+                            isActive ? "opacity-100" : "opacity-45 hover:opacity-75"
                           }`}
                         />
 
@@ -316,8 +386,18 @@ export function IntroPillars() {
                         {/* Top HUD Tag */}
                         <div className="absolute top-2 inset-x-2.5 z-30 flex items-center justify-between text-[10px] font-mono tracking-wider px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-slate-300">
                           <div className="flex items-center gap-1.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#0BCB91] animate-ping" />
-                            <span className="text-[#0BCB91] font-bold text-[9px]">STREAM</span>
+                            <span
+                              className={`w-1.5 h-1.5 rounded-full ${
+                                isActive ? "bg-[#0BCB91] animate-ping" : "bg-slate-500"
+                              }`}
+                            />
+                            <span
+                              className={`font-bold text-[9px] ${
+                                isActive ? "text-[#0BCB91]" : "text-slate-400"
+                              }`}
+                            >
+                              {isActive ? "LIVE STREAM" : "STANDBY"}
+                            </span>
                           </div>
                           <span className="text-slate-400 font-semibold text-[9px]">{portal.pillarIndex} · CORE</span>
                         </div>
@@ -379,6 +459,7 @@ export function IntroPillars() {
             {/* Mobile Active Uncropped Video */}
             <div className="relative w-full h-[260px] rounded-2xl overflow-hidden bg-gradient-to-b from-[#020A2B] via-[#010619] to-[#000412] border border-blue-900/60 shadow-lg flex items-center justify-center p-2">
               <video
+                ref={mobileVideoRef}
                 key={activePortal.video}
                 src={activePortal.video}
                 poster={activePortal.poster}
