@@ -1,6 +1,7 @@
 import { Hero } from "@/components/sections/hero";
 import { CapabilityStrip } from "@/components/sections/capability-strip";
 import { ImpactStats } from "@/components/sections/impact-stats";
+import { AboutMindrift } from "@/components/sections/about-mindrift";
 import { IntroPillars } from "@/components/sections/intro-pillars";
 import { ServicesOverview } from "@/components/sections/services-overview";
 import { FeaturedProjects } from "@/components/sections/featured-projects";
@@ -15,6 +16,7 @@ export default function HomePage() {
       <Hero />
       <ImpactStats />
       <CapabilityStrip />
+      <AboutMindrift />
       <IntroPillars />
       <ServicesOverview />
       <FeaturedProjects />
