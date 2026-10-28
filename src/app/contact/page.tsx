@@ -27,7 +27,12 @@ export default function ContactPage() {
         <Breadcrumb items={[{ label: "Contact" }]} />
 
         {/* Hero */}
-        <div className="max-w-3xl space-y-4">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="700"
+          suppressHydrationWarning
+          className="max-w-3xl space-y-4"
+        >
           <Badge variant="blue">Confidential Consultation</Badge>
           <h1 className="text-4xl sm:text-5xl font-extrabold text-[#000B49] dark:text-white tracking-tight leading-tight">
             Start a Technical Conversation.
@@ -40,7 +45,12 @@ export default function ContactPage() {
         {/* 2-Column Layout: Form on Left, Contact Meta on Right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Form Column */}
-          <div className="lg:col-span-7 rounded-3xl bg-white dark:bg-[#070F2B] p-8 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div
+            data-aos="fade-right"
+            data-aos-duration="750"
+            suppressHydrationWarning
+            className="lg:col-span-7 rounded-3xl bg-white dark:bg-[#070F2B] p-8 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm"
+          >
             <h2 className="text-xl font-bold text-[#000B49] dark:text-white mb-6">
               Project Inquiry & Scope Details
             </h2>
@@ -48,7 +58,12 @@ export default function ContactPage() {
           </div>
 
           {/* Right Info Column */}
-          <div className="lg:col-span-5 space-y-8">
+          <div
+            data-aos="fade-left"
+            data-aos-duration="750"
+            suppressHydrationWarning
+            className="lg:col-span-5 space-y-8"
+          >
             {/* Direct Contact Card */}
             <div className="rounded-3xl bg-slate-50 dark:bg-[#070F2B] p-8 border border-slate-200 dark:border-slate-800 space-y-6">
               <h3 className="text-base font-bold text-[#000B49] dark:text-white">

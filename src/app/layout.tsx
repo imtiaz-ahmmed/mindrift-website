@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { AOSProvider } from "@/components/providers/aos-provider";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ParticleField } from "@/components/ui/particle-field";
@@ -83,32 +84,34 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body
         suppressHydrationWarning
-        className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)] selection:bg-[#1877F2] selection:text-white relative"
+        className="flex flex-col bg-[var(--background)] text-[var(--foreground)] selection:bg-[#1877F2] selection:text-white relative"
       >
         <ThemeProvider>
-          {/* Fancy Enterprise Preloader */}
-          <Preloader />
+          <AOSProvider>
+            {/* Fancy Enterprise Preloader */}
+            <Preloader />
 
-          {/* Full-Site Living Dynamic Particle Field */}
-          <ParticleField
-            fixed={true}
-            particleCount={85}
-            interactive={true}
-            className="opacity-40 dark:opacity-55 pointer-events-none z-[12]"
-          />
-          <Header />
-          <main className="flex-1 relative z-10">{children}</main>
-          <Footer />
+            {/* Full-Site Living Dynamic Particle Field */}
+            <ParticleField
+              fixed={true}
+              particleCount={85}
+              interactive={true}
+              className="opacity-40 dark:opacity-55 pointer-events-none z-[12]"
+            />
+            <Header />
+            <main className="flex-1 relative z-10">{children}</main>
+            <Footer />
 
-          {/* Smooth Scroll to Top with Circular Depth Ring */}
-          <ScrollToTop />
+            {/* Smooth Scroll to Top with Circular Depth Ring */}
+            <ScrollToTop />
+          </AOSProvider>
         </ThemeProvider>
       </body>
     </html>

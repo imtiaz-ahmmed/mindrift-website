@@ -47,7 +47,12 @@ export default function IndustriesPage() {
         <Breadcrumb items={[{ label: "Industries" }]} />
 
         {/* Hero */}
-        <div className="max-w-3xl space-y-4">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="700"
+          suppressHydrationWarning
+          className="max-w-3xl space-y-4"
+        >
           <Badge variant="blue">Domain Competencies</Badge>
           <h1 className="text-4xl sm:text-5xl font-extrabold text-[#000B49] dark:text-white tracking-tight leading-tight">
             Tailored Engineering for Critical Sectors.
@@ -63,6 +68,9 @@ export default function IndustriesPage() {
             <div
               key={ind.slug}
               id={ind.slug}
+              data-aos="fade-up"
+              data-aos-duration="750"
+              suppressHydrationWarning
               className="scroll-mt-28 rounded-3xl bg-white dark:bg-[#070F2B] border border-slate-200 dark:border-slate-800 p-8 sm:p-10 shadow-xs hover:shadow-md transition-shadow"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">

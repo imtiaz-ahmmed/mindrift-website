@@ -40,7 +40,12 @@ export function ServicesOverview() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
-          <div className="space-y-3.5 max-w-2xl">
+          <div
+            data-aos="fade-right"
+            data-aos-duration="750"
+            suppressHydrationWarning
+            className="space-y-3.5 max-w-2xl"
+          >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-[#1877F2] dark:text-[#0BCB91] border border-blue-200/60 dark:border-blue-900/50 shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-[#0BCB91]" />
               <span className="uppercase tracking-wider">
@@ -57,6 +62,9 @@ export function ServicesOverview() {
 
           <Link
             href="/services"
+            data-aos="fade-left"
+            data-aos-duration="750"
+            suppressHydrationWarning
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-[#000B49] bg-[#0BCB91] hover:bg-[#00D8F6] transition-colors shadow-md group cursor-pointer self-start md:self-end flex-shrink-0"
           >
             <span>View All Service Specifications</span>
@@ -72,6 +80,10 @@ export function ServicesOverview() {
           - Glassmorphism HUD frame with live telemetry.
         */}
         <div
+          data-aos="zoom-in-up"
+          data-aos-duration="850"
+          data-aos-delay="150"
+          suppressHydrationWarning
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           className="relative rounded-3xl overflow-hidden bg-gradient-to-b from-[#020B30] via-[#010824] to-[#000412] border border-blue-900/50 hover:border-[#1877F2]/60 shadow-[0_0_50px_rgba(24,119,242,0.12)] hover:shadow-[0_0_60px_rgba(0,216,246,0.22)] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.35,1)] group"

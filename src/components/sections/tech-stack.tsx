@@ -64,7 +64,12 @@ export function TechStack() {
   return (
     <section className="py-20 md:py-28 border-b border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-[#040A24]/60 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="750"
+          suppressHydrationWarning
+          className="text-center max-w-3xl mx-auto mb-16 space-y-4"
+        >
           <span className="text-xs font-semibold uppercase tracking-wider text-[#1877F2] dark:text-[#0BCB91]">
             Engineering Standards & Ecosystem
           </span>
@@ -78,9 +83,13 @@ export function TechStack() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {domains.map((d) => (
+          {domains.map((d, idx) => (
             <div
               key={d.title}
+              data-aos="fade-up"
+              data-aos-duration="650"
+              data-aos-delay={(idx % 3) * 100}
+              suppressHydrationWarning
               className="rounded-3xl bg-white dark:bg-[#070F2B] p-6 sm:p-7 border border-slate-200 dark:border-slate-800 shadow-xs hover:shadow-xl hover:border-[#1877F2]/40 transition-all flex flex-col justify-between group"
             >
               <div className="space-y-4">

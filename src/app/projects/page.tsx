@@ -22,7 +22,12 @@ export default function ProjectsPage() {
 
         {/* Hero Section */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-8 border-b border-slate-200 dark:border-slate-800">
-          <div className="max-w-3xl space-y-4">
+          <div
+            data-aos="fade-right"
+            data-aos-duration="750"
+            suppressHydrationWarning
+            className="max-w-3xl space-y-4"
+          >
             <div className="flex items-center gap-2">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/40 text-[#1877F2] dark:text-[#0BCB91] border border-blue-200/60 dark:border-blue-900/50">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#0BCB91]" />
@@ -41,7 +46,12 @@ export default function ProjectsPage() {
           </div>
 
           {/* Direct Actions: Company Profile Drive Link */}
-          <div className="flex flex-col sm:flex-row lg:flex-col gap-3 flex-shrink-0">
+          <div
+            data-aos="fade-left"
+            data-aos-duration="750"
+            suppressHydrationWarning
+            className="flex flex-col sm:flex-row lg:flex-col gap-3 flex-shrink-0"
+          >
             <a
               href={siteConfig.companyProfileUrl}
               target="_blank"
@@ -68,7 +78,9 @@ export default function ProjectsPage() {
         </div>
 
         {/* Directory with search and filters */}
-        <ProjectsDirectory projects={projectsData} />
+        <div data-aos="fade-up" data-aos-duration="750" suppressHydrationWarning>
+          <ProjectsDirectory projects={projectsData} />
+        </div>
       </div>
     </div>
   );

@@ -20,7 +20,12 @@ export default function InsightsPage() {
         <Breadcrumb items={[{ label: "Insights" }]} />
 
         {/* Hero */}
-        <div className="max-w-3xl space-y-4">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="700"
+          suppressHydrationWarning
+          className="max-w-3xl space-y-4"
+        >
           <Badge variant="blue">Technical Thought Leadership</Badge>
           <h1 className="text-4xl sm:text-5xl font-extrabold text-[#000B49] dark:text-white tracking-tight leading-tight">
             Engineering Insights & System Design.
@@ -31,7 +36,9 @@ export default function InsightsPage() {
         </div>
 
         {/* Directory */}
-        <InsightsDirectory articles={insightsData} />
+        <div data-aos="fade-up" data-aos-duration="750" data-aos-delay="100" suppressHydrationWarning>
+          <InsightsDirectory articles={insightsData} />
+        </div>
       </div>
     </div>
   );

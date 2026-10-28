@@ -23,11 +23,10 @@ function ChainedWord({
   return (
     <span
       style={{ animationDelay: delay }}
-      className={`animate-chain-word inline-block select-none mx-0.5 sm:mx-1 ${
-        gradient
-          ? "brand-gradient-text"
-          : "text-[#000B49] dark:text-white"
-      }`}
+      className={`animate-chain-word inline-block select-none mx-0.5 sm:mx-1 ${gradient
+        ? "brand-gradient-text"
+        : "text-[#000B49] dark:text-white"
+        }`}
     >
       {word}
     </span>
@@ -44,7 +43,12 @@ export function Hero() {
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         {/* Centered Formal Eyebrow Badge */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/95 dark:bg-slate-800/95 backdrop-blur-md border border-slate-200/90 dark:border-slate-700/80 text-xs font-semibold text-slate-800 dark:text-slate-200 shadow-xs mb-5">
+        <div
+          data-aos="fade-down"
+          data-aos-duration="600"
+          suppressHydrationWarning
+          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/95 dark:bg-slate-800/95 backdrop-blur-md border border-slate-200/90 dark:border-slate-700/80 text-xs font-semibold text-slate-800 dark:text-slate-200 shadow-xs mb-5"
+        >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0BCB91] opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0BCB91]" />
@@ -53,7 +57,13 @@ export function Hero() {
         </div>
 
         {/* Strictly 2-Line Formal Tech Headline with Chained Soft Movement */}
-        <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[-0.03em] leading-[1.22] text-center max-w-5xl mx-auto my-3 select-none flex flex-col items-center justify-center gap-1.5 sm:gap-2.5">
+        <h1
+          data-aos="zoom-in"
+          data-aos-duration="750"
+          data-aos-delay="100"
+          suppressHydrationWarning
+          className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[-0.03em] leading-[1.22] text-center max-w-5xl mx-auto my-3 select-none flex flex-col items-center justify-center gap-1.5 sm:gap-2.5"
+        >
           {/* Line 1: Engineering Digital Solutions */}
           <div className="flex items-center justify-center flex-wrap sm:flex-nowrap gap-x-2 sm:gap-x-3">
             <ChainedWord word="Engineering" delay="0s" />
@@ -72,12 +82,24 @@ export function Hero() {
         </h1>
 
         {/* Centered Supporting Copy */}
-        <p className="mt-5 text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mx-auto font-sans">
-          Mindrift Agency architects and scales mission-critical digital systems: real-time 3D pixel streaming, cloud ePOS platforms, sports medical records (EMR), and high-scale consumer applications across Ireland, the UK, and international enterprises.
+        <p
+          data-aos="fade-up"
+          data-aos-duration="700"
+          data-aos-delay="200"
+          suppressHydrationWarning
+          className="mt-5 text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mx-auto font-sans"
+        >
+          Mindrift Agency is a software development agency that builds innovative digital solutions, scalable web and mobile applications, custom software, and cloud-based platforms for businesses across Ireland, the UK, Bangladesh, and international markets.
         </p>
 
         {/* Centered Action Buttons with Shimmer & 3D Interactive Elevation */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="700"
+          data-aos-delay="300"
+          suppressHydrationWarning
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8"
+        >
           <Link
             href="/contact"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-bold text-sm text-white bg-[#000B49] dark:bg-[#1877F2] hover:bg-[#1877F2] dark:hover:bg-blue-600 btn-3d-elevated btn-animate-shimmer shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1877F2] group cursor-pointer"
@@ -97,7 +119,13 @@ export function Hero() {
 
         {/* Centered Enterprise Feature Indicators */}
         <div className="pt-12 grid grid-cols-2 md:grid-cols-4 gap-3.5 max-w-4xl mx-auto text-left">
-          <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/85 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 shadow-xs hover:border-[#1877F2]/40 transition-all">
+          <div
+            data-aos="zoom-in-up"
+            data-aos-duration="600"
+            data-aos-delay="350"
+            suppressHydrationWarning
+            className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/85 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 shadow-xs hover:border-[#1877F2]/40 transition-all"
+          >
             <div className="p-2 rounded-xl bg-blue-50 dark:bg-blue-950/40 text-[#1877F2] flex-shrink-0">
               <Globe2 className="w-4 h-4" />
             </div>
@@ -107,7 +135,13 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/85 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 shadow-xs hover:border-[#0BCB91]/40 transition-all">
+          <div
+            data-aos="zoom-in-up"
+            data-aos-duration="600"
+            data-aos-delay="450"
+            suppressHydrationWarning
+            className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/85 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 shadow-xs hover:border-[#0BCB91]/40 transition-all"
+          >
             <div className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-[#0BCB91] flex-shrink-0">
               <Zap className="w-4 h-4" />
             </div>
@@ -117,7 +151,13 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/85 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 shadow-xs hover:border-[#1877F2]/40 transition-all">
+          <div
+            data-aos="zoom-in-up"
+            data-aos-duration="600"
+            data-aos-delay="550"
+            suppressHydrationWarning
+            className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/85 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 shadow-xs hover:border-[#1877F2]/40 transition-all"
+          >
             <div className="p-2 rounded-xl bg-blue-50 dark:bg-blue-950/40 text-[#1877F2] flex-shrink-0">
               <ShieldCheck className="w-4 h-4" />
             </div>
@@ -127,7 +167,13 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/85 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 shadow-xs hover:border-[#0BCB91]/40 transition-all">
+          <div
+            data-aos="zoom-in-up"
+            data-aos-duration="600"
+            data-aos-delay="650"
+            suppressHydrationWarning
+            className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/85 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 shadow-xs hover:border-[#0BCB91]/40 transition-all"
+          >
             <div className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-[#0BCB91] flex-shrink-0">
               <Smartphone className="w-4 h-4" />
             </div>

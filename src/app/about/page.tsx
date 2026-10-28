@@ -59,7 +59,12 @@ export default function AboutPage() {
         <Breadcrumb items={[{ label: "About Us" }]} />
 
         {/* Hero Section */}
-        <div className="max-w-3xl space-y-4">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="750"
+          suppressHydrationWarning
+          className="max-w-3xl space-y-4"
+        >
           <Badge variant="blue">Our Identity & Mission</Badge>
           <h1 className="text-4xl sm:text-5xl font-extrabold text-[#000B49] dark:text-white tracking-tight leading-tight">
             Engineering with Purpose. Innovating with Intelligence.
@@ -71,7 +76,12 @@ export default function AboutPage() {
 
         {/* Mission & Vision 2-Column Split */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="rounded-3xl bg-white dark:bg-[#070F2B] p-8 sm:p-10 border border-slate-200 dark:border-slate-800 space-y-4 shadow-xs">
+          <div
+            data-aos="fade-right"
+            data-aos-duration="750"
+            suppressHydrationWarning
+            className="rounded-3xl bg-white dark:bg-[#070F2B] p-8 sm:p-10 border border-slate-200 dark:border-slate-800 space-y-4 shadow-xs"
+          >
             <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-900/30 text-[#1877F2] flex items-center justify-center">
               <Target className="w-6 h-6" />
             </div>
@@ -83,7 +93,12 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="rounded-3xl bg-white dark:bg-[#070F2B] p-8 sm:p-10 border border-slate-200 dark:border-slate-800 space-y-4 shadow-xs">
+          <div
+            data-aos="fade-left"
+            data-aos-duration="750"
+            suppressHydrationWarning
+            className="rounded-3xl bg-white dark:bg-[#070F2B] p-8 sm:p-10 border border-slate-200 dark:border-slate-800 space-y-4 shadow-xs"
+          >
             <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 text-[#0BCB91] flex items-center justify-center">
               <Compass className="w-6 h-6" />
             </div>
@@ -97,7 +112,12 @@ export default function AboutPage() {
         </div>
 
         {/* Dedicated Company Profile & Capability Deck Section */}
-        <div className="rounded-3xl bg-gradient-to-br from-[#000B49] via-[#05113A] to-[#0A1D6B] p-8 sm:p-12 text-white border border-blue-900/50 shadow-xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 relative overflow-hidden">
+        <div
+          data-aos="zoom-in"
+          data-aos-duration="800"
+          suppressHydrationWarning
+          className="rounded-3xl bg-gradient-to-br from-[#000B49] via-[#05113A] to-[#0A1D6B] p-8 sm:p-12 text-white border border-blue-900/50 shadow-xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 relative overflow-hidden"
+        >
           <div className="space-y-4 max-w-2xl relative z-10">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#0BCB91]/20 text-[#0BCB91] border border-[#0BCB91]/30">
               <FileText className="w-3.5 h-3.5" />
@@ -157,9 +177,13 @@ export default function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {principles.map((pr) => (
+            {principles.map((pr, idx) => (
               <div
                 key={pr.title}
+                data-aos="fade-up"
+                data-aos-duration="600"
+                data-aos-delay={idx * 100}
+                suppressHydrationWarning
                 className="rounded-2xl bg-slate-50 dark:bg-[#070F2B] p-6 border border-slate-200 dark:border-slate-800 space-y-3"
               >
                 <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-800 shadow-xs flex items-center justify-center">
@@ -177,7 +201,12 @@ export default function AboutPage() {
         </div>
 
         {/* Delivery & Collaboration Model */}
-        <div className="rounded-3xl bg-slate-50 dark:bg-[#070F2B] p-8 sm:p-12 border border-slate-200 dark:border-slate-800 space-y-8">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="750"
+          suppressHydrationWarning
+          className="rounded-3xl bg-slate-50 dark:bg-[#070F2B] p-8 sm:p-12 border border-slate-200 dark:border-slate-800 space-y-8"
+        >
           <div className="max-w-2xl space-y-2">
             <span className="text-xs font-bold uppercase tracking-wider text-[#1877F2] dark:text-[#0BCB91]">
               Engagement Models
@@ -191,7 +220,13 @@ export default function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 space-y-3">
+            <div
+              data-aos="zoom-in-up"
+              data-aos-duration="600"
+              data-aos-delay="100"
+              suppressHydrationWarning
+              className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 space-y-3"
+            >
               <span className="text-xs font-mono text-[#1877F2]">MODEL 01</span>
               <h3 className="font-bold text-lg text-[#000B49] dark:text-white">
                 Turnkey Product Delivery
@@ -201,7 +236,13 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 space-y-3">
+            <div
+              data-aos="zoom-in-up"
+              data-aos-duration="600"
+              data-aos-delay="200"
+              suppressHydrationWarning
+              className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 space-y-3"
+            >
               <span className="text-xs font-mono text-[#0BCB91]">MODEL 02</span>
               <h3 className="font-bold text-lg text-[#000B49] dark:text-white">
                 Embedded Team Augmentation
@@ -211,7 +252,13 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 space-y-3">
+            <div
+              data-aos="zoom-in-up"
+              data-aos-duration="600"
+              data-aos-delay="300"
+              suppressHydrationWarning
+              className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 space-y-3"
+            >
               <span className="text-xs font-mono text-[#1877F2]">MODEL 03</span>
               <h3 className="font-bold text-lg text-[#000B49] dark:text-white">
                 Strategic Technical Advisory
@@ -224,7 +271,12 @@ export default function AboutPage() {
         </div>
 
         {/* Final CTA */}
-        <div className="rounded-3xl bg-gradient-to-r from-[#000B49] via-[#05113A] to-[#000B49] p-8 md:p-12 text-white border border-blue-900/50 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div
+          data-aos="zoom-in-up"
+          data-aos-duration="750"
+          suppressHydrationWarning
+          className="rounded-3xl bg-gradient-to-r from-[#000B49] via-[#05113A] to-[#000B49] p-8 md:p-12 text-white border border-blue-900/50 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
+        >
           <div className="space-y-2 max-w-xl">
             <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
               Partner with an Engineering-First Agency

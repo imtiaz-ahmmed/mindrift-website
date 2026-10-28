@@ -78,13 +78,42 @@ const portals: PhilosophyPortal[] = [
 export function IntroPillars() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIdx, setActiveIdx] = useState<number>(0);
-  const isHoveringRef = useRef<boolean>(false);
+  const manualOverrideRef = useRef<boolean>(false);
+  const manualTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Progressive Scroll Interaction:
-  // Calibrated runway (250vh) and gentle thresholds give comfortable, slow scroll pacing.
-  // Synchronized via requestAnimationFrame for silky 60fps/120fps display refresh.
+  // Desktop Runway: Exactly 600px of scroll.
+  // 0 - 200px: Pillar 01 (Architecture)
+  // 200px - 400px: Pillar 02 (Senior Team)
+  // 400px - 600px: Pillar 03 (Scalability)
+  // >= 600px: Sticky container unpins immediately, rolling directly into ServicesOverview with ZERO empty space!
   useEffect(() => {
     let ticking = false;
+
+    const updateScrollState = () => {
+      // If user clicked manually, temporarily let click state hold
+      if (manualOverrideRef.current) return;
+
+      const container = containerRef.current;
+      if (!container) return;
+
+      if (window.innerWidth >= 1024) {
+        // Desktop sticky runway tracking
+        const rect = container.getBoundingClientRect();
+        const topOffset = 80; // 80px fixed header height
+        const scrolled = topOffset - rect.top;
+        const runway = 600; // calibrated runway distance
+        const progress = Math.min(Math.max(scrolled / runway, 0), 1);
+
+        if (progress < 0.33) {
+          setActiveIdx(0); // Pillar 01: System Design
+        } else if (progress < 0.67) {
+          setActiveIdx(1); // Pillar 02: Direct Engineering
+        } else {
+          setActiveIdx(2); // Pillar 03: Operational Scale
+        }
+      }
+    };
 
     const handleScroll = () => {
       if (!ticking) {
@@ -96,74 +125,24 @@ export function IntroPillars() {
       }
     };
 
-    const updateScrollState = () => {
-      const container = containerRef.current;
-      if (!container) return;
-
-      const rect = container.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const totalScrollable = rect.height - windowHeight;
-
-      // When the user actively scrolls, reset hover override so scroll smoothly guides the experience
-      isHoveringRef.current = false;
-
-      if (totalScrollable > 100) {
-        // Desktop sticky runway tracking
-        const topOffset = window.innerWidth >= 1280 ? 64 : 56;
-        const scrolled = topOffset - rect.top;
-        const progress = Math.min(Math.max(scrolled / totalScrollable, 0), 1);
-
-        if (progress < 0.34) {
-          setActiveIdx(0); // 1st pillar
-        } else if (progress < 0.67) {
-          setActiveIdx(1); // 2nd pillar
-        } else {
-          setActiveIdx(2); // 3rd pillar
-        }
-      } else {
-        // Mobile natural viewport tracking (< 1024px)
-        const startPoint = windowHeight * 0.75;
-        const endPoint = -rect.height * 0.2;
-        const totalDistance = startPoint - endPoint;
-        const currentProgress = (startPoint - rect.top) / totalDistance;
-        const progress = Math.min(Math.max(currentProgress, 0), 1);
-
-        if (progress < 0.34) {
-          setActiveIdx(0);
-        } else if (progress < 0.67) {
-          setActiveIdx(1);
-        } else {
-          setActiveIdx(2);
-        }
-      }
-    };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", updateScrollState, { passive: true });
     updateScrollState();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", updateScrollState);
+      if (manualTimeoutRef.current) clearTimeout(manualTimeoutRef.current);
+    };
   }, []);
 
-  const handleMouseEnterPanel = (idx: number) => {
-    isHoveringRef.current = true;
+  const handleSelectPanel = (idx: number) => {
     setActiveIdx(idx);
-  };
-
-  const handleMouseLeaveContainer = () => {
-    isHoveringRef.current = false;
-    // Re-sync back to current scroll position smoothly
-    const container = containerRef.current;
-    if (!container) return;
-    const rect = container.getBoundingClientRect();
-    const totalScrollable = rect.height - window.innerHeight;
-    if (totalScrollable > 100) {
-      const topOffset = window.innerWidth >= 1280 ? 64 : 56;
-      const scrolled = topOffset - rect.top;
-      const progress = Math.min(Math.max(scrolled / totalScrollable, 0), 1);
-      if (progress < 0.34) setActiveIdx(0);
-      else if (progress < 0.67) setActiveIdx(1);
-      else setActiveIdx(2);
-    }
+    manualOverrideRef.current = true;
+    if (manualTimeoutRef.current) clearTimeout(manualTimeoutRef.current);
+    manualTimeoutRef.current = setTimeout(() => {
+      manualOverrideRef.current = false;
+    }, 700);
   };
 
   const activePortal = portals[activeIdx];
@@ -171,35 +150,54 @@ export function IntroPillars() {
   return (
     <section
       ref={containerRef}
-      className="relative lg:min-h-[250vh] border-b border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#02071A]"
+      className="relative lg:h-[calc(100vh-80px+600px)] border-b border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#02071A] py-12 lg:py-0"
     >
       {/* Background Ambient High-Tech Mesh */}
       <div className="absolute inset-0 bg-grid-pattern opacity-10 dark:opacity-20 pointer-events-none" />
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/10 dark:bg-blue-600/15 rounded-full blur-[150px] pointer-events-none" />
 
-      {/* Sticky Pinned Viewport Frame on Desktop (Vertically Centered with Ample Breathing Room) */}
-      <div className="lg:sticky lg:top-14 xl:top-16 lg:h-[calc(100vh-3.5rem)] xl:h-[calc(100vh-4rem)] flex flex-col justify-center py-6 lg:py-2 overflow-hidden relative z-10">
+      {/* Viewport-Filling Sticky Frame on Desktop (starts cleanly below 80px header, zero empty space) */}
+      <div
+        className="w-full lg:sticky lg:top-20 lg:h-[calc(100vh-80px)] lg:min-h-[560px] lg:flex lg:flex-col lg:justify-center overflow-hidden relative z-10 py-4 lg:py-6"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          {/* Section Header: Minimal, Centered, Zero Redundancy */}
-          <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-4 xl:mb-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-[#1877F2] dark:text-[#0BCB91] border border-blue-200/60 dark:border-blue-900/50 shadow-xs mb-2">
+          {/* Section Header */}
+          <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-3 xl:mb-5">
+            <div
+              data-aos="fade-down"
+              data-aos-duration="600"
+              suppressHydrationWarning
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-[#1877F2] dark:text-[#0BCB91] border border-blue-200/60 dark:border-blue-900/50 shadow-xs mb-2"
+            >
               <Sparkles className="w-3.5 h-3.5 text-[#0BCB91]" />
               <span className="uppercase tracking-wider">The Mindrift Philosophy</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl xl:text-4xl font-black text-[#000B49] dark:text-white tracking-tight leading-tight">
+            <h2
+              data-aos="fade-up"
+              data-aos-duration="700"
+              data-aos-delay="100"
+              suppressHydrationWarning
+              className="text-2xl sm:text-3xl xl:text-4xl font-black text-[#000B49] dark:text-white tracking-tight leading-tight"
+            >
               Engineering Without Compromise.
             </h2>
           </div>
 
           {/* Mobile Pillar Switcher Tabs (< 1024px) */}
-          <div className="flex lg:hidden items-center gap-2 p-1.5 rounded-2xl bg-white dark:bg-[#070F2B] border border-slate-200 dark:border-slate-800 mb-5 overflow-x-auto shadow-xs">
+          <div
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="200"
+            suppressHydrationWarning
+            className="flex lg:hidden items-center gap-2 p-1.5 rounded-2xl bg-white dark:bg-[#070F2B] border border-slate-200 dark:border-slate-800 mb-5 overflow-x-auto shadow-xs"
+          >
             {portals.map((p, idx) => {
               const isSelected = activeIdx === idx;
               return (
                 <button
                   key={p.id}
                   type="button"
-                  onClick={() => handleMouseEnterPanel(idx)}
+                  onClick={() => handleSelectPanel(idx)}
                   className={`flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs font-bold transition-all duration-300 flex items-center justify-center gap-1.5 cursor-pointer ${
                     isSelected
                       ? "bg-[#000B49] text-white dark:bg-gradient-to-r dark:from-[#1877F2] dark:to-[#0BCB91] shadow-sm"
@@ -215,16 +213,7 @@ export function IntroPillars() {
           </div>
 
           {/* ================= DESKTOP EXPANDING VIDEO PORTALS (>= 1024px) ================= */}
-          {/*
-            Graceful, Slow & Velvety Transition Engine:
-            - 1100ms slow, cinematic deceleration curve: cubic-bezier(0.25, 1, 0.3, 1).
-            - Perfectly relaxed accordion expansion: gives user ample time to appreciate each pillar without rushing.
-            - Stable video theater width (w-[210px] xl:w-[230px]) across both active & inactive states: ZERO resizing jumps!
-            - Left text softly slides and fades in over 1100ms.
-            - Persistent <video> tags in DOM to prevent re-buffering or thread freezing.
-          */}
           <div
-            onMouseLeave={handleMouseLeaveContainer}
             className="hidden lg:flex w-full h-[370px] xl:h-[390px] rounded-3xl overflow-hidden gap-3.5 p-3.5 bg-gradient-to-b from-[#000824] via-[#020B30] to-[#000516] border border-blue-900/40 shadow-2xl relative"
           >
             {portals.map((portal, idx) => {
@@ -233,8 +222,7 @@ export function IntroPillars() {
               return (
                 <div
                   key={portal.id}
-                  onMouseEnter={() => handleMouseEnterPanel(idx)}
-                  onClick={() => handleMouseEnterPanel(idx)}
+                  onClick={() => handleSelectPanel(idx)}
                   style={{
                     flex: isActive ? 2.8 : 0.75,
                     transition:
@@ -354,6 +342,34 @@ export function IntroPillars() {
                     </div>
                   </div>
                 </div>
+              );
+            })}
+          </div>
+
+          {/* Desktop Step Indicator Pill Bar */}
+          <div className="hidden lg:flex items-center justify-center gap-2.5 mt-4">
+            {portals.map((p, idx) => {
+              const isActive = activeIdx === idx;
+              return (
+                <button
+                  key={p.id}
+                  type="button"
+                  onClick={() => handleSelectPanel(idx)}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-bold transition-all duration-300 flex items-center gap-2 cursor-pointer ${
+                    isActive
+                      ? "bg-blue-600/20 text-[#00D8F6] border border-[#1877F2]/70 shadow-[0_0_15px_rgba(24,119,242,0.3)] scale-105"
+                      : "bg-[#000824]/80 text-slate-400 border border-slate-800/80 hover:text-white hover:border-slate-700"
+                  }`}
+                >
+                  <span
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      isActive ? "bg-[#0BCB91] shadow-[0_0_8px_#0BCB91]" : "bg-slate-600"
+                    }`}
+                  />
+                  <span>Pillar {p.pillarIndex}</span>
+                  <span className="text-slate-500">·</span>
+                  <span>{p.shortLabel}</span>
+                </button>
               );
             })}
           </div>

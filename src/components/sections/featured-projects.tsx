@@ -12,7 +12,12 @@ export function FeaturedProjects() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-          <div className="space-y-4 max-w-2xl">
+          <div
+            data-aos="fade-right"
+            data-aos-duration="750"
+            suppressHydrationWarning
+            className="space-y-4 max-w-2xl"
+          >
             <span className="text-xs font-semibold uppercase tracking-wider text-[#1877F2] dark:text-[#0BCB91]">
               Verified Client Deliverables · Production Systems
             </span>
@@ -25,6 +30,9 @@ export function FeaturedProjects() {
           </div>
           <Link
             href="/projects"
+            data-aos="fade-left"
+            data-aos-duration="750"
+            suppressHydrationWarning
             className="inline-flex items-center gap-2 text-sm font-semibold text-[#1877F2] dark:text-[#0BCB91] hover:underline self-start md:self-end group"
           >
             <span>View All Client Systems ({projectsData.length})</span>
@@ -40,6 +48,9 @@ export function FeaturedProjects() {
             return (
               <div
                 key={project.slug}
+                data-aos="fade-up"
+                data-aos-duration="850"
+                suppressHydrationWarning
                 className="rounded-3xl bg-white dark:bg-[#070F28] border border-slate-200 dark:border-slate-800 p-6 sm:p-8 md:p-10 shadow-xs hover:shadow-xl transition-all"
               >
                 <div
@@ -49,6 +60,10 @@ export function FeaturedProjects() {
                 >
                   {/* Left (or Right): Project Content */}
                   <div
+                    data-aos={isReversed ? "fade-left" : "fade-right"}
+                    data-aos-duration="800"
+                    data-aos-delay="100"
+                    suppressHydrationWarning
                     className={`space-y-5 ${
                       isReversed ? "lg:col-span-5 lg:order-2" : "lg:col-span-5"
                     }`}
@@ -149,6 +164,10 @@ export function FeaturedProjects() {
 
                   {/* Right (or Left): Interactive Product Mockup Visual (Enlarged 7-col layout) */}
                   <div
+                    data-aos={isReversed ? "fade-right" : "fade-left"}
+                    data-aos-duration="850"
+                    data-aos-delay="200"
+                    suppressHydrationWarning
                     className={`${
                       isReversed ? "lg:col-span-7 lg:order-1" : "lg:col-span-7"
                     }`}

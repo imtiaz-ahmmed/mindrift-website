@@ -31,7 +31,12 @@ export function IndustriesGrid() {
     <section className="py-20 md:py-28 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#03081E]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-          <div className="space-y-4 max-w-2xl">
+          <div
+            data-aos="fade-right"
+            data-aos-duration="750"
+            suppressHydrationWarning
+            className="space-y-4 max-w-2xl"
+          >
             <span className="text-xs font-bold uppercase tracking-wider text-[#1877F2] dark:text-[#0BCB91]">
               Domain Experience
             </span>
@@ -44,6 +49,9 @@ export function IndustriesGrid() {
           </div>
           <Link
             href="/industries"
+            data-aos="fade-left"
+            data-aos-duration="750"
+            suppressHydrationWarning
             className="inline-flex items-center gap-2 text-sm font-bold text-[#1877F2] dark:text-[#0BCB91] hover:underline self-start md:self-end group"
           >
             <span>Explore All Industry Solutions</span>
@@ -52,9 +60,13 @@ export function IndustriesGrid() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {industriesData.map((ind) => (
+          {industriesData.map((ind, idx) => (
             <div
               key={ind.slug}
+              data-aos="zoom-in-up"
+              data-aos-duration="600"
+              data-aos-delay={(idx % 3) * 100}
+              suppressHydrationWarning
               className="rounded-2xl bg-slate-50 dark:bg-[#070F2B] p-6 border border-slate-200/80 dark:border-slate-800 hover:border-[#1877F2]/40 dark:hover:border-[#0BCB91]/40 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
             >
               <div className="space-y-3">

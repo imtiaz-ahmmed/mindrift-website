@@ -72,7 +72,12 @@ export function CapabilityStrip() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-center gap-4">
           {/* Label Pill */}
-          <div className="flex items-center gap-2 flex-shrink-0 pr-4 border-r-0 md:border-r border-slate-200 dark:border-slate-800">
+          <div
+            data-aos="fade-right"
+            data-aos-duration="600"
+            suppressHydrationWarning
+            className="flex items-center gap-2 flex-shrink-0 pr-4 border-r-0 md:border-r border-slate-200 dark:border-slate-800"
+          >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#1877F2] opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#1877F2]" />
@@ -83,7 +88,13 @@ export function CapabilityStrip() {
           </div>
 
           {/* Marquee Track with Edge Fades */}
-          <div className="relative flex-1 overflow-hidden animate-marquee-container group">
+          <div
+            data-aos="fade-left"
+            data-aos-duration="700"
+            data-aos-delay="100"
+            suppressHydrationWarning
+            className="relative flex-1 overflow-hidden animate-marquee-container group"
+          >
             {/* Left Edge Gradient Mask */}
             <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[var(--background)] to-transparent z-10" />
 

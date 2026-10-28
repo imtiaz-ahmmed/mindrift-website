@@ -42,7 +42,12 @@ export default function ServicesPage() {
         <Breadcrumb items={[{ label: "Services" }]} className="mb-8" />
 
         {/* Hero Section */}
-        <div className="max-w-3xl mb-16 space-y-4">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="700"
+          suppressHydrationWarning
+          className="max-w-3xl mb-16 space-y-4"
+        >
           <Badge variant="blue">End-to-End Technology Capabilities</Badge>
           <h1 className="text-4xl sm:text-5xl font-extrabold text-[#000B49] dark:text-white tracking-tight leading-tight">
             Specialized Engineering for Demanding Enterprises.
@@ -53,7 +58,13 @@ export default function ServicesPage() {
         </div>
 
         {/* Quick Nav Anchor Bar */}
-        <div className="mb-14 p-2 bg-slate-100 dark:bg-slate-900/80 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-wrap gap-2">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="600"
+          data-aos-delay="100"
+          suppressHydrationWarning
+          className="mb-14 p-2 bg-slate-100 dark:bg-slate-900/80 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-wrap gap-2"
+        >
           {servicesData.map((svc) => (
             <a
               key={svc.slug}
@@ -71,6 +82,9 @@ export default function ServicesPage() {
             <div
               key={svc.slug}
               id={svc.slug}
+              data-aos="fade-up"
+              data-aos-duration="750"
+              suppressHydrationWarning
               className="scroll-mt-28 rounded-3xl bg-white dark:bg-[#070F2B] border border-slate-200 dark:border-slate-800 p-8 sm:p-10 shadow-xs hover:shadow-md transition-shadow"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">

@@ -45,6 +45,10 @@ export function ImpactStats() {
           {stats.map((s, idx) => (
             <div
               key={idx}
+              data-aos="zoom-in-up"
+              data-aos-duration="650"
+              data-aos-delay={idx * 100}
+              suppressHydrationWarning
               className="relative p-[1.5px] rounded-3xl overflow-hidden group transition-all duration-300 hover:scale-[1.04] hover:-translate-y-2 cursor-pointer shadow-xs hover:shadow-2xl"
             >
               {/* Animated Moving Color Border Beam on Hover */}
