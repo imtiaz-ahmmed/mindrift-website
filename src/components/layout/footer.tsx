@@ -36,7 +36,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-slate-950 text-slate-300 dark:bg-[#010410] border-t border-slate-800 transition-colors">
+    <footer className="bg-slate-950 text-slate-300 dark:bg-[#010410] border-t border-slate-800 transition-colors w-full overflow-hidden">
       {/* Pre-footer Consultation CTA Bar */}
       <div className="border-b border-slate-800/80 bg-gradient-to-r from-[#000B49] via-[#05113A] to-[#000B49]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-12">

@@ -210,11 +210,11 @@ export function IntroPillars() {
   return (
     <section
       ref={containerRef}
-      className="relative lg:h-[calc(100vh-80px+600px)] border-b border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#02071A] py-12 lg:py-0"
+      className="relative lg:h-[calc(100vh-80px+600px)] border-b border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#02071A] py-12 lg:py-0 overflow-x-clip"
     >
       {/* Background Ambient High-Tech Mesh */}
       <div className="absolute inset-0 bg-grid-pattern opacity-10 dark:opacity-20 pointer-events-none" />
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/10 dark:bg-blue-600/15 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] max-w-full h-[400px] bg-blue-600/10 dark:bg-blue-600/15 rounded-full blur-[150px] pointer-events-none" />
 
       {/* Viewport-Filling Sticky Frame on Desktop (starts cleanly below 80px header, zero empty space) */}
       <div

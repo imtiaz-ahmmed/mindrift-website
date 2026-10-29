@@ -91,7 +91,7 @@ export default function RootLayout({
       </head>
       <body
         suppressHydrationWarning
-        className="flex flex-col bg-[var(--background)] text-[var(--foreground)] selection:bg-[#1877F2] selection:text-white relative"
+        className="flex min-h-screen flex-col bg-[var(--background)] text-[var(--foreground)] selection:bg-[#1877F2] selection:text-white relative w-full max-w-full overflow-x-clip"
       >
         <ThemeProvider>
           <AOSProvider>
@@ -106,7 +106,7 @@ export default function RootLayout({
               className="opacity-40 dark:opacity-55 pointer-events-none z-[12]"
             />
             <Header />
-            <main className="flex-1 relative z-10">{children}</main>
+            <main className="flex-1 relative z-10 w-full max-w-full overflow-x-clip">{children}</main>
             <Footer />
 
             {/* Smooth Scroll to Top with Circular Depth Ring */}

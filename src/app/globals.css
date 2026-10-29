@@ -1,63 +1,77 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sans:
+    var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
+  --font-mono:
+    var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, monospace;
 }
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 :root {
-  --background: #F6F9FD;
-  --foreground: #000B49;
-  --surface: #FFFFFF;
-  --surface-elevated: #EEF4FC;
-  --surface-border: #DDE7F5;
-  --border-subtle: #E2E8F0;
-  --text-primary: #000B49;
+  --background: #f6f9fd;
+  --foreground: #000b49;
+  --surface: #ffffff;
+  --surface-elevated: #eef4fc;
+  --surface-border: #dde7f5;
+  --border-subtle: #e2e8f0;
+  --text-primary: #000b49;
   --text-secondary: #334155;
-  --text-muted: #64748B;
-  --brand-navy: #000B49;
-  --brand-blue: #1877F2;
-  --brand-emerald: #0BCB91;
-  --brand-emerald-dark: #099A6E;
-  --brand-cyan: #00D8F6;
-  --card-bg: #FFFFFF;
-  --card-border: #DCE5F2;
+  --text-muted: #64748b;
+  --brand-navy: #000b49;
+  --brand-blue: #1877f2;
+  --brand-emerald: #0bcb91;
+  --brand-emerald-dark: #099a6e;
+  --brand-cyan: #00d8f6;
+  --card-bg: #ffffff;
+  --card-border: #dce5f2;
   --header-bg: rgba(246, 249, 253, 0.88);
-  --header-border: #DDE7F5;
+  --header-border: #dde7f5;
 }
 
 [data-theme="dark"] {
   --background: #020617;
-  --foreground: #F8FAFC;
-  --surface: #070F28;
-  --surface-elevated: #0B173B;
-  --surface-border: #15244C;
+  --foreground: #f8fafc;
+  --surface: #070f28;
+  --surface-elevated: #0b173b;
+  --surface-border: #15244c;
   --border-subtle: #162244;
-  --text-primary: #F8FAFC;
-  --text-secondary: #CBD5E1;
-  --text-muted: #94A3B8;
-  --brand-navy: #000B49;
-  --brand-blue: #2B87FF;
-  --brand-emerald: #0BCB91;
-  --brand-emerald-dark: #00A675;
-  --brand-cyan: #00E5FF;
-  --card-bg: #070F28;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --brand-navy: #000b49;
+  --brand-blue: #2b87ff;
+  --brand-emerald: #0bcb91;
+  --brand-emerald-dark: #00a675;
+  --brand-cyan: #00e5ff;
+  --card-bg: #070f28;
   --card-border: #132247;
   --header-bg: rgba(2, 6, 23, 0.88);
-  --header-border: #15244C;
+  --header-border: #15244c;
 }
 
 html {
   scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
+/* * {
+  border: 1px solid red;
+} */
+
 body {
+  max-width: 100%;
+  overflow-x: clip;
   background-color: var(--background);
   color: var(--foreground);
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
 }
 
 /* Custom scrollbar */
@@ -80,13 +94,13 @@ body {
 
 /* Tech Agency Gradients & Typography */
 .brand-gradient-text {
-  background: linear-gradient(135deg, #1877F2 0%, #00D8F6 50%, #0BCB91 100%);
+  background: linear-gradient(135deg, #1877f2 0%, #00d8f6 50%, #0bcb91 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .brand-gradient-bg {
-  background: linear-gradient(135deg, #1877F2 0%, #0BCB91 100%);
+  background: linear-gradient(135deg, #1877f2 0%, #0bcb91 100%);
 }
 
 .glow-blue {
@@ -105,14 +119,21 @@ body {
 .tech-border-glow {
   position: relative;
 }
+
 .tech-border-glow::before {
   content: "";
   position: absolute;
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(24, 119, 242, 0.4), rgba(11, 203, 145, 0.4));
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  background: linear-gradient(
+    135deg,
+    rgba(24, 119, 242, 0.4),
+    rgba(11, 203, 145, 0.4)
+  );
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
@@ -121,13 +142,13 @@ body {
 /* Futuristic Tech Grid Pattern */
 .bg-grid-pattern {
   background-size: 32px 32px;
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(24, 119, 242, 0.06) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(24, 119, 242, 0.06) 1px, transparent 1px);
 }
 
 [data-theme="dark"] .bg-grid-pattern {
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(0, 216, 246, 0.09) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(0, 216, 246, 0.09) 1px, transparent 1px);
 }
@@ -137,6 +158,7 @@ body {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -148,10 +170,12 @@ body {
 
 /* Pulse Glow Animation */
 @keyframes pulseGlow {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.4;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.8;
     transform: scale(1.05);
@@ -167,6 +191,7 @@ body {
   from {
     transform: rotate(360deg);
   }
+
   to {
     transform: rotate(0deg);
   }
@@ -182,12 +207,15 @@ body {
     top: -5%;
     opacity: 0;
   }
+
   20% {
     opacity: 1;
   }
+
   80% {
     opacity: 1;
   }
+
   100% {
     top: 105%;
     opacity: 0;
@@ -212,6 +240,7 @@ body {
   0% {
     transform: translateX(0%);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -231,7 +260,7 @@ body {
 
 /* Fancy 3D Dimensional Typography */
 .text-3d-formal {
-  text-shadow: 
+  text-shadow:
     0 1px 2px rgba(0, 11, 73, 0.12),
     0 4px 12px rgba(24, 119, 242, 0.15),
     0 12px 30px rgba(0, 11, 73, 0.08);
@@ -239,7 +268,7 @@ body {
 }
 
 [data-theme="dark"] .text-3d-formal {
-  text-shadow: 
+  text-shadow:
     0 2px 4px rgba(0, 0, 0, 0.8),
     0 6px 20px rgba(24, 119, 242, 0.35),
     0 16px 45px rgba(0, 216, 246, 0.2);
@@ -247,7 +276,7 @@ body {
 }
 
 .text-3d-gradient {
-  background: linear-gradient(135deg, #1877F2 0%, #00D8F6 50%, #0BCB91 100%);
+  background: linear-gradient(135deg, #1877f2 0%, #00d8f6 50%, #0bcb91 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 4px 16px rgba(24, 119, 242, 0.35));
@@ -259,10 +288,12 @@ body {
 
 /* Staggered Chained Soft Word Movement */
 @keyframes chainSoftWave {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
     opacity: 0.95;
   }
+
   50% {
     transform: translateY(-5px);
     opacity: 1;
@@ -281,6 +312,7 @@ body {
   0% {
     transform: translateX(-150%) skewX(-20deg);
   }
+
   100% {
     transform: translateX(250%) skewX(-20deg);
   }
@@ -316,14 +348,14 @@ body {
 .btn-3d-elevated {
   position: relative;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 
+  box-shadow:
     0 4px 14px rgba(24, 119, 242, 0.35),
     0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .btn-3d-elevated:hover {
   transform: translateY(-2px) scale(1.015);
-  box-shadow: 
+  box-shadow:
     0 8px 28px rgba(24, 119, 242, 0.55),
     0 2px 6px rgba(0, 0, 0, 0.15);
 }
@@ -351,9 +383,11 @@ body {
 
 /* Philosophy Section Dynamic Animations */
 @keyframes floatSlow {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-8px);
   }
@@ -368,12 +402,15 @@ body {
     transform: translateY(-100%) rotate(-15deg);
     opacity: 0;
   }
+
   30% {
     opacity: 0.6;
   }
+
   70% {
     opacity: 0.6;
   }
+
   100% {
     transform: translateY(220%) rotate(-15deg);
     opacity: 0;
@@ -388,7 +425,7 @@ body {
   position: relative;
   overflow: hidden;
   border-radius: 1.25rem;
-  background: radial-gradient(circle at 50% 30%, #030D36 0%, #010619 100%);
+  background: radial-gradient(circle at 50% 30%, #030d36 0%, #010619 100%);
 }
 
 /* 3D Spatial Transforms & Card Flip Engine */
@@ -414,32 +451,41 @@ body {
 /* 3D Asymmetric Resting Angles ("Tera-Betera" Organic Look) */
 .tilt-card-left {
   transform: perspective(1200px) rotateY(6deg) rotateX(3deg) rotateZ(-2.5deg);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+  transition:
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.6s ease;
 }
 
 .tilt-card-center {
   transform: perspective(1200px) rotateY(0deg) rotateX(4deg) translateZ(20px);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+  transition:
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.6s ease;
 }
 
 .tilt-card-right {
   transform: perspective(1200px) rotateY(-6deg) rotateX(3deg) rotateZ(2.5deg);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+  transition:
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.6s ease;
 }
 
 @media (min-width: 1024px) {
   .tilt-card-left:hover {
-    transform: perspective(1200px) rotateY(0deg) rotateX(0deg) rotateZ(0deg) translateZ(40px) translateY(-8px);
+    transform: perspective(1200px) rotateY(0deg) rotateX(0deg) rotateZ(0deg)
+      translateZ(40px) translateY(-8px);
     z-index: 30;
   }
 
   .tilt-card-center:hover {
-    transform: perspective(1200px) rotateY(0deg) rotateX(0deg) rotateZ(0deg) translateZ(50px) translateY(-10px);
+    transform: perspective(1200px) rotateY(0deg) rotateX(0deg) rotateZ(0deg)
+      translateZ(50px) translateY(-10px);
     z-index: 30;
   }
 
   .tilt-card-right:hover {
-    transform: perspective(1200px) rotateY(0deg) rotateX(0deg) rotateZ(0deg) translateZ(40px) translateY(-8px);
+    transform: perspective(1200px) rotateY(0deg) rotateX(0deg) rotateZ(0deg)
+      translateZ(40px) translateY(-8px);
     z-index: 30;
   }
 }
@@ -448,8 +494,10 @@ body {
 @keyframes flyInDepth {
   0% {
     opacity: 0;
-    transform: perspective(1200px) translateZ(-200px) translateY(50px) rotateX(15deg);
+    transform: perspective(1200px) translateZ(-200px) translateY(50px)
+      rotateX(15deg);
   }
+
   100% {
     opacity: 1;
     transform: perspective(1200px) translateZ(0) translateY(0) rotateX(0);
@@ -462,12 +510,15 @@ body {
 
 /* 3D Floating Bob with Slight Rotation */
 @keyframes float3DJitter {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   33% {
     transform: translateY(-6px) rotate(-1deg);
   }
+
   66% {
     transform: translateY(-3px) rotate(1.2deg);
   }
@@ -476,5 +527,3 @@ body {
 .animate-float-3d {
   animation: float3DJitter 6s ease-in-out infinite;
 }
-
-
