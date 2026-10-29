@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/layout/logo";
@@ -16,6 +16,10 @@ export function Header() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  const handleCloseMobileNav = useCallback(() => {
+    setIsMobileNavOpen(false);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 15);
@@ -27,6 +31,7 @@ export function Header() {
   if (prevPathname !== pathname) {
     setPrevPathname(pathname);
     setIsServicesOpen(false);
+    setIsMobileNavOpen(false);
   }
 
   const handleMouseEnterServices = () => {
@@ -162,9 +167,10 @@ export function Header() {
             {/* Mobile Menu Trigger */}
             <button
               type="button"
-              onClick={() => setIsMobileNavOpen(true)}
+              onClick={() => setIsMobileNavOpen((prev) => !prev)}
               aria-label="Open navigation menu"
-              className="lg:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              aria-expanded={isMobileNavOpen}
+              className="lg:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
             >
               <Menu className="w-6 h-6" />
             </button>
@@ -178,7 +184,7 @@ export function Header() {
         onMouseEnter={handleMouseEnterServices}
         onMouseLeave={handleMouseLeaveServices}
       />
-      <MobileNav isOpen={isMobileNavOpen} onClose={() => setIsMobileNavOpen(false)} />
+      <MobileNav isOpen={isMobileNavOpen} onClose={handleCloseMobileNav} />
     </header>
   );
 }
